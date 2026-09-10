@@ -61,18 +61,70 @@ rechts stehen dieselben Werte, die Summe ist genau **0**.
 auf *Veränderung* von Helligkeit. Deshalb steht in gleichmäßigen Flächen eine 0 –
 egal ob die Fläche hell oder dunkel ist.
 
-**Kernel-Challenge**
+### Was hat der Filter gefunden?
 
-| Aufgabe | Lösung |
+Die Antwort, die auf dem Lösungsblatt steht und an der Tafel fallen soll:
+
+> **Die senkrechte Kante in der Mitte des Bildes.** In den Spalten B und C steht
+> überall 28 – genau dort wechselt das Bild von dunkel (1) auf hell (8). In den
+> Spalten A und D steht 0, denn dort ist das Bild gleichmäßig. Angemalt ergibt
+> das einen senkrechten Streifen an genau der Stelle, an der im Bild die Kante
+> liegt.
+
+Und die Anschlussfrage, falls jemand weiterdenkt: *Warum ist die Summe der neun
+Kernelzahlen null?* Weil ein Kantenfilter auf eine gleichmäßige Fläche nicht
+reagieren darf – egal wie hell sie ist.
+
+### Testmuster: welcher Kernel findet welche Kante?
+
+Gemessene Werte mit `handout_F_testmuster.html` vor der Kamera. „dunkel" heißt
+exakt 0, „hell" heißt: die Kante ist als Linie deutlich zu sehen.
+
+| Kernel | senkrecht | waagerecht | `/` | `\` |
+|---|---|---|---|---|
+| Taste 4 – alle Kanten | hell | hell | hell | hell |
+| Taste 5 – senkrechte Kanten | **hell (max)** | **dunkel** | hell | hell |
+| Taste 6 – waagerechte Kanten | **dunkel** | **hell (max)** | hell | hell |
+
+Der Clou steckt nicht in der hellsten Spalte, sondern in der **dunklen**: Jeder
+Richtungskernel ist für genau eine Richtung blind – nämlich für die, die
+senkrecht zu seiner eigenen steht. Taste 4 dagegen ist überhaupt nicht
+wählerisch, weil der Kernel in alle Richtungen gleich aufgebaut ist.
+
+### Kernel-Challenge: die Diagonalen
+
+Für die Diagonalen gibt es keinen Tastenpreset – das ist die eigentliche
+Aufgabe. Die Klasse baut den Kernel mit `uv run code/94_kernel_labor.py`.
+
+| Gesucht | Lösung | gemessen |
+|---|---|---|
+| Diagonale `/` findet, `\` blind | `[[0,1,2],[-1,0,1],[-2,-1,0]]` | `/` = 1020, `\` = **0** |
+| Diagonale `\` findet, `/` blind | `[[2,1,0],[1,0,-1],[0,-1,-2]]` | `\` = 1020, `/` = **0** |
+
+**Die Merkregel, auf die es hinausläuft:** Die Nullen im Kernel liegen immer
+*entlang* der Kante, die er findet. Bei Taste 5 stehen sie als senkrechte Spalte
+in der Mitte, bei Taste 6 als waagerechte Zeile – und für eine schräge Kante
+müssen sie schräg liegen, also auf der Diagonale des Kernels.
+
+Beide Lösungen haben Summe 0, sind also Kantenfilter. Andere Varianten gelten
+auch: Es zählt allein, dass genau ein Testfeld völlig dunkel bleibt.
+
+**Falls die Gruppen es nicht schaffen:** Es genügt, wenn sie *ausprobieren*, dass
+die Nullen entlang der Kante liegen müssen. Die genauen Zahlen sind nicht das
+Lernziel – der Zusammenhang zwischen Kernelaufbau und Richtung ist es.
+
+### Weitere Fragen zu Station 2
+
+| Frage | Antwort |
 |---|---|
-| Nur senkrechte Kanten | `[[-1,0,1],[-2,0,2],[-1,0,1]]` – Sobel in x-Richtung, Taste `5`. Merkregel: Die Nullen stehen **senkrecht** in der Mitte, also findet der Kernel senkrechte Kanten. |
-| Nur waagerechte Kanten | Derselbe Kernel um 90 Grad gedreht: `[[-1,-2,-1],[0,0,0],[1,2,1]]`, Taste `6`. |
-| Summe der neun Zahlen ungleich 1 | Ist die Summe **größer** als 1, wird das ganze Bild heller; ist sie **kleiner**, wird es dunkler. Bei Summe **0** bleibt nur die Veränderung übrig – das ist ein Kantenfilter. |
-| 5 × 5-Weichzeichner | Zeichnet stärker weich als 3 × 3, weil über mehr Nachbarpixel gemittelt wird. Feine Strukturen wie Wimpern verschwinden zuerst. |
+| Summe der neun Zahlen ungleich 1 | Ist die Summe **größer** als 1, wird das ganze Bild heller; ist sie **kleiner**, wird es dunkler. Bei Summe **0** bleibt nur die Veränderung übrig – das ist ein Kantenfilter. Das Programm schreibt die Summe und ihre Deutung mit ins Bild. |
+| Warum ist Taste 2 (5 × 5) unschärfer als ein 3 × 3? | Weil über 25 statt über 9 Nachbarpixel gemittelt wird. Taste 7 mittelt über 81 – dort verschwinden auch die Gesichtszüge. |
+| Was macht Taste 9? | Bewegungsunschärfe: Der Kernel mittelt nur nach links und rechts, nicht nach oben und unten. Sieht aus wie ein verwackeltes Foto. |
+| Unterschied Taste 3 und Taste 8 | Beide schärfen und haben Summe 1, aber Taste 8 zieht deutlich stärker an. Bei zu starkem Schärfen entstehen helle Ränder – ein sichtbares Artefakt. |
 
 **Häufiger Stolperstein:** Ein Kernel, dessen Zahlen sich zu einer großen Summe
 addieren, liefert ein fast weißes Bild. Das ist kein Fehler, sondern die Antwort
-auf die Frage oben.
+auf die Frage nach der Summe.
 
 ---
 

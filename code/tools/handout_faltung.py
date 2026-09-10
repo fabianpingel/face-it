@@ -7,12 +7,23 @@ Erzeugt das Arbeitsblatt B "Faltung von Hand":
 
 Zum Drucken die HTML-Datei im Browser oeffnen und Strg+P druecken.
 
-Idee des Arbeitsblatts:
+Das Blatt hat zwei Seiten:
+
+  Seite 1  erklaert die Rechnung an zwei vollstaendig ausgerechneten
+           Beispielen mit farbigen Zahlen - einmal auf einer Kante,
+           einmal auf einer gleichmaessigen Flaeche. Taugt auch als
+           Vorlage fuer ein Tafelbild.
+  Seite 2  ist die Aufgabe.
+
+Idee der Aufgabe:
 Ein winziges Bild (6 x 6 Felder) enthaelt eine senkrechte Kante: links
 dunkel, rechts hell. Der Kernel wird von Hand darueber gelegt. Jede Gruppe
 rechnet nur zwei Felder - eines in einer gleichmaessigen Flaeche und eines
 auf der Kante. An der Tafel werden alle Ergebnisse zusammengesetzt:
 In den Flaechen steht 0, auf der Kante eine grosse Zahl.
+
+Auf dem Loesungsblatt steht zusaetzlich, WAS der Filter gefunden hat -
+auf dem Aufgabenblatt bewusst nicht.
 
 Damit man im Kopf rechnen kann, benutzen wir Helligkeiten von 0 bis 9
 statt 0 bis 255. Am Prinzip aendert das nichts.
@@ -52,6 +63,16 @@ KERNEL = np.array([
 
 ANZAHL_GRUPPEN = 8
 
+# Zwei Rechenbeispiele fuer die Erklaerseite. Bewusst andere Zahlen als in
+# der Aufgabe (dort 1 und 8), damit die Loesung nicht verraten wird.
+BEISPIEL_KANTE = np.array([[3, 3, 5],
+                           [3, 3, 5],
+                           [3, 3, 5]], dtype=int)
+
+BEISPIEL_FLAECHE = np.array([[4, 4, 4],
+                             [4, 4, 4],
+                             [4, 4, 4]], dtype=int)
+
 STIL = """
   @page { size: A4 portrait; margin: 14mm; }
   * { box-sizing: border-box; }
@@ -81,6 +102,26 @@ STIL = """
   .kasten { border-left: 3px solid #1ec8e6; padding: 2mm 0 2mm 4mm;
         margin: 4mm 0; background: #f5fcfe; }
   .loesung { color: #1ec8e6; font-weight: 700; }
+
+  /* Farben fuer das Rechenbeispiel: Kernelzahlen cyan, Bildzahlen dunkel */
+  .kz { color: #0f8fa8; font-weight: 700; }
+  .bz { color: #12263f; font-weight: 700; }
+  table.gitter td.kern { color: #0f8fa8; font-weight: 700; }
+  table.gitter td.bild { color: #12263f; font-weight: 700; }
+  table.gitter td.treffer { background: #d4f1fa; font-weight: 700; }
+  .rechnung { font-family: Consolas, "Courier New", monospace;
+              font-size: 10pt; line-height: 1.9; margin: 2mm 0 0 0; }
+  .rechnung .ergebnis { color: #0f8fa8; font-weight: 700; }
+  .beispiel { border: 1px solid #cdd5dd; padding: 3mm 4mm; margin-bottom: 4mm; }
+  .beispiel h3 { font-size: 11pt; color: #12263f; margin: 0 0 2mm 0; }
+  .beispiel .zusammen { display: flex; gap: 5mm; align-items: center;
+                        flex-wrap: wrap; }
+  .mal { font-size: 16pt; color: #63707d; }
+  .antwort { border-left: 3px solid #1ec8e6; background: #eefaff;
+             padding: 3mm 0 3mm 4mm; margin: 4mm 0; }
+  .antwort h3 { font-size: 11.5pt; color: #12263f; margin: 0 0 1.5mm 0; }
+  .seitenwechsel { page-break-before: always; }
+  .legende { font-size: 9.5pt; color: #63707d; margin-top: 1.5mm; }
 """
 
 
@@ -124,19 +165,63 @@ def spaltenname(nummer):
     return chr(ord("A") + nummer)
 
 
-def gitter_html(werte, zeigen=True, betrag=False, klasse=""):
+def rechnung_html(bild, kernel):
+    """
+    Schreibt die Faltung eines einzigen Feldes Zeile fuer Zeile aus -
+    mit farbigen Zahlen, damit klar ist, was womit multipliziert wird.
+    Gibt (HTML, Gesamtsumme) zurueck.
+    """
+    def term(wert):
+        """Negative Zahlen in Klammern - sonst stehen zwei Zeichen nebeneinander."""
+        return f"({wert})" if wert < 0 else f"{wert}"
+
+    zeilen, gesamt = [], 0
+    for z in range(3):
+        teile, produkte, summe = [], [], 0
+        for s in range(3):
+            k, b = int(kernel[z, s]), int(bild[z, s])
+            summe += k * b
+            teile.append(f'(<span class="kz">{k}</span> &middot; '
+                         f'<span class="bz">{b}</span>)')
+            produkte.append(term(k * b))
+        gesamt += summe
+        zeilen.append(" + ".join(teile)
+                      + " &nbsp;=&nbsp; " + " + ".join(produkte)
+                      + " &nbsp;=&nbsp; "
+                      + f'<span class="ergebnis">{summe}</span>')
+    zeilen.append('<span style="color:#63707d">Alle drei Zeilen addiert:</span>'
+                  f' &nbsp;<span class="ergebnis">{gesamt}</span>'
+                  f" &nbsp;&rarr;&nbsp; Betrag "
+                  f'<span class="ergebnis">{abs(gesamt)}</span>')
+    return '<p class="rechnung">' + "<br>".join(zeilen) + "</p>", gesamt
+
+
+def gitter_html(werte, zeigen=True, betrag=False, klasse="",
+                zellklasse="", treffer=False, kopf=True):
+    """
+    Baut ein Zahlengitter als HTML-Tabelle.
+
+    zellklasse   faerbt alle Zahlen ("kern" cyan, "bild" dunkelblau)
+    treffer      hebt Felder ungleich Null farbig hervor (fuer die Loesung)
+    kopf         Spaltenbuchstaben und Zeilennummern anzeigen
+    """
     zeilen, spalten = werte.shape
     teile = [f'<table class="gitter {klasse}">']
-    teile.append("<tr><th></th>" + "".join(
-        f"<th>{spaltenname(s)}</th>" for s in range(spalten)) + "</tr>")
+    if kopf:
+        teile.append("<tr><th></th>" + "".join(
+            f"<th>{spaltenname(s)}</th>" for s in range(spalten)) + "</tr>")
     for z in range(zeilen):
-        teile.append(f"<tr><th>{z + 1}</th>")
+        teile.append("<tr>" + (f"<th>{z + 1}</th>" if kopf else ""))
         for s in range(spalten):
-            if zeigen:
-                wert = abs(werte[z, s]) if betrag else werte[z, s]
-                teile.append(f"<td>{wert}</td>")
-            else:
+            if not zeigen:
                 teile.append('<td class="leer">&nbsp;</td>')
+                continue
+            wert = abs(werte[z, s]) if betrag else werte[z, s]
+            klassen = [zellklasse] if zellklasse else []
+            if treffer and wert != 0:
+                klassen.append("treffer")
+            attribut = f' class="{" ".join(klassen)}"' if klassen else ""
+            teile.append(f"<td{attribut}>{wert}</td>")
         teile.append("</tr>")
     teile.append("</table>")
     return "\n".join(teile)
@@ -146,14 +231,47 @@ def blatt(loesung=False):
     ergebnis = falten(BILD, KERNEL)
     verteilt = aufteilung(ergebnis, ANZAHL_GRUPPEN)
 
-    gruppen_zeilen = "\n".join(
+    gruppen_zeilen = chr(10).join(
         f'<tr><td>Gruppe {nummer}</td><td class="felder">'
         + "&nbsp;&nbsp;&nbsp;".join(f"{z + 1}{spaltenname(s)}" for z, s in felder)
         + "</td></tr>"
         for nummer, felder in verteilt.items()
     )
 
+    rechnung_kante, summe_kante = rechnung_html(BEISPIEL_KANTE, KERNEL)
+    rechnung_flaeche, summe_flaeche = rechnung_html(BEISPIEL_FLAECHE, KERNEL)
+
     titel_zusatz = ' <span class="loesung">&middot; Lösung</span>' if loesung else ""
+
+    # Die Antwort steht nur auf dem Lösungsblatt.
+    spalten_kante = [spaltenname(s) for s in range(ergebnis.shape[1])
+                     if ergebnis[0, s] != 0]
+    spalten_ruhig = [spaltenname(s) for s in range(ergebnis.shape[1])
+                     if ergebnis[0, s] == 0]
+    hoechster = int(abs(ergebnis).max())
+
+    antwort = ""
+    if loesung:
+        antwort = f"""
+<div class="antwort">
+  <h3>Was hat der Filter gefunden?</h3>
+  <p style="margin:0"><strong>Die senkrechte Kante in der Mitte des
+  Bildes.</strong></p>
+  <p style="margin:2mm 0 0 0">In den Spalten
+  <strong>{" und ".join(spalten_kante)}</strong> steht überall
+  <strong>{hoechster}</strong> – genau dort wechselt das Bild von dunkel (1)
+  auf hell (8). In den Spalten <strong>{" und ".join(spalten_ruhig)}</strong>
+  steht <strong>0</strong>, denn dort ist das Bild gleichmäßig: links dreimal
+  die 1, rechts dreimal die 8.</p>
+  <p style="margin:2mm 0 0 0">Angemalt ergeben die Felder über 10 einen
+  <strong>senkrechten Streifen</strong> – an genau der Stelle, an der im Bild
+  die Kante liegt. Der Filter hat also nicht die Helligkeit gemessen, sondern
+  die <strong>Veränderung</strong> der Helligkeit.</p>
+  <p style="margin:2mm 0 0 0; color:#63707d">Und deshalb ist die Summe der neun
+  Kernelzahlen null: Ein Kantenfilter darf auf eine gleichmäßige Fläche nicht
+  reagieren, egal wie hell sie ist.</p>
+</div>
+"""
 
     return f"""<!DOCTYPE html>
 <html lang="de">
@@ -165,30 +283,99 @@ def blatt(loesung=False):
 <body>
 
 <h1>Face it! <span>–</span> Arbeitsblatt B{titel_zusatz}</h1>
-<p class="unter">Faltung von Hand</p>
+<p class="unter">Faltung von Hand &nbsp;·&nbsp; Seite 1: So wird gerechnet</p>
+<div class="linie"></div>
+
+<p>Ein Filter ist ein kleines Zahlengitter, der <strong>Kernel</strong>. Er wird
+über das Bild gelegt und liefert für jedes Feld eine neue Zahl. Auf Seite 2
+rechnet ihr das für ein echtes Bild aus – hier steht erst einmal, <em>wie</em>
+das geht.</p>
+
+<div class="reihe" style="margin:4mm 0">
+  <div>
+    <h2>Der Kernel (3 × 3)</h2>
+    {gitter_html(KERNEL, zellklasse="kern", kopf=False)}
+    <p class="legende">Kernelzahlen sind <span class="kz">cyan</span>,
+    Bildzahlen <span class="bz">dunkelblau</span>.</p>
+  </div>
+  <div>
+    <h2>So rechnest du ein Feld aus</h2>
+    <ol>
+      <li>Lege den Kernel so auf das Bild, dass seine <strong>Mitte</strong>
+          auf deinem Feld liegt.</li>
+      <li>Multipliziere jede <span class="kz">Kernel-Zahl</span> mit der
+          <span class="bz">Bildzahl</span>, die darunter liegt.</li>
+      <li>Addiere alle neun Ergebnisse.</li>
+      <li>Schreibe den <strong>Betrag</strong> – also ohne Minuszeichen –
+          in dein Feld.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="beispiel">
+  <h3>Beispiel 1 &nbsp;·&nbsp; der Kernel liegt auf einer Kante</h3>
+  <div class="zusammen">
+    <div>
+      {gitter_html(BEISPIEL_KANTE, zellklasse="bild", kopf=False)}
+      <p class="legende">links dunkel (3), rechts hell (5)</p>
+    </div>
+    <div class="mal">&times;</div>
+    <div>
+      {gitter_html(KERNEL, zellklasse="kern", kopf=False)}
+      <p class="legende">der Kernel</p>
+    </div>
+  </div>
+  {rechnung_kante}
+  <p style="margin:2mm 0 0 0">In das Feld kommt also die
+  <strong>{abs(summe_kante)}</strong>.</p>
+</div>
+
+<div class="beispiel">
+  <h3>Beispiel 2 &nbsp;·&nbsp; der Kernel liegt auf einer gleichmäßigen
+  Fläche</h3>
+  <div class="zusammen">
+    <div>
+      {gitter_html(BEISPIEL_FLAECHE, zellklasse="bild", kopf=False)}
+      <p class="legende">überall dieselbe Helligkeit (4)</p>
+    </div>
+    <div class="mal">&times;</div>
+    <div>
+      {gitter_html(KERNEL, zellklasse="kern", kopf=False)}
+      <p class="legende">derselbe Kernel</p>
+    </div>
+  </div>
+  {rechnung_flaeche}
+  <p style="margin:2mm 0 0 0">In das Feld kommt also die
+  <strong>{abs(summe_flaeche)}</strong>.</p>
+</div>
+
+<div class="kasten">
+  <p style="margin:0">Vergleicht die beiden Beispiele: dieselbe Rechnung, aber
+  einmal kommt <strong>{abs(summe_kante)}</strong> heraus und einmal
+  <strong>{abs(summe_flaeche)}</strong>. Merkt euch das – auf Seite 2 werdet ihr
+  beide Fälle wiedersehen.</p>
+</div>
+
+<div class="seitenwechsel"></div>
+
+<h1>Face it! <span>–</span> Arbeitsblatt B{titel_zusatz}</h1>
+<p class="unter">Faltung von Hand &nbsp;·&nbsp; Seite 2: Eure Aufgabe</p>
 <div class="linie"></div>
 
 <p>Unten steht ein winziges Bild: 6 × 6 Helligkeitswerte. Damit man im Kopf
-rechnen kann, gehen die Werte hier nur von 0 (dunkel) bis 9 (hell).
-Am Prinzip ändert das nichts.</p>
+rechnen kann, gehen die Werte hier nur von 0 (dunkel) bis 9 (hell). Jede Gruppe
+rechnet <strong>zwei Felder</strong> aus – genau so wie in den Beispielen auf
+Seite 1.</p>
 
-<h2>So rechnest du ein Feld des Ergebnisses aus</h2>
-<ol>
-  <li>Lege den Kernel so auf das Bild, dass seine Mitte auf deinem Feld liegt.</li>
-  <li>Multipliziere jede Kernel-Zahl mit der Bildzahl darunter.</li>
-  <li>Addiere alle neun Ergebnisse.</li>
-  <li>Schreibe den Betrag – also ohne Minuszeichen – in dein Feld.</li>
-</ol>
-
-<div class="reihe" style="margin-top:6mm">
+<div class="reihe" style="margin-top:5mm">
   <div>
     <h2>Das Bild (6 × 6)</h2>
-    {gitter_html(BILD)}
+    {gitter_html(BILD, zellklasse="bild")}
   </div>
   <div>
     <h2>Der Kernel (3 × 3)</h2>
-    {gitter_html(KERNEL)}
-    <h2 style="margin-top:7mm">Wer rechnet welche Felder?</h2>
+    {gitter_html(KERNEL, zellklasse="kern", kopf=False)}
+    <h2 style="margin-top:6mm">Wer rechnet welche Felder?</h2>
     <table class="gruppen">{gruppen_zeilen}</table>
   </div>
 </div>
@@ -196,7 +383,7 @@ Am Prinzip ändert das nichts.</p>
 <div class="reihe">
   <div>
     <h2>Das Ergebnis (4 × 4) – hier eintragen</h2>
-    {gitter_html(ergebnis, zeigen=loesung, betrag=True)}
+    {gitter_html(ergebnis, zeigen=loesung, betrag=True, treffer=loesung)}
   </div>
   <div style="padding-top:9mm">
     <p>Wenn alle Gruppen fertig sind, werden die Zahlen an der Tafel
@@ -204,16 +391,10 @@ Am Prinzip ändert das nichts.</p>
     <p class="frage">Was ist zu sehen?<br>Und was hat der Kernel gefunden?</p>
   </div>
 </div>
-
-<div class="kasten">
-  <p style="margin:0">Achte auf die Felder mit einer <strong>0</strong>: Dort war
-  das Bild gleichmäßig hell oder gleichmäßig dunkel. Der Kernel interessiert sich
-  nicht für Helligkeit – sondern nur für <strong>Veränderung</strong>.</p>
-</div>
-
-<p class="klein">Genau diese Rechnung machen die ersten Schichten eines neuronalen
-Netzes – millionenfach pro Bild, mit tausenden Kerneln, die das Netz sich selbst
-ausgedacht hat. Ihr habt einen davon von Hand gerechnet.</p>
+{antwort}
+<p class="klein">Genau diese Rechnung machen die ersten Schichten eines
+neuronalen Netzes – millionenfach pro Bild, mit tausenden Kerneln, die das Netz
+sich selbst ausgedacht hat. Ihr habt einen davon von Hand gerechnet.</p>
 
 </body>
 </html>

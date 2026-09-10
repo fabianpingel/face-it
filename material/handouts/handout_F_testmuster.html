@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Face it! – Testmuster für Kantenfilter</title>
+<style>
+  @page { size: A4 portrait; margin: 12mm; }
+  * { box-sizing: border-box; margin: 0; padding: 0;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+         color: #1a2b3c; font-size: 10.5pt; line-height: 1.45; }
+
+  h1 { font-size: 19pt; color: #12263f; }
+  h1 span { color: #1ec8e6; }
+  .unter { font-size: 11pt; color: #1ec8e6; font-weight: 600; margin-top: 1.5mm; }
+  .linie { height: 3px; background: #1ec8e6; margin: 3mm 0 4mm 0; }
+  p { margin: 2mm 0; }
+
+  .muster { display: grid; grid-template-columns: 1fr 1fr;
+            gap: 5mm 8mm; margin: 5mm 0 4mm 0; }
+  .feld { text-align: center; }
+  .kachel { width: 100%; aspect-ratio: 1; background: #fff;
+            border: 1px solid #b9c2cc; position: relative; overflow: hidden; }
+  .kachel .schwarz { position: absolute; inset: 0; background: #000; }
+
+  /* senkrechte Kante: linke Haelfte schwarz */
+  .senkrecht .schwarz { right: 50%; }
+  /* waagerechte Kante: obere Haelfte schwarz */
+  .waagerecht .schwarz { bottom: 50%; }
+  /* Kante von links unten nach rechts oben:  /  */
+  .diag_auf .schwarz { clip-path: polygon(0 0, 100% 0, 0 100%); }
+  /* Kante von links oben nach rechts unten:  \  */
+  .diag_ab .schwarz { clip-path: polygon(0 0, 100% 0, 100% 100%); }
+
+  .name { font-weight: 700; color: #12263f; margin-top: 2mm; font-size: 11pt; }
+  .name .zeichen { color: #1ec8e6; font-family: Consolas, monospace;
+                   font-size: 13pt; }
+
+  table { border-collapse: collapse; width: 100%; margin: 3mm 0;
+          font-size: 10pt; }
+  th { background: #12263f; color: #fff; text-align: left; font-weight: 600;
+       padding: 1.6mm 2.5mm; font-size: 9.5pt; }
+  th.mitte, td.mitte { text-align: center; }
+  td { border: 1px solid #cdd5dd; padding: 2.6mm 2.5mm; }
+  td.eingabe { background: #fbfdfe; }
+
+  .kasten { border-left: 3px solid #1ec8e6; background: #f5fcfe;
+            padding: 2.5mm 0 2.5mm 4mm; margin: 3mm 0; }
+  .frage { color: #12263f; font-weight: 700; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
+         background: #eef3f7; padding: 0.3mm 1.2mm; border-radius: 2px; }
+  .gitter3 { border-collapse: collapse; margin: 2mm 0; }
+  .gitter3 td { border: 1px solid #98a4b0; width: 13mm; height: 13mm;
+                background: #fff; }
+  .fuss { margin-top: 4mm; font-size: 9pt; color: #8794a1; }
+</style>
+</head>
+<body>
+
+<h1>Face it! <span>–</span> Testmuster für Kantenfilter</h1>
+<p class="unter">Arbeitsblatt zur Kernel-Challenge in Station 2</p>
+<div class="linie"></div>
+
+<p>Haltet dieses Blatt vor die Kamera, während <code>02_filter.py</code> läuft.
+Jedes der vier Felder enthält genau <strong>eine</strong> Kante – aber in einer
+anderen Richtung. So könnt ihr für jeden Kernel prüfen, welche Richtung er
+findet und welche er übersieht.</p>
+
+<div class="muster">
+  <div class="feld">
+    <div class="kachel senkrecht"><div class="schwarz"></div></div>
+    <div class="name">senkrechte Kante <span class="zeichen">|</span></div>
+  </div>
+  <div class="feld">
+    <div class="kachel waagerecht"><div class="schwarz"></div></div>
+    <div class="name">waagerechte Kante <span class="zeichen">&ndash;</span></div>
+  </div>
+  <div class="feld">
+    <div class="kachel diag_auf"><div class="schwarz"></div></div>
+    <div class="name">Diagonale <span class="zeichen">/</span></div>
+  </div>
+  <div class="feld">
+    <div class="kachel diag_ab"><div class="schwarz"></div></div>
+    <div class="name">Diagonale <span class="zeichen">\</span></div>
+  </div>
+</div>
+
+<p><strong>So wird gemessen:</strong> Eine Kante ist <em>gefunden</em>, wenn sie
+im gefilterten Bild als helle Linie zu sehen ist. Sie ist <em>übersehen</em>,
+wenn dort nichts als Schwarz bleibt. Schreibt in die Tabelle jeweils
+<strong>hell</strong> oder <strong>dunkel</strong>.</p>
+
+<table>
+  <tr><th style="width:40%">Kernel</th>
+      <th class="mitte">|</th><th class="mitte">&ndash;</th>
+      <th class="mitte">/</th><th class="mitte">\</th></tr>
+  <tr><td>Taste 4 – alle Kanten</td>
+      <td class="eingabe mitte"></td><td class="eingabe mitte"></td>
+      <td class="eingabe mitte"></td><td class="eingabe mitte"></td></tr>
+  <tr><td>Taste 5 – senkrechte Kanten</td>
+      <td class="eingabe mitte"></td><td class="eingabe mitte"></td>
+      <td class="eingabe mitte"></td><td class="eingabe mitte"></td></tr>
+  <tr><td>Taste 6 – waagerechte Kanten</td>
+      <td class="eingabe mitte"></td><td class="eingabe mitte"></td>
+      <td class="eingabe mitte"></td><td class="eingabe mitte"></td></tr>
+  <tr><td><strong>unser eigener Kernel</strong></td>
+      <td class="eingabe mitte"></td><td class="eingabe mitte"></td>
+      <td class="eingabe mitte"></td><td class="eingabe mitte"></td></tr>
+</table>
+
+<div class="kasten">
+  <p style="margin:0" class="frage">Was euch die Tabelle verrät</p>
+  <p style="margin:1mm 0 0 0">Taste 4 findet <em>alle vier</em> Richtungen – der
+  Kernel ist also gar nicht wählerisch. Taste 5 und 6 dagegen lassen jeweils
+  <strong>genau ein Feld völlig dunkel</strong>. Und dieses dunkle Feld ist das
+  Interessante: Es verrät, für welche Richtung der Kernel <strong>blind</strong>
+  ist.</p>
+</div>
+
+<div class="kasten">
+  <p style="margin:0" class="frage">Die Challenge</p>
+  <p style="margin:1mm 0 0 0">Für die Diagonalen gibt es <strong>keinen fertigen
+  Kernel</strong>. Baut selbst einen, der die Diagonale <code>/</code> hell
+  zeigt und bei <code>\</code> <strong>völlig dunkel</strong> bleibt.
+  Genau ein dunkles Feld – das ist das Ziel.</p>
+  <p style="margin:2mm 0 0 0">Werkzeug: <code>uv run code/94_kernel_labor.py</code>
+  – dort stellt ihr jede der neun Zahlen mit einem Schieberegler ein und seht die
+  Wirkung sofort.</p>
+  <p style="margin:2mm 0 0 0"><strong>Der Tipp, falls ihr feststeckt:</strong>
+  Schaut euch Taste 5 an. Dort steht in der <em>Mitte eine Spalte aus Nullen</em>,
+  und der Kernel findet senkrechte Kanten. Taste 6 hat eine <em>Zeile aus
+  Nullen</em> und findet waagerechte Kanten. Die Nullen liegen also immer
+  <em>entlang</em> der Kante, die gefunden wird. Wo müssen sie dann stehen, wenn
+  eine <em>schräge</em> Kante gefunden werden soll?</p>
+</div>
+
+<p class="frage">Unser Kernel für die Diagonale <code>/</code>:</p>
+<table class="gitter3">
+  <tr><td></td><td></td><td></td></tr>
+  <tr><td></td><td></td><td></td></tr>
+  <tr><td></td><td></td><td></td></tr>
+</table>
+<p>Summe aller neun Zahlen: <strong>_______</strong> &nbsp;&nbsp;
+Was sagt diese Summe über den Kernel?
+<span style="border-bottom:1px dotted #98a4b0; display:inline-block;
+min-width:60mm"></span></p>
+
+<p class="fuss">Face it! · Station 2 · Ein Kantenfilter reagiert nicht auf
+Helligkeit, sondern auf Veränderung – und zwar nur in einer Richtung.</p>
+
+</body>
+</html>

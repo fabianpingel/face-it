@@ -32,102 +32,270 @@
   .kasten { border-left: 3px solid #1ec8e6; padding: 2mm 0 2mm 4mm;
         margin: 4mm 0; background: #f5fcfe; }
   .loesung { color: #1ec8e6; font-weight: 700; }
+
+  /* Farben fuer das Rechenbeispiel: Kernelzahlen cyan, Bildzahlen dunkel */
+  .kz { color: #0f8fa8; font-weight: 700; }
+  .bz { color: #12263f; font-weight: 700; }
+  table.gitter td.kern { color: #0f8fa8; font-weight: 700; }
+  table.gitter td.bild { color: #12263f; font-weight: 700; }
+  table.gitter td.treffer { background: #d4f1fa; font-weight: 700; }
+  .rechnung { font-family: Consolas, "Courier New", monospace;
+              font-size: 10pt; line-height: 1.9; margin: 2mm 0 0 0; }
+  .rechnung .ergebnis { color: #0f8fa8; font-weight: 700; }
+  .beispiel { border: 1px solid #cdd5dd; padding: 3mm 4mm; margin-bottom: 4mm; }
+  .beispiel h3 { font-size: 11pt; color: #12263f; margin: 0 0 2mm 0; }
+  .beispiel .zusammen { display: flex; gap: 5mm; align-items: center;
+                        flex-wrap: wrap; }
+  .mal { font-size: 16pt; color: #63707d; }
+  .antwort { border-left: 3px solid #1ec8e6; background: #eefaff;
+             padding: 3mm 0 3mm 4mm; margin: 4mm 0; }
+  .antwort h3 { font-size: 11.5pt; color: #12263f; margin: 0 0 1.5mm 0; }
+  .seitenwechsel { page-break-before: always; }
+  .legende { font-size: 9.5pt; color: #63707d; margin-top: 1.5mm; }
 </style>
 </head>
 <body>
 
 <h1>Face it! <span>–</span> Arbeitsblatt B</h1>
-<p class="unter">Faltung von Hand</p>
+<p class="unter">Faltung von Hand &nbsp;·&nbsp; Seite 1: So wird gerechnet</p>
+<div class="linie"></div>
+
+<p>Ein Filter ist ein kleines Zahlengitter, der <strong>Kernel</strong>. Er wird
+über das Bild gelegt und liefert für jedes Feld eine neue Zahl. Auf Seite 2
+rechnet ihr das für ein echtes Bild aus – hier steht erst einmal, <em>wie</em>
+das geht.</p>
+
+<div class="reihe" style="margin:4mm 0">
+  <div>
+    <h2>Der Kernel (3 × 3)</h2>
+    <table class="gitter ">
+<tr>
+<td class="kern">-1</td>
+<td class="kern">0</td>
+<td class="kern">1</td>
+</tr>
+<tr>
+<td class="kern">-2</td>
+<td class="kern">0</td>
+<td class="kern">2</td>
+</tr>
+<tr>
+<td class="kern">-1</td>
+<td class="kern">0</td>
+<td class="kern">1</td>
+</tr>
+</table>
+    <p class="legende">Kernelzahlen sind <span class="kz">cyan</span>,
+    Bildzahlen <span class="bz">dunkelblau</span>.</p>
+  </div>
+  <div>
+    <h2>So rechnest du ein Feld aus</h2>
+    <ol>
+      <li>Lege den Kernel so auf das Bild, dass seine <strong>Mitte</strong>
+          auf deinem Feld liegt.</li>
+      <li>Multipliziere jede <span class="kz">Kernel-Zahl</span> mit der
+          <span class="bz">Bildzahl</span>, die darunter liegt.</li>
+      <li>Addiere alle neun Ergebnisse.</li>
+      <li>Schreibe den <strong>Betrag</strong> – also ohne Minuszeichen –
+          in dein Feld.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="beispiel">
+  <h3>Beispiel 1 &nbsp;·&nbsp; der Kernel liegt auf einer Kante</h3>
+  <div class="zusammen">
+    <div>
+      <table class="gitter ">
+<tr>
+<td class="bild">3</td>
+<td class="bild">3</td>
+<td class="bild">5</td>
+</tr>
+<tr>
+<td class="bild">3</td>
+<td class="bild">3</td>
+<td class="bild">5</td>
+</tr>
+<tr>
+<td class="bild">3</td>
+<td class="bild">3</td>
+<td class="bild">5</td>
+</tr>
+</table>
+      <p class="legende">links dunkel (3), rechts hell (5)</p>
+    </div>
+    <div class="mal">&times;</div>
+    <div>
+      <table class="gitter ">
+<tr>
+<td class="kern">-1</td>
+<td class="kern">0</td>
+<td class="kern">1</td>
+</tr>
+<tr>
+<td class="kern">-2</td>
+<td class="kern">0</td>
+<td class="kern">2</td>
+</tr>
+<tr>
+<td class="kern">-1</td>
+<td class="kern">0</td>
+<td class="kern">1</td>
+</tr>
+</table>
+      <p class="legende">der Kernel</p>
+    </div>
+  </div>
+  <p class="rechnung">(<span class="kz">-1</span> &middot; <span class="bz">3</span>) + (<span class="kz">0</span> &middot; <span class="bz">3</span>) + (<span class="kz">1</span> &middot; <span class="bz">5</span>) &nbsp;=&nbsp; (-3) + 0 + 5 &nbsp;=&nbsp; <span class="ergebnis">2</span><br>(<span class="kz">-2</span> &middot; <span class="bz">3</span>) + (<span class="kz">0</span> &middot; <span class="bz">3</span>) + (<span class="kz">2</span> &middot; <span class="bz">5</span>) &nbsp;=&nbsp; (-6) + 0 + 10 &nbsp;=&nbsp; <span class="ergebnis">4</span><br>(<span class="kz">-1</span> &middot; <span class="bz">3</span>) + (<span class="kz">0</span> &middot; <span class="bz">3</span>) + (<span class="kz">1</span> &middot; <span class="bz">5</span>) &nbsp;=&nbsp; (-3) + 0 + 5 &nbsp;=&nbsp; <span class="ergebnis">2</span><br><span style="color:#63707d">Alle drei Zeilen addiert:</span> &nbsp;<span class="ergebnis">8</span> &nbsp;&rarr;&nbsp; Betrag <span class="ergebnis">8</span></p>
+  <p style="margin:2mm 0 0 0">In das Feld kommt also die
+  <strong>8</strong>.</p>
+</div>
+
+<div class="beispiel">
+  <h3>Beispiel 2 &nbsp;·&nbsp; der Kernel liegt auf einer gleichmäßigen
+  Fläche</h3>
+  <div class="zusammen">
+    <div>
+      <table class="gitter ">
+<tr>
+<td class="bild">4</td>
+<td class="bild">4</td>
+<td class="bild">4</td>
+</tr>
+<tr>
+<td class="bild">4</td>
+<td class="bild">4</td>
+<td class="bild">4</td>
+</tr>
+<tr>
+<td class="bild">4</td>
+<td class="bild">4</td>
+<td class="bild">4</td>
+</tr>
+</table>
+      <p class="legende">überall dieselbe Helligkeit (4)</p>
+    </div>
+    <div class="mal">&times;</div>
+    <div>
+      <table class="gitter ">
+<tr>
+<td class="kern">-1</td>
+<td class="kern">0</td>
+<td class="kern">1</td>
+</tr>
+<tr>
+<td class="kern">-2</td>
+<td class="kern">0</td>
+<td class="kern">2</td>
+</tr>
+<tr>
+<td class="kern">-1</td>
+<td class="kern">0</td>
+<td class="kern">1</td>
+</tr>
+</table>
+      <p class="legende">derselbe Kernel</p>
+    </div>
+  </div>
+  <p class="rechnung">(<span class="kz">-1</span> &middot; <span class="bz">4</span>) + (<span class="kz">0</span> &middot; <span class="bz">4</span>) + (<span class="kz">1</span> &middot; <span class="bz">4</span>) &nbsp;=&nbsp; (-4) + 0 + 4 &nbsp;=&nbsp; <span class="ergebnis">0</span><br>(<span class="kz">-2</span> &middot; <span class="bz">4</span>) + (<span class="kz">0</span> &middot; <span class="bz">4</span>) + (<span class="kz">2</span> &middot; <span class="bz">4</span>) &nbsp;=&nbsp; (-8) + 0 + 8 &nbsp;=&nbsp; <span class="ergebnis">0</span><br>(<span class="kz">-1</span> &middot; <span class="bz">4</span>) + (<span class="kz">0</span> &middot; <span class="bz">4</span>) + (<span class="kz">1</span> &middot; <span class="bz">4</span>) &nbsp;=&nbsp; (-4) + 0 + 4 &nbsp;=&nbsp; <span class="ergebnis">0</span><br><span style="color:#63707d">Alle drei Zeilen addiert:</span> &nbsp;<span class="ergebnis">0</span> &nbsp;&rarr;&nbsp; Betrag <span class="ergebnis">0</span></p>
+  <p style="margin:2mm 0 0 0">In das Feld kommt also die
+  <strong>0</strong>.</p>
+</div>
+
+<div class="kasten">
+  <p style="margin:0">Vergleicht die beiden Beispiele: dieselbe Rechnung, aber
+  einmal kommt <strong>8</strong> heraus und einmal
+  <strong>0</strong>. Merkt euch das – auf Seite 2 werdet ihr
+  beide Fälle wiedersehen.</p>
+</div>
+
+<div class="seitenwechsel"></div>
+
+<h1>Face it! <span>–</span> Arbeitsblatt B</h1>
+<p class="unter">Faltung von Hand &nbsp;·&nbsp; Seite 2: Eure Aufgabe</p>
 <div class="linie"></div>
 
 <p>Unten steht ein winziges Bild: 6 × 6 Helligkeitswerte. Damit man im Kopf
-rechnen kann, gehen die Werte hier nur von 0 (dunkel) bis 9 (hell).
-Am Prinzip ändert das nichts.</p>
+rechnen kann, gehen die Werte hier nur von 0 (dunkel) bis 9 (hell). Jede Gruppe
+rechnet <strong>zwei Felder</strong> aus – genau so wie in den Beispielen auf
+Seite 1.</p>
 
-<h2>So rechnest du ein Feld des Ergebnisses aus</h2>
-<ol>
-  <li>Lege den Kernel so auf das Bild, dass seine Mitte auf deinem Feld liegt.</li>
-  <li>Multipliziere jede Kernel-Zahl mit der Bildzahl darunter.</li>
-  <li>Addiere alle neun Ergebnisse.</li>
-  <li>Schreibe den Betrag – also ohne Minuszeichen – in dein Feld.</li>
-</ol>
-
-<div class="reihe" style="margin-top:6mm">
+<div class="reihe" style="margin-top:5mm">
   <div>
     <h2>Das Bild (6 × 6)</h2>
     <table class="gitter ">
 <tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
 <tr><th>1</th>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>8</td>
-<td>8</td>
-<td>8</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
 </tr>
 <tr><th>2</th>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>8</td>
-<td>8</td>
-<td>8</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
 </tr>
 <tr><th>3</th>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>8</td>
-<td>8</td>
-<td>8</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
 </tr>
 <tr><th>4</th>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>8</td>
-<td>8</td>
-<td>8</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
 </tr>
 <tr><th>5</th>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>8</td>
-<td>8</td>
-<td>8</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
 </tr>
 <tr><th>6</th>
-<td>1</td>
-<td>1</td>
-<td>1</td>
-<td>8</td>
-<td>8</td>
-<td>8</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">1</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
+<td class="bild">8</td>
 </tr>
 </table>
   </div>
   <div>
     <h2>Der Kernel (3 × 3)</h2>
     <table class="gitter ">
-<tr><th></th><th>A</th><th>B</th><th>C</th></tr>
-<tr><th>1</th>
-<td>-1</td>
-<td>0</td>
-<td>1</td>
+<tr>
+<td class="kern">-1</td>
+<td class="kern">0</td>
+<td class="kern">1</td>
 </tr>
-<tr><th>2</th>
-<td>-2</td>
-<td>0</td>
-<td>2</td>
+<tr>
+<td class="kern">-2</td>
+<td class="kern">0</td>
+<td class="kern">2</td>
 </tr>
-<tr><th>3</th>
-<td>-1</td>
-<td>0</td>
-<td>1</td>
+<tr>
+<td class="kern">-1</td>
+<td class="kern">0</td>
+<td class="kern">1</td>
 </tr>
 </table>
-    <h2 style="margin-top:7mm">Wer rechnet welche Felder?</h2>
+    <h2 style="margin-top:6mm">Wer rechnet welche Felder?</h2>
     <table class="gruppen"><tr><td>Gruppe 1</td><td class="felder">1B&nbsp;&nbsp;&nbsp;1A</td></tr>
 <tr><td>Gruppe 2</td><td class="felder">1C&nbsp;&nbsp;&nbsp;1D</td></tr>
 <tr><td>Gruppe 3</td><td class="felder">2B&nbsp;&nbsp;&nbsp;2A</td></tr>
@@ -177,15 +345,9 @@ Am Prinzip ändert das nichts.</p>
   </div>
 </div>
 
-<div class="kasten">
-  <p style="margin:0">Achte auf die Felder mit einer <strong>0</strong>: Dort war
-  das Bild gleichmäßig hell oder gleichmäßig dunkel. Der Kernel interessiert sich
-  nicht für Helligkeit – sondern nur für <strong>Veränderung</strong>.</p>
-</div>
-
-<p class="klein">Genau diese Rechnung machen die ersten Schichten eines neuronalen
-Netzes – millionenfach pro Bild, mit tausenden Kerneln, die das Netz sich selbst
-ausgedacht hat. Ihr habt einen davon von Hand gerechnet.</p>
+<p class="klein">Genau diese Rechnung machen die ersten Schichten eines
+neuronalen Netzes – millionenfach pro Bild, mit tausenden Kerneln, die das Netz
+sich selbst ausgedacht hat. Ihr habt einen davon von Hand gerechnet.</p>
 
 </body>
 </html>

@@ -122,11 +122,12 @@ Danach die Handouts ausdrucken – alle liegen als HTML in `material/`:
 | Datei | Anzahl |
 |---|---|
 | `material/handouts/handout_A_laufzettel.html` | einmal pro Zweiergruppe (2 Seiten) |
-| `material/handouts/handout_B_faltung.html` | einmal pro Zweiergruppe |
+| `material/handouts/handout_B_faltung.html` | einmal pro Zweiergruppe (**2 Seiten**: Erklärung und Aufgabe) |
 | `material/handouts/handout_B_faltung_loesung.html` | einmal für dich |
 | `material/handouts/handout_C_bingo.html` | einmal pro Zweiergruppe |
 | `material/handouts/handout_D_hack.html` | einmal pro Zweiergruppe |
 | `material/handouts/handout_E_ampelkarte.html` | einmal pro Zweiergruppe, **in Farbe und beidseitig** |
+| `material/handouts/handout_F_testmuster.html` | einmal pro Zweiergruppe (Station 2, wird vor die Kamera gehalten) |
 | `material/elternbrief_und_einwilligung.html` | einmal pro Schüler:in, **vorher** |
 
 Zum Drucken die Datei im Browser öffnen und `Strg+P` drücken.

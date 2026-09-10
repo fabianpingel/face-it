@@ -80,6 +80,9 @@ faceit.titel(
     "[r] zuruecksetzen        [q] beenden",
 )
 
+FENSTER = "Face it - Station 4b"
+faceit.fenster(FENSTER)
+
 kamera = faceit.kamera_oeffnen()
 gespeichert = {}
 leer = np.full((300, 300, 3), 35, np.uint8)
@@ -119,7 +122,8 @@ while True:
     kamerabild = cv2.resize(bild, (420, 300))
     zusammen = np.hstack([kachel_a, kachel_b, tafel, kamerabild])
     faceit.hinweisleiste(zusammen, ["[1] links   [2] rechts   [r] neu   [q] beenden"])
-    faceit.zeigen("Face it - Station 4b", zusammen)
+    faceit.zeigen(FENSTER, zusammen)
+    faceit.fenster_anpassen(FENSTER, zusammen)
 
     gedrueckt = faceit.taste()
 

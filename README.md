@@ -89,10 +89,11 @@ uv run code/tools/landmark_modell_holen.py   # nur für den Beamer (Station 3b)
 Material zum Ausdrucken (HTML, im Browser öffnen und `Strg+P`):
 
 - `material/handouts/handout_A_laufzettel.html` – Laufzettel für alle Stationen, 2 Seiten
-- `material/handouts/handout_B_faltung.html` – Faltung von Hand (plus Lösungsblatt)
+- `material/handouts/handout_B_faltung.html` – Faltung von Hand, 2 Seiten mit ausgerechnetem Beispiel (plus Lösungsblatt)
 - `material/handouts/handout_C_bingo.html` – Experimente-Bingo für Station 3
 - `material/handouts/handout_D_hack.html` – Punktekarte für die Hack-Challenge
 - `material/handouts/handout_E_ampelkarte.html` – Ampelkarte grün/rot zum Hochhalten, Fehlerhilfe innen
+- `material/handouts/handout_F_testmuster.html` – Testmuster mit vier Kantenrichtungen für die Kernel-Challenge
 - `material/elternbrief_und_einwilligung.html` – Elternbrief und Einwilligung
 - `material/folien/index.html` – die fünf Folien (Pfeiltasten, `F` für Vollbild)
 

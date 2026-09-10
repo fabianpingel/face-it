@@ -141,6 +141,8 @@ while True:
     faceit.zeigen("Face it - Station 3b", bild)
 
     gedrueckt = faceit.taste()
+    if not faceit.fenster_offen("Face it - Station 3b"):
+        break
     if gedrueckt == "q":
         break
     if gedrueckt == "n":
@@ -149,5 +151,11 @@ while True:
 
 kamera.release()
 faceit.fenster_schliessen()
+print()
+print("  " + faceit.bunt("Aufgabe zum Nachdenken:", "cyan", "fett"))
+print("  Diese Punkte sagen, WIE ein Gesicht geformt ist - nicht, WER es ist.")
+print("  Was koennte man damit bauen? Sammelt Ideen und sortiert sie in")
+print("  zwei Spalten: nuetzlich und unheimlich.")
+print()
 print("  Weiter mit Station 4: uv run code/04a_embedding.py")
 print()

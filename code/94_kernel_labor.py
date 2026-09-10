@@ -134,6 +134,8 @@ while True:
     faceit.fenster_anpassen(FENSTER, ansicht)
 
     gedrueckt = faceit.taste()
+    if not faceit.fenster_offen(FENSTER):
+        break
     if gedrueckt == "q":
         break
     if gedrueckt == "r" and not faceit.TESTMODUS:

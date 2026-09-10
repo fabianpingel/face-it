@@ -313,19 +313,56 @@ def fenster_schliessen():
 
 
 def regler_anlegen(fenstername: str, name: str, startwert: int, hoechstwert: int):
-    """Legt einen Schieberegler oben im Fenster an."""
+    """
+    Legt einen Schieberegler oben im Fenster an.
+
+    Klappt das nicht - etwa weil das Fenster fehlt -, laeuft die Station
+    trotzdem weiter und benutzt den Startwert. Ein fehlender Regler ist
+    aergerlich, ein Absturz mitten im Workshop ist schlimmer.
+    """
     _reglerwerte[(fenstername, name)] = startwert
-    if not TESTMODUS:
+    if TESTMODUS:
+        return
+    try:
         cv2.createTrackbar(_ascii(name), fenstername, startwert, hoechstwert,
                            lambda wert: None)
+    except cv2.error:
+        print(f"  Hinweis: Der Schieberegler '{name}' konnte nicht angelegt "
+              f"werden.")
+        print(f"  Die Station laeuft weiter mit dem festen Wert {startwert}.")
 
 
 def regler_wert(fenstername: str, name: str) -> int:
-    """Liest den aktuellen Wert eines Schiebereglers."""
+    """
+    Liest den aktuellen Wert eines Schiebereglers.
+
+    Wenn das Fenster inzwischen ueber das Kreuz geschlossen wurde, gibt es
+    keinen Regler mehr - dann liefern wir den letzten bekannten Wert
+    zurueck, statt das Programm mit einem Fehler abzubrechen.
+    """
     if TESTMODUS:
         return int(os.environ.get("FACEIT_REGLER",
                                   _reglerwerte.get((fenstername, name), 0)))
-    return cv2.getTrackbarPos(_ascii(name), fenstername)
+    try:
+        wert = cv2.getTrackbarPos(_ascii(name), fenstername)
+    except cv2.error:
+        return _reglerwerte.get((fenstername, name), 0)
+    _reglerwerte[(fenstername, name)] = wert
+    return wert
+
+
+def fenster_offen(fenstername: str) -> bool:
+    """
+    Ist das Fenster noch da? Gibt False zurueck, sobald es ueber das Kreuz
+    geschlossen wurde. Damit koennen die Stationen sauber beenden, statt
+    mit einer Fehlermeldung abzustuerzen.
+    """
+    if TESTMODUS:
+        return True
+    try:
+        return cv2.getWindowProperty(fenstername, cv2.WND_PROP_VISIBLE) >= 1
+    except cv2.error:
+        return False
 
 
 def bild_holen(kamera, spiegeln: bool = True):

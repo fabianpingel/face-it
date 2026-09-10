@@ -273,16 +273,16 @@ def blatt(loesung=False):
 </div>
 """
 
-    return f"""<!DOCTYPE html>
-<html lang="de">
-<head>
-<meta charset="utf-8">
-<title>Face it! – Arbeitsblatt B: Faltung von Hand</title>
-<style>{STIL}</style>
-</head>
-<body>
+    # Auf dem Loesungsblatt entfaellt die Erklaerseite. Die Lehrkraft
+    # braucht sie nicht, und ein Blatt weniger ist ein Blatt weniger.
+    untertitel = ("Faltung von Hand &nbsp;·&nbsp; Lösung" if loesung else
+                  "Faltung von Hand &nbsp;·&nbsp; Seite 2: Eure Aufgabe")
 
-<h1>Face it! <span>–</span> Arbeitsblatt B{titel_zusatz}</h1>
+    verweis = ("" if loesung
+               else " – genau so wie in den Beispielen auf Seite 1")
+
+    seite1 = "" if loesung else f"""
+<h1>Face it! <span>–</span> Arbeitsblatt B</h1>
 <p class="unter">Faltung von Hand &nbsp;·&nbsp; Seite 1: So wird gerechnet</p>
 <div class="linie"></div>
 
@@ -357,15 +357,24 @@ das geht.</p>
 </div>
 
 <div class="seitenwechsel"></div>
+"""
 
+    return f"""<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Face it! – Arbeitsblatt B: Faltung von Hand</title>
+<style>{STIL}</style>
+</head>
+<body>
+{seite1}
 <h1>Face it! <span>–</span> Arbeitsblatt B{titel_zusatz}</h1>
-<p class="unter">Faltung von Hand &nbsp;·&nbsp; Seite 2: Eure Aufgabe</p>
+<p class="unter">{untertitel}</p>
 <div class="linie"></div>
 
 <p>Unten steht ein winziges Bild: 6 × 6 Helligkeitswerte. Damit man im Kopf
 rechnen kann, gehen die Werte hier nur von 0 (dunkel) bis 9 (hell). Jede Gruppe
-rechnet <strong>zwei Felder</strong> aus – genau so wie in den Beispielen auf
-Seite 1.</p>
+rechnet <strong>zwei Felder</strong> aus{verweis}.</p>
 
 <div class="reihe" style="margin-top:5mm">
   <div>

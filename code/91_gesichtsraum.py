@@ -152,7 +152,8 @@ print()
 
 while True:
     faceit.zeigen("Face it - Gesichtsraum", tafel)
-    if faceit.taste(30) == "q":
+    if faceit.taste(30) == "q" or not faceit.fenster_offen(
+            "Face it - Gesichtsraum"):
         break
 
 faceit.fenster_schliessen()

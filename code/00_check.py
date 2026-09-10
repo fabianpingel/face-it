@@ -34,7 +34,10 @@ while True:
     faceit.hinweisleiste(bild, ["[q] beenden"])
 
     faceit.zeigen("Face it - Startcheck", bild)
-    if faceit.taste() == "q":
+
+    # Beenden mit [q] oder indem man das Fenster zumacht
+    if faceit.taste() == "q" or not faceit.fenster_offen(
+            "Face it - Startcheck"):
         break
 
 kamera.release()

@@ -165,6 +165,55 @@ es Station 4 – und einen Vergleich mit gespeicherten Daten.
 
 ---
 
+## Station 3b · Was kann man mit Landmarks bauen?
+
+Die Aufgabe lautet: *Diese 68 Punkte sagen, wie ein Gesicht geformt ist – nicht,
+wer es ist. Was könnte man damit bauen?* Zwei Minuten sammeln, dann an der Tafel
+in zwei Spalten sortieren.
+
+**Der Punkt, auf den es hinausläuft:** Alle diese Anwendungen funktionieren,
+**ohne** dass jemand identifiziert wird. Landmarks beschreiben Form und
+Bewegung, nicht Identität. Man kann also durchaus etwas Nützliches bauen, ohne
+eine Gesichtsdatenbank anzulegen – das ist keine Selbstverständlichkeit,
+sondern eine Entwurfsentscheidung.
+
+### Spalte „nützlich"
+
+| Idee | Wie es technisch geht |
+|---|---|
+| **Emotionen ablesen** | Mundwinkel oben oder unten, Augenbrauen hoch, Augen zusammengekniffen. Man misst nur Abstände zwischen Punkten. |
+| **Lächel-Auslöser** | Die Kamera fotografiert erst, wenn alle Mundwinkel oben sind. Gibt es wirklich, heißt bei manchen Herstellern „Smile Shutter". |
+| **Müdigkeitswarner im Auto** | Sind die Augen länger als etwa eine Sekunde geschlossen oder sinkt die Blinkfrequenz, kommt ein Warnton. In neu zugelassenen Fahrzeugtypen in der EU vorgeschrieben. |
+| **Steuerung ohne Hände** | Kopfneigung und Blinzeln als Maus und Klick – für Menschen, die eine Tastatur nicht bedienen können. |
+| **Filter und Masken** | Hundeohren, Sonnenbrille, virtuelles Make-up. Die Dreiecke des Netzes werden verzogen, das Bild verzieht sich mit. Genau das macht `93_durchschnitt.py` in einfacher Form. |
+| **Brille online anprobieren** | Aus den Punkten am Nasenrücken und an den Augen ergibt sich, wie ein Gestell sitzen würde. |
+| **Avatare animieren** | Memoji, Spielfiguren, Videokonferenz-Avatare: Die Punkte steuern das Gesicht einer Figur. |
+| **Liveness-Prüfung** | „Bitte einmal blinzeln." Ein Foto blinzelt nicht – damit fällt genau der Angriff durch, den die Klasse in der Hack-Challenge fährt. |
+| **Medizin und Pflege** | Schmerzerkennung bei Menschen, die nicht sprechen können. Verlaufskontrolle in der Kieferorthopädie. |
+| **Sitzt die Maske? Sitzt die Schutzbrille?** | Prüfen, ob Mund und Nase bedeckt sind – ohne zu wissen, wer davorsteht. |
+
+### Spalte „unheimlich"
+
+| Idee | Warum sie unangenehm ist |
+|---|---|
+| **Aufmerksamkeitsmessung** | Schaut die Person auf den Bildschirm? Im Klassenzimmer oder im Büro eingesetzt, wird daraus eine Dauerkontrolle. |
+| **Blickmessung in Geschäften** | Welches Regal wird wie lange betrachtet? Die Kundin weiß nichts davon. |
+| **Prüfungsüberwachung** | Software, die beim Homeschooling Blickrichtung und Kopfbewegung protokolliert und „Verdachtsfälle" meldet. |
+| **Emotionsanalyse im Bewerbungsgespräch** | Aus Mundwinkeln auf Eignung schließen. Fachlich zweifelhaft und rechtlich heikel. |
+
+**Der harte Fakt für diese Spalte:** Der **EU AI Act verbietet** das Ableiten von
+Emotionen aus biometrischen Daten **am Arbeitsplatz und in Bildungseinrichtungen**
+– mit engen Ausnahmen für medizinische und Sicherheitszwecke. Der Gesetzgeber hat
+also genau die Spalte „unheimlich" gesehen und einen Teil davon untersagt.
+
+**Wenn die Diskussion Fahrt aufnimmt**, ist die weiterführende Frage: Woran
+merkt man den Unterschied zwischen dem Müdigkeitswarner im Auto und der
+Aufmerksamkeitsmessung im Klassenzimmer? Beide messen dasselbe. Der Unterschied
+liegt nicht in der Technik, sondern darin, *wer* die Daten bekommt und *wozu*.
+Diesen Satz kann man an der Tafel stehen lassen – er trägt bis in Block 5.
+
+---
+
 ## Station 4 · Wer ist das?
 
 **Typische Ähnlichkeitswerte** (SFace, Schwelle 0,363)

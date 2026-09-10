@@ -126,6 +126,8 @@ while True:
     faceit.fenster_anpassen(FENSTER, zusammen)
 
     gedrueckt = faceit.taste()
+    if not faceit.fenster_offen(FENSTER):
+        break
 
     if gedrueckt in ("1", "2"):
         if not gesichter:

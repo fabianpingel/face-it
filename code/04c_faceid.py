@@ -99,6 +99,8 @@ while True:
     faceit.fenster_anpassen(FENSTER, bild)
 
     gedrueckt = faceit.taste()
+    if not faceit.fenster_offen(FENSTER):
+        break
 
     if gedrueckt == "e":
         if not gesichter:

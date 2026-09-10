@@ -166,7 +166,8 @@ print()
 
 while True:
     faceit.zeigen("Face it - Fehlerkurve", tafel)
-    if faceit.taste(30) == "q":
+    if faceit.taste(30) == "q" or not faceit.fenster_offen(
+            "Face it - Fehlerkurve"):
         break
 
 faceit.fenster_schliessen()

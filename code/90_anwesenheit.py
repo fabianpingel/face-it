@@ -88,6 +88,8 @@ while True:
     faceit.zeigen("Face it - Anwesenheitsliste", bild)
 
     gedrueckt = faceit.taste()
+    if not faceit.fenster_offen("Face it - Anwesenheitsliste"):
+        break
 
     if gedrueckt == "n":
         if not gesichter:

@@ -21,6 +21,8 @@ import cv2
 
 import faceit
 
+FENSTER = "Face it - Station 3"
+
 # ======================================================================
 #  HIER DARFST DU AENDERN
 # ======================================================================
@@ -39,7 +41,7 @@ NACHBARN = 5
 faceit.titel(
     "Station 3 - Finde das Gesicht",
     "[y] Verfahren umschalten (Haar / YuNet)",
-    "[a] weniger streng    [d] strenger",
+    "[a] weniger streng    [d] strenger   (nur bei der Haar-Cascade)",
     "[q] beenden",
 )
 
@@ -81,13 +83,22 @@ while True:
         "1 Gesicht gefunden" if anzahl == 1 else f"{anzahl} Gesichter gefunden")
     faceit.schrift(bild, text, (20, 82),
                    faceit.WEISS if anzahl else faceit.ROT, 1.0, 2)
-    faceit.hinweisleiste(bild, [
-        "[y] Verfahren umschalten   [a] weniger streng   [d] strenger",
-        "[q] beenden",
-    ])
-    faceit.zeigen("Face it - Station 3", bild)
+    # Die Regler fuer die Empfindlichkeit gehoeren zur Haar-Cascade.
+    # YuNet hat sie nicht - dann verschwinden auch die Tastenhinweise,
+    # damit niemand vergeblich darauf drueckt.
+    if yunet_an:
+        hinweise = ["[y] zurueck zur Haar-Cascade von 2001",
+                    "[q] beenden"]
+    else:
+        hinweise = ["[y] YuNet ausprobieren   "
+                    "[a] weniger streng   [d] strenger",
+                    "[q] beenden"]
+    faceit.hinweisleiste(bild, hinweise)
+    faceit.zeigen(FENSTER, bild)
 
     gedrueckt = faceit.taste()
+    if not faceit.fenster_offen(FENSTER):
+        break
     if gedrueckt == "q":
         break
     if gedrueckt == "y":

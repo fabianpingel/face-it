@@ -324,6 +324,8 @@ while True:
 
     # ---------------------------------------------------------- Tasten
     gedrueckt = faceit.taste()
+    if not faceit.fenster_offen(FENSTER):
+        break
 
     if gedrueckt == "z":
         zahlen_an = not zahlen_an

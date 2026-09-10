@@ -65,6 +65,8 @@ while True:
     faceit.zeigen("Face it - Station 4a", anzeige)
 
     gedrueckt = faceit.taste()
+    if not faceit.fenster_offen("Face it - Station 4a"):
+        break
 
     if gedrueckt == " ":
         if not gesichter:

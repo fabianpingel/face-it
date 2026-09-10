@@ -95,7 +95,7 @@ Material zum Ausdrucken (HTML, im Browser öffnen und `Strg+P`):
 - `material/handouts/handout_E_ampelkarte.html` – Ampelkarte grün/rot zum Hochhalten, Fehlerhilfe innen
 - `material/handouts/handout_F_testmuster.html` – Testmuster mit vier Kantenrichtungen für die Kernel-Challenge
 - `material/elternbrief_und_einwilligung.html` – Elternbrief und Einwilligung
-- `material/folien/index.html` – die fünf Folien (Pfeiltasten, `F` für Vollbild)
+- `material/folien/index.html` – die sechs Folien (Pfeiltasten, `F` für Vollbild)
 
 ## Aufbau des Repositories
 

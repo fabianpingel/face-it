@@ -65,7 +65,7 @@ Legende: 🧑‍🏫 Input · 🔬 Experiment · 💻 Code · ✍️ Papier · �
 | 5 min | 💻 `03_detect.py` | Live-Webcam mit Rechteck ums Gesicht, Zähler "1 Gesicht gefunden". Mit `y` zwischen Haar-Cascade (2001) und YuNet (2023) umschalten. |
 | 12 min | 🔬 **Experimente-Bingo** | Arbeitsblatt C (`handout_C_bingo.html`), 12 Felder – jede Gruppe versucht, möglichst viele abzuhaken. Ziel ist, das System **hereinzulegen**: Kopf 90 Grad drehen · Hand vor den Mund · Sonnenbrille · Licht aus · **Foto auf dem Handy-Display vor die Kamera halten** · Gesicht auf einem T-Shirt · gezeichnetes Gesicht · Poster an der Wand · Steckdose oder Autofront (Pareidolie) · zwei Gesichter dicht nebeneinander · Kapuze · Maske. |
 | 6 min | 💻 **Parameter drehen** | `scaleFactor` und `minNeighbors` verändern, bis das Programm überall Gesichter sieht – an der Wand, auf dem Tisch, im Pullover. Danach so streng einstellen, dass es niemanden mehr findet. Aha: *Die Empfindlichkeit ist eine Einstellung, kein Naturgesetz.* |
-| 4 min | 💬 **Die entscheidende Frage** | "Das Programm hat mein Gesicht gefunden. Weiß es, dass ich es bin?" – Nein. Die Trennung Detektion/Erkennung an der Tafel festhalten. Und notieren: Das Handy-Foto wurde akzeptiert. Das kommt im Abschlussblock wieder. |
+| 4 min | 💬 **Die entscheidende Frage** | Folie 4: "Das Programm hat mein Gesicht gefunden. Weiß es, dass ich es bin?" – Nein. Die Folie stellt Detektion und Erkennung gegenüber und listet auf, was das Programm alles für ein Gesicht gehalten hat: Poster, Zeichnung, Handy-Foto, T-Shirt-Aufdruck – und wie es ein echtes Gesicht verliert, sobald eine Hand über den Augen liegt. Kernsatz: **Es prüft nicht, ob ein Mensch davorsteht.** Notieren, das Handy-Foto kommt im Abschlussblock wieder. |
 | optional<br>3 min | 💻 `03b_landmarks.py` | 68 Gesichtspunkte, zu einem Dreiecksnetz verbunden – genau das Bild aus dem Workshop-Logo, live auf dem eigenen Gesicht. Mit `n` zwischen Netz und reinen Punkten umschalten. Braucht einmalige Vorbereitung, siehe Technik-Setup.<br>**Aufgabe dazu** (auch ohne das Modell möglich, dann mit den fünf YuNet-Punkten): *Diese Punkte sagen, WIE ein Gesicht geformt ist – nicht, WER es ist. Was könnte man damit bauen?* Zwei Minuten sammeln, dann an der Tafel in zwei Spalten sortieren: **nützlich** und **unheimlich**. Erwartbar kommen Filter, Lächel-Auslöser und Müdigkeitswarner – und mit etwas Nachhilfe auch Aufmerksamkeitsmessung. Ideensammlung und Einordnung in [03_loesungen.md](03_loesungen.md).<br>Die Spalte „unheimlich" bleibt an der Tafel stehen – sie ist der Aufhänger für Block 5. |
 
 ---
@@ -78,7 +78,7 @@ Legende: 🧑‍🏫 Input · 🔬 Experiment · 💻 Code · ✍️ Papier · �
 |---|---|---|
 | 6 min | 💻 `04a_embedding.py` | Foto von sich → das Skript druckt **128 Kommazahlen**. Nichts weiter. Bewusst nüchtern: "Das bist du. Für den Computer. Mehr weiß er nicht über dein Gesicht." Zweites Foto derselben Person → die Zahlen sind *ähnlich*, aber nicht gleich. |
 | 12 min | 💻 `04b_vergleich.py` | Zwei Fotos hinein, Ähnlichkeit in Prozent plus Balken heraus. Testreihe auf dem Laufzettel: ich–ich (gleiches Licht) · ich–ich (Brille ab/auf, Haare anders, Grimasse) · ich–Nachbar:in · Nachbar:in–Nachbar:in · ich–Portrait aus `data/beispiele/`. **Klassentabelle an der Tafel:** Welches Paar erreicht die höchste Fremd-Ähnlichkeit? Geschwister und Cousins gewinnen zuverlässig. |
-| 4 min | 🧑‍🏫 **Vektor-Bild** | Folie 4: Zwei Zahlen sind ein Punkt auf Papier, drei ein Punkt im Raum, 128 ein Punkt in einem Raum, den man nicht zeichnen kann. Ähnliche Gesichter liegen dort nah beieinander. *Das* ist Gesichtserkennung – ein Abstand. |
+| 4 min | 🧑‍🏫 **Vektor-Bild** | Folie 5: Zwei Zahlen sind ein Punkt auf Papier, drei ein Punkt im Raum, 128 ein Punkt in einem Raum, den man nicht zeichnen kann. Ähnliche Gesichter liegen dort nah beieinander. *Das* ist Gesichtserkennung – ein Abstand. |
 | 14 min | 💻 `04c_faceid.py` — **das Finale** | Die eigene Handy-Entsperrung: einmal ein Foto aufnehmen (also "Face-ID einrichten"), dann live grün **ENTSPERRT** oder rot **GESPERRT**, mit Schieberegler für den Schwellenwert.<br>Choreografie: (1) Standardwert 0,36 – funktioniert. (2) Nachbar:in setzt sich davor – bleibt rot. (3) Regler auf 0,05 → **jeder** entsperrt. (4) Regler auf 0,90 → **niemand**, nicht einmal man selbst. |
 | 4 min | 💬 **Begriffe zuletzt** | Jetzt und keine Minute früher: *False Accept* (ein Fremder kommt hinein) und *False Reject* (ich komme nicht hinein). Frage: "Wo würdest DU den Regler setzen – beim Handy? Bei einer Banktür? Bei einer Polizeifahndung?" Die Antwort ist bei jedem Anwendungsfall anders, und sie ist immer ein Kompromiss. |
 
@@ -88,7 +88,7 @@ Legende: 🧑‍🏫 Input · 🔬 Experiment · 💻 Code · ✍️ Papier · �
 
 ## Block 5 · Face it! Angriff und Verantwortung — 30 min (10:45–11:15)
 
-**Aha-Ziel:** Was ich baue, kann ich brechen – und es bricht nicht bei allen Menschen gleich oft.
+**Aha-Ziel:** Was ich entwickle, kann ich überlisten – aber nicht bei allen Menschen gleich gut.
 
 | Zeit | Was | Details |
 |---|---|---|
@@ -106,7 +106,7 @@ Legende: 🧑‍🏫 Input · 🔬 Experiment · 💻 Code · ✍️ Papier · �
 | 6 min | 💬 **Zurück zum Plakat** | Das Tafelbild von 8:05 wird durchgegangen. Was war richtig, was war Mythos? Die SuS korrigieren selbst. Die Antwort auf die Leitfrage steht jetzt in ihren eigenen Worten da. |
 | 4 min | ✍️ **Ein Satz, den ich behalte** | Jede:r schreibt einen Satz auf ein Post-it und klebt es auf das Logo-Poster. Bleibt als Foto für die Doku – nur Post-its, keine Gesichter. |
 | 3 min | 💻 **Gemeinsames Löschen** | Alle führen gleichzeitig `python code/99_cleanup.py` aus. Alle Gesichtsdaten des Vormittags werden gelöscht, das Skript zählt mit: "17 Bilder und 4 Gesichtsvektoren entfernt." Schlusssatz: "Genau das macht kaum ein Unternehmen freiwillig." |
-| 2 min | 🧑‍🏫 **Take-home** | Folie 5 mit QR-Code auf das Repository: alle Skripte, Lösungen, vier Bonusprojekte und das Glossar zum Weiterbasteln zu Hause. |
+| 2 min | 🧑‍🏫 **Take-home** | Folie 6 mit QR-Code auf das Repository: alle Skripte, Lösungen, vier Bonusprojekte und das Glossar zum Weiterbasteln zu Hause. |
 
 ---
 

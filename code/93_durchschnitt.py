@@ -99,7 +99,7 @@ while True:
         faceit.schrift(kachel, text, (12, 30), faceit.CYAN, 0.6, 2)
 
     zusammen = np.hstack(kacheln)
-    faceit.hinweisleiste(zusammen, [
+    zusammen = faceit.hinweisleiste_unten(zusammen, [
         "[Schieberegler] mischen   [n] naechstes Paar   [q] beenden"])
     faceit.zeigen(FENSTER, zusammen)
     faceit.fenster_anpassen(FENSTER, zusammen)

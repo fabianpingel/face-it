@@ -161,6 +161,24 @@ def hinweisleiste(bild, zeilen):
     return bild
 
 
+def hinweisleiste_unten(bild, zeilen, hoehe=None):
+    """
+    Haengt die Hinweise UNTER das Bild statt darueber.
+
+    Bei kleinen Kacheln verdeckt eine Leiste im Bild sonst genau das,
+    was man sehen will - zum Beispiel das Kinn der aufgenommenen Person.
+    Gibt ein neues, hoeheres Bild zurueck.
+    """
+    breite = bild.shape[1]
+    if hoehe is None:
+        hoehe = 22 + 30 * len(zeilen)
+    leiste = np.full((hoehe, breite, 3), 26, np.uint8)
+    cv2.line(leiste, (0, 0), (breite, 0), CYAN, 2)
+    for i, zeile in enumerate(zeilen):
+        schrift(leiste, zeile, (16, 32 + i * 30), CYAN, 0.55, 1)
+    return np.vstack([bild, leiste])
+
+
 def balken(bild, wert, position, breite=320, hoehe=28, farbe=CYAN):
     """Zeichnet einen Fortschrittsbalken fuer einen Wert zwischen 0 und 1."""
     x, y = position

@@ -121,7 +121,12 @@ while True:
 
     kamerabild = cv2.resize(bild, (420, 300))
     zusammen = np.hstack([kachel_a, kachel_b, tafel, kamerabild])
-    faceit.hinweisleiste(zusammen, ["[1] links   [2] rechts   [r] neu   [q] beenden"])
+
+    # Die Hinweise kommen UNTER die Kacheln. Als Leiste im Bild wuerden sie
+    # genau das Kinn der aufgenommenen Gesichter verdecken.
+    zusammen = faceit.hinweisleiste_unten(
+        zusammen, ["[1] linkes Gesicht   [2] rechtes Gesicht   "
+                   "[r] zuruecksetzen   [q] beenden"])
     faceit.zeigen(FENSTER, zusammen)
     faceit.fenster_anpassen(FENSTER, zusammen)
 

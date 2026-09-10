@@ -73,7 +73,7 @@ Schwellenwert ist, dann ist sie angreifbar und fehlerbehaftet. Und manche Fehler
 
 ## 3. Methodische Grundsätze
 
-1. **Maximal 5 Folien im ganzen Workshop.** Jeder Input dauert < 5 Minuten und steht
+1. **Sechs Folien im ganzen Workshop.** Jeder Input dauert < 5 Minuten und steht
    *nach* dem Experiment, nicht davor. Erst staunen, dann erklären.
 2. **Fachbegriffe kommen zuletzt.** Die SuS erleben erst das Phänomen, dann bekommt es
    einen Namen ("das, was du gerade gebaut hast, heißt Faltung / Embedding /

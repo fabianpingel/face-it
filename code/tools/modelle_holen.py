@@ -7,6 +7,7 @@ Ersatzweg, falls eine Datei fehlt oder beschaedigt ist.
 
 Aufruf:
     uv run code/tools/modelle_holen.py
+    uv run code/tools/modelle_holen.py --neu     (erneut laden erzwingen)
 """
 
 import sys
@@ -30,6 +31,14 @@ MODELLE = [
 
 def laden(ziel: Path, quelle: str, beschreibung: str):
     print(f"  {beschreibung}")
+
+    # Schon vorhanden? Dann nicht noch einmal laden.
+    if ziel.exists() and ziel.stat().st_size > 100_000 and "--neu" not in sys.argv:
+        print(f"    ist schon da: {ziel}  "
+              f"({ziel.stat().st_size / 1024 / 1024:.1f} MB)")
+        print()
+        return
+
     print(f"    Quelle: {quelle}")
     anfrage = urllib.request.Request(
         quelle, headers={"User-Agent": "FaceItWorkshop/1.0"})

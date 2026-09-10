@@ -149,5 +149,5 @@ while True:
 
 kamera.release()
 faceit.fenster_schliessen()
-print("  Weiter mit Station 4: uv run code/04_embedding.py")
+print("  Weiter mit Station 4: uv run code/04a_embedding.py")
 print()

@@ -14,7 +14,7 @@ Legende: 🧑‍🏫 Input · 🔬 Experiment · 💻 Code · ✍️ Papier · �
 | 3 min | 🔬 **Der Selbstversuch** | "Nehmt alle euer Handy und entsperrt es mit dem Gesicht. Nochmal. Jetzt mit halb zugehaltenem Gesicht." Kein Vorlauf, keine Begrüßungsfolie. |
 | 5 min | 💬 **Die Tafelfrage** | *Was genau hat dein Handy gerade gemessen?* Alle Vermutungen unkommentiert an die Tafel bzw. aufs Plakat. Nichts richtigstellen – das Plakat bleibt bis zum Schluss hängen. |
 | 2 min | 🧑‍🏫 **Ansage** | Folie 1 (Logo): "Wir bauen das heute nach. In drei Stunden entsperrt sich dein Rechner mit deinem Gesicht. Und danach hackst du das System deines Nachbarn." |
-| 5 min | 💻 **Startcheck** | `uv run code/00_check.py` → Webcam-Fenster mit Live-Bild, Bildgröße und der Anzahl der Zahlenwerte. Jede Gruppe, die ihr Bild sieht, ist einsatzbereit. Wer Fehler hat: Fehlerkarte am Platz. |
+| 5 min | 💻 **Startcheck** | `uv run code/00_check.py` → Webcam-Fenster mit Live-Bild, Bildgröße und der Anzahl der Zahlenwerte. Wer sein Bild sieht, stellt die **Ampelkarte auf grün** – du siehst mit einem Blick über den Raum, wer bereit ist. Rot heißt: wir hängen. Die Fehlerhilfe steht innen in der Karte. |
 
 > **Warum so:** Der erste Erfolg fällt in die erste Viertelstunde. Nullvorkenntnisse
 > verzeihen keinen 20-minütigen Einstiegsvortrag.
@@ -27,13 +27,13 @@ Legende: 🧑‍🏫 Input · 🔬 Experiment · 💻 Code · ✍️ Papier · �
 
 | Zeit | Was | Details |
 |---|---|---|
-| 7 min | 💻 `01_pixel.py` | Leertaste = Foto. Im Live-Bild liegt ein cyanfarbener Zielrahmen – das Gesicht muss ihn ausfüllen, denn nur dieser Ausschnitt wird umgerechnet. Das Skript verkleinert ihn auf 16×16 Graustufen und druckt die **Zahlen** ins Terminal. Erste Reaktion abwarten: "Das soll ich sein?" |
-| 8 min | ✍️ **Malen nach Zahlen** | Jede Gruppe bekommt ihr Zahlengitter als Ausdruck (wird von `01_pixel.py` automatisch als druckfertige Datei erzeugt). Dunkle Werte ausmalen, helle frei lassen. Die Gruppe erkennt sich selbst – nur aus Zahlen. Ergebnisse an die Tafel. |
-| 8 min | 💻 **Auflösungs-Regler** | Wert `GROESSE = 16` ganz oben im Code auf 8, 32, 64 und 200 ändern. Frage auf dem Laufzettel: *Ab wie vielen Pixeln erkennt man, WER es ist? Ab wie vielen, DASS es ein Gesicht ist?* Die Antworten liegen typisch bei rund 30 bzw. 10 Pixeln – erstaunlich niedrig. |
+| 7 min | 💻 `01_pixel.py` | Links das Kamerabild, rechts live dasselbe als Zahlengitter. Alles außerhalb des cyanfarbenen Zielrahmens ist abgedunkelt – nur was im Rahmen liegt, wird umgerechnet. Mit `z` erscheint ein zweites Fenster, in dem **jedes Feld seine eigene Helligkeit als Hintergrund hat und die Zahl darin steht**: Man sieht das Gesicht im Zahlengitter. Erste Reaktion abwarten: "Das soll ich sein?" |
+| 8 min | ✍️ **Malen nach Zahlen** | Leertaste **friert das Bild ein** und erzeugt gleichzeitig das Arbeitsblatt als HTML in `data/fotos/` – fest bei 16×16, mit drei aus dem eigenen Bild berechneten Malstufen. Ausdrucken, ausmalen: Die Gruppe erkennt sich selbst, nur aus Zahlen. Ergebnisse an die Tafel. Noch einmal Leertaste, und das Livebild läuft weiter. |
+| 8 min | 💻 **Auflösungs-Regler** | Den Schieberegler oben im Fenster durch alle elf Stufen ziehen – 4, 6, 8, 10, 12, 16, 20, 24, 32, 48, 64. Das Pixelbild wächst live mit. Frage auf dem Laufzettel: *Ab wie vielen Pixeln erkennt man, DASS es ein Gesicht ist? Ab wie vielen, WER es ist?* Die Antworten liegen typisch bei rund 8 bis 12 bzw. 30 Pixeln – erstaunlich niedrig. |
 | 7 min | 💻 **Eine Zeile aktivieren** | `# img = 255 - img` einkommentieren → Negativ. Danach `img = img // 64 * 64` → Posterisierung. Erkenntnis: Rechnen mit Zahlen ist Bildbearbeitung. Das ist jeder Instagram-Filter. |
 | 5 min | 🧑‍🏫 **Begriffe nachliefern** | Folie 2: Pixel, Graustufe 0–255, Auflösung, Farbkanäle R/G/B. Erst jetzt, und nur vier Minuten. |
 
-**Bonus für Schnelle:** Nur einen Farbkanal anzeigen. Bild spiegeln. Ein zweites Gesicht dazuschalten und beide Zahlengitter voneinander abziehen.
+**Advanced für Schnelle:** Im Abschnitt `ADVANCED` oben in `01_pixel.py` das `#` vor einer Zeile entfernen – Negativ, Posterisierung, Schwellenwert, halbseitige Bearbeitung. Die Wirkung ist sofort im laufenden Bild zu sehen.
 
 ---
 
@@ -48,7 +48,7 @@ Legende: 🧑‍🏫 Input · 🔬 Experiment · 💻 Code · ✍️ Papier · �
 | 5 min | 🔬 **Kernel-Challenge** | Aufgabe: Finde durch Ausprobieren einen Kernel, der **nur senkrechte** Kanten hervorhebt. Wer zuerst ein sinnvolles Ergebnis hat, zeigt es am Beamer. |
 | 3 min | 🧑‍🏫 **Die Brücke** | Folie 3: "Ein neuronales Netz macht genau das – aber es *lernt* seine Kernel selbst, tausende davon, in Schichten übereinander. Ihr habt einen von Hand gebaut, ein Netz hat Millionen." |
 
-**Bonus:** Kernelsumme ungleich 1 → Bild wird heller oder dunkler. Warum? Und was macht ein 5×5-Weichzeichner gegenüber einem 3×3?
+**Advanced:** `uv run code/94_kernel_labor.py` – neun Schieberegler, einer pro Kernel-Zahl, dazu die Summe und ihre Deutung live im Bild. Fünf Aufgaben stehen im Kopf der Datei. Damit ist die Kernel-Challenge auch für Schnelle nicht zu Ende.
 
 ---
 
@@ -76,13 +76,13 @@ Legende: 🧑‍🏫 Input · 🔬 Experiment · 💻 Code · ✍️ Papier · �
 
 | Zeit | Was | Details |
 |---|---|---|
-| 6 min | 💻 `04_embedding.py` | Foto von sich → das Skript druckt **128 Kommazahlen**. Nichts weiter. Bewusst nüchtern: "Das bist du. Für den Computer. Mehr weiß er nicht über dein Gesicht." Zweites Foto derselben Person → die Zahlen sind *ähnlich*, aber nicht gleich. |
-| 12 min | 💻 `05_vergleich.py` | Zwei Fotos hinein, Ähnlichkeit in Prozent plus Balken heraus. Testreihe auf dem Laufzettel: ich–ich (gleiches Licht) · ich–ich (Brille ab/auf, Haare anders, Grimasse) · ich–Nachbar:in · Nachbar:in–Nachbar:in · ich–Portrait aus `data/beispiele/`. **Klassentabelle an der Tafel:** Welches Paar erreicht die höchste Fremd-Ähnlichkeit? Geschwister und Cousins gewinnen zuverlässig. |
+| 6 min | 💻 `04a_embedding.py` | Foto von sich → das Skript druckt **128 Kommazahlen**. Nichts weiter. Bewusst nüchtern: "Das bist du. Für den Computer. Mehr weiß er nicht über dein Gesicht." Zweites Foto derselben Person → die Zahlen sind *ähnlich*, aber nicht gleich. |
+| 12 min | 💻 `04b_vergleich.py` | Zwei Fotos hinein, Ähnlichkeit in Prozent plus Balken heraus. Testreihe auf dem Laufzettel: ich–ich (gleiches Licht) · ich–ich (Brille ab/auf, Haare anders, Grimasse) · ich–Nachbar:in · Nachbar:in–Nachbar:in · ich–Portrait aus `data/beispiele/`. **Klassentabelle an der Tafel:** Welches Paar erreicht die höchste Fremd-Ähnlichkeit? Geschwister und Cousins gewinnen zuverlässig. |
 | 4 min | 🧑‍🏫 **Vektor-Bild** | Folie 4: Zwei Zahlen sind ein Punkt auf Papier, drei ein Punkt im Raum, 128 ein Punkt in einem Raum, den man nicht zeichnen kann. Ähnliche Gesichter liegen dort nah beieinander. *Das* ist Gesichtserkennung – ein Abstand. |
-| 14 min | 💻 `06_faceid.py` — **das Finale** | Die eigene Handy-Entsperrung: einmal ein Foto aufnehmen (also "Face-ID einrichten"), dann live grün **ENTSPERRT** oder rot **GESPERRT**, mit Schieberegler für den Schwellenwert.<br>Choreografie: (1) Standardwert 0,36 – funktioniert. (2) Nachbar:in setzt sich davor – bleibt rot. (3) Regler auf 0,05 → **jeder** entsperrt. (4) Regler auf 0,90 → **niemand**, nicht einmal man selbst. |
+| 14 min | 💻 `04c_faceid.py` — **das Finale** | Die eigene Handy-Entsperrung: einmal ein Foto aufnehmen (also "Face-ID einrichten"), dann live grün **ENTSPERRT** oder rot **GESPERRT**, mit Schieberegler für den Schwellenwert.<br>Choreografie: (1) Standardwert 0,36 – funktioniert. (2) Nachbar:in setzt sich davor – bleibt rot. (3) Regler auf 0,05 → **jeder** entsperrt. (4) Regler auf 0,90 → **niemand**, nicht einmal man selbst. |
 | 4 min | 💬 **Begriffe zuletzt** | Jetzt und keine Minute früher: *False Accept* (ein Fremder kommt hinein) und *False Reject* (ich komme nicht hinein). Frage: "Wo würdest DU den Regler setzen – beim Handy? Bei einer Banktür? Bei einer Polizeifahndung?" Die Antwort ist bei jedem Anwendungsfall anders, und sie ist immer ein Kompromiss. |
 
-**Bonus:** Anwesenheitsliste für die Tischgruppe (`07_bonus_anwesenheit.py`): mehrere Gesichter registrieren, Namen live ins Bild schreiben.
+**Advanced:** `90_anwesenheit.py` (mehrere Gesichter registrieren, Namen live ins Bild), `93_durchschnitt.py` (Gesichter mischen und mitteln) und – der stärkste für einen Mathekurs – `91_gesichtsraum.py`: die Hauptkomponentenanalyse projiziert alle Aufnahmen der Klasse in eine Ebene, und die eigenen Punkte liegen sichtbar als Gruppen zusammen.
 
 ---
 
@@ -94,7 +94,7 @@ Legende: 🧑‍🏫 Input · 🔬 Experiment · 💻 Code · ✍️ Papier · �
 |---|---|---|
 | 12 min | 🔬 **Hack-Challenge** | Auftrag: *Entsperre den Rechner der Nachbargruppe.* Punkte pro erfolgreicher Methode (Arbeitsblatt D, `handout_D_hack.html`): Foto vom Handy-Display (3 P.) · Ausdruck (3 P.) · Video des Gesichts (4 P.) · Geschwisterkind oder ähnlich aussehende Person (5 P.) · Schwellenwert heimlich verstellen (2 P.) · gespeicherte Referenzdatei austauschen (5 P.). Rangliste an die Tafel. |
 | 5 min | 💬 **Auswertung** | Welche Angriffe klappten? Warum funktioniert das Handy-Foto? Weil die Kamera ein flaches Bild sieht und Haut nicht von Papier unterscheiden kann. Deshalb hat echtes Face-ID eine **Infrarot-Tiefenkamera**, projiziert Tausende Punkte auf das Gesicht und prüft *Liveness*. Die Nachbargruppe hat gerade bewiesen, warum das nötig ist. |
-| 7 min | 🔬 **Fehler messen, Bias einordnen** | `uv run code/08_bias.py` – braucht keine Kamera, rechnet mit den Gesichtern, die die Klasse in Station 4 aufgenommen hat.<br>**Teil 1, eigene Daten:** Das Skript vergleicht alle Aufnahmen paarweise und zeigt zwei Verteilungen – gleiche Person gegen verschiedene Personen. Die beiden Bereiche **überlappen sich**, und eine Tabelle zeigt für jede Schwelle, wie viele Falschabweisungen und Falschakzeptanzen entstehen. Damit ist belegt: Es gibt keine fehlerfreie Schwelle.<br>**Teil 2, veröffentlichte Zahlen:** **Gender Shades** (Buolamwini und Gebru, MIT 2018), Fehlerrate bei der Geschlechtsbestimmung 0,8 Prozent bei hellhäutigen Männern gegen 34,7 Prozent bei dunkelhäutigen Frauen. **NIST FRVT Part 3** (2019, 189 Algorithmen): 10- bis 100-mal höhere Falschtrefferraten für west- und ostafrikanische sowie ostasiatische Gesichter. Grund: die Trainingsdaten.<br>*Bewusst getrennt:* gemessen wird mit Klassendaten, die demografischen Unterschiede kommen aus Studien – mit zwölf Portraits lässt sich Bias nicht seriös selbst messen, und genau das ist auch eine Lehre. |
+| 7 min | 🔬 **Fehler messen, Bias einordnen** | `uv run code/05_bias.py` – braucht keine Kamera, rechnet mit den Gesichtern, die die Klasse in Station 4 aufgenommen hat.<br>**Teil 1, eigene Daten:** Das Skript vergleicht alle Aufnahmen paarweise und zeigt zwei Verteilungen – gleiche Person gegen verschiedene Personen. Die beiden Bereiche **überlappen sich**, und eine Tabelle zeigt für jede Schwelle, wie viele Falschabweisungen und Falschakzeptanzen entstehen. Damit ist belegt: Es gibt keine fehlerfreie Schwelle.<br>**Teil 2, veröffentlichte Zahlen:** **Gender Shades** (Buolamwini und Gebru, MIT 2018), Fehlerrate bei der Geschlechtsbestimmung 0,8 Prozent bei hellhäutigen Männern gegen 34,7 Prozent bei dunkelhäutigen Frauen. **NIST FRVT Part 3** (2019, 189 Algorithmen): 10- bis 100-mal höhere Falschtrefferraten für west- und ostafrikanische sowie ostasiatische Gesichter. Grund: die Trainingsdaten.<br>*Bewusst getrennt:* gemessen wird mit Klassendaten, die demografischen Unterschiede kommen aus Studien – mit zwölf Portraits lässt sich Bias nicht seriös selbst messen, und genau das ist auch eine Lehre.<br>**Advanced:** `92_fehlerkurve.py` zeichnet dieselben Zahlen als zwei Kurven mit Schnittpunkt – am Beamer ein starkes Bild für die ganze Gruppe. |
 | 6 min | 💬 **Vier Ecken** | Vier Aussagen, vier Raumecken, die SuS stellen sich hin und begründen in einem Satz – **mit einem technischen Argument von heute Vormittag**.<br>① "Gesichtserkennung an Bahnhöfen macht uns sicherer." ② "Unsere Schule darf die Anwesenheit per Gesicht erfassen." ③ "Ich darf Fotos von Freunden hochladen, ohne zu fragen." ④ "Mein Gesicht ist ein sichereres Passwort als eine PIN."<br>Faktenrahmen in 90 Sekunden: DSGVO Art. 9 (Biometrie ist eine besonders geschützte Datenkategorie), EU AI Act (biometrische Echtzeit-Fernidentifizierung im öffentlichen Raum grundsätzlich verboten), Fall **Clearview AI** (Milliarden Gesichter aus dem Netz gescrapt, Millionenbußgelder in mehreren EU-Staaten). Und der Merksatz: Ein Passwort kann man ändern. Sein Gesicht nicht. |
 
 ---
@@ -117,7 +117,8 @@ Falls es klemmt, in dieser Reihenfolge kürzen:
 1. `03b_landmarks.py` (ist ohnehin optional) — spart 5 min
 2. Kernel-Challenge in Block 2 auf eine Demo am Beamer verkürzen — spart 5 min
 3. Bias-Messung von Gruppenarbeit auf eine Beamer-Demo umstellen — spart 5 min
-4. Bonus-Aufgaben streichen — sie sind nur für Schnelle gedacht
+4. Advanced-Stationen streichen — sie sind nur für Schnelle gedacht und stehen
+   ohnehin im Take-home-Material
 
 **Nicht kürzen:** Block 4 und die Hack-Challenge. Das sind die Momente, an die sich die
 Schüler:innen in einem Jahr noch erinnern.

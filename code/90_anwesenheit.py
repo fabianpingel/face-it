@@ -15,7 +15,7 @@ Tasten:
     q   beenden
 
 Starten:
-    uv run code/07_bonus_anwesenheit.py
+    uv run code/90_anwesenheit.py
 """
 
 import numpy as np

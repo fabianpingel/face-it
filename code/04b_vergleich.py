@@ -18,8 +18,8 @@ Testreihe fuer dein Handout:
     ich  -  Portrait aus data/beispiele
 
 Starten:
-    uv run code/05_vergleich.py
-    uv run code/05_vergleich.py bild1.jpg bild2.jpg    (zwei Dateien vergleichen)
+    uv run code/04b_vergleich.py
+    uv run code/04b_vergleich.py bild1.jpg bild2.jpg    (zwei Dateien vergleichen)
 """
 
 import sys
@@ -148,5 +148,5 @@ while True:
 
 kamera.release()
 faceit.fenster_schliessen()
-print("  Weiter mit Station 4c: uv run code/06_faceid.py")
+print("  Weiter mit Station 4c: uv run code/04c_faceid.py")
 print()

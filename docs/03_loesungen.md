@@ -14,6 +14,9 @@ zu suchen.
 |---|---|
 | Ab wie vielen Pixeln erkennt man, *dass* es ein Gesicht ist? | Erstaunlich wenige – bei rund **8 bis 12** Pixeln Kantenlänge sehen die meisten schon ein Gesicht. Grund: Augen, Nase und Mund erzeugen bereits bei sehr grober Auflösung ein charakteristisches Hell-Dunkel-Muster. Genau davon lebt die Haar-Cascade in Station 3. |
 | Ab wie vielen Pixeln erkennt man, *wer* es ist? | Deutlich mehr, typisch **30 bis 60** – und stark abhängig davon, wie gut man die Person kennt. Bei Mitschüler:innen reicht oft weniger als erwartet. |
+
+Der Regler hat elf feste Stufen: 4, 6, 8, 10, 12, 16, 20, 24, 32, 48, 64. Feste
+Werte deshalb, weil die Klasse hinterher über dieselben Zahlen reden soll.
 | Was macht `gitter = 255 - gitter`? | Ein Negativ. Aus hell wird dunkel. Der Aha: Bildbearbeitung ist Rechnen mit Zahlen, nichts weiter. |
 
 **Wenn nichts erkennbar ist:** Das Gesicht füllt den cyanfarbenen Zielrahmen nicht
@@ -149,7 +152,7 @@ brisant: Eine Falschakzeptanz trifft eine unschuldige Person.
 
 ## Station 5 · Fehler und Bias
 
-`uv run code/08_bias.py` braucht mindestens vier gespeicherte Aufnahmen und
+`uv run code/05_bias.py` braucht mindestens vier gespeicherte Aufnahmen und
 mindestens ein Paar derselben Person, sonst weist das Skript darauf hin.
 
 **Was in Teil 1 herauskommt**
@@ -213,3 +216,80 @@ Häufige Vermutungen, die sich als Mythos erweisen: „Das Handy vergleicht das 
 mit einem gespeicherten Foto" (nein, es speichert kein Bild), „es erkennt mich an
 den Augen" (nein, an einem Gesamtmuster, das niemand einzeln benennen kann),
 „das läuft über das Internet" (nein, es bleibt auf dem Gerät).
+
+---
+
+## Advanced-Stationen
+
+Fünf eigenständige Programme für schnelle Gruppen. Sie brauchen alle die
+Aufnahmen aus Station 4a und weisen freundlich darauf hin, wenn zu wenige da
+sind.
+
+### 91 · Der Gesichtsraum als Schatten
+
+`uv run code/91_gesichtsraum.py`
+
+Die Hauptkomponentenanalyse projiziert die 128-dimensionalen Vektoren auf eine
+Ebene. **Was zu erwarten ist:** Aufnahmen derselben Person liegen als Gruppe
+zusammen und sind durch eine Linie verbunden, verschiedene Personen liegen weit
+auseinander. Oben rechts steht, wie viel Prozent der Streuung dieser Schatten
+zeigt – bei acht bis zwanzig Aufnahmen typisch **50 bis 75 Prozent**.
+
+Die wichtige Nachfrage: *Wenn zwei Punkte im Bild nebeneinander liegen – sind
+sie dann dieselbe Person?* Nein. Sie können in den 126 nicht gezeichneten
+Richtungen weit auseinander liegen. Der Schatten kann täuschen, die Rechnung mit
+allen 128 Zahlen nicht.
+
+Sind die Gruppen bei euch unrealistisch dicht beieinander, wurden beide
+Aufnahmen im selben Moment gemacht. Mit unterschiedlichem Licht und Kopfdrehung
+werden die Gruppen lockerer – und das Bild ehrlicher.
+
+### 92 · Die Fehlerkurve
+
+`uv run code/92_fehlerkurve.py`
+
+Zeichnet FRR (rot, steigend) und FAR (cyan, fallend) über dem Schwellenwert, dazu
+die Schwelle des Modells als grüne Linie und den Schnittpunkt als weißen Kreis.
+Der Schnittpunkt heißt **Equal Error Rate**. Bei Klassendaten liegt er meist
+zwischen **0,2 und 0,45**.
+
+Kernaussage: Die eine Kurve steigt, wo die andere fällt. Es gibt keine Schwelle,
+bei der beide null sind – man wählt nur, welchen Fehler man lieber macht.
+
+### 93 · Das Durchschnittsgesicht
+
+`uv run code/93_durchschnitt.py`
+
+Vier Kacheln: Gesicht A, die Mischung, Gesicht B und der Mittelwert aller
+Aufnahmen. Der Regler steuert `t` in `(1-t)·A + t·B`. Dass das überhaupt
+funktioniert, liegt am `alignCrop` des Modells – alle Gesichter sind auf
+112 × 112 Pixel gerade gedreht, Augen an derselben Stelle.
+
+Anschlussfrage: Das Durchschnittsgesicht wirkt auf viele Menschen besonders
+ebenmäßig. Schönheitsfilter rechnen genau in diese Richtung – wollen wir das?
+
+### 94 · Das Kernel-Labor
+
+`uv run code/94_kernel_labor.py`
+
+Neun Regler von −8 bis +8, dazu Summe und Deutung live im Bild.
+
+| Aufgabe im Kopf der Datei | Lösung |
+|---|---|
+| Nur senkrechte Kanten | `[[-1,0,1],[-2,0,2],[-1,0,1]]` – die Nullen stehen senkrecht |
+| Nur waagerechte Kanten | dasselbe um 90 Grad gedreht: `[[-1,-2,-1],[0,0,0],[1,2,1]]` |
+| Bild nach rechts verschieben | eine einzige `1` in der linken Spalte, sonst Nullen |
+| Nichts passiert | nur die Mitte auf `1`, alles andere `0` (Summe 1) |
+| Eine `1` außerhalb der Mitte | Das Bild wird verschoben – die Faltung schaut auf den Nachbarpixel und übernimmt dessen Wert |
+
+Die Anzeige der Summe nimmt die Bonusfrage aus Station 2 auf: Summe 1 erhält die
+Helligkeit, Summe 0 ergibt einen Kantenfilter, größer als 1 macht heller.
+
+### 90 · Die Anwesenheitsliste
+
+`uv run code/90_anwesenheit.py`
+
+Mehrere Personen anmelden, Namen erscheinen live neben den Gesichtern. Technisch
+nichts Neues – aber die Frage danach ist der Punkt: *Wollt ihr, dass so etwas im
+Klassenzimmer hängt?* Das Programm ist eine Überwachungsanlage in rund 120 Zeilen
+Python, und genau deshalb steht es am Ende.

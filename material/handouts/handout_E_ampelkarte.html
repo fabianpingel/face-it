@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Face it! – Ampelkarte</title>
+<style>
+  @page { size: A4 landscape; margin: 0; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+         color: #1a2b3c; }
+
+  /* ---------- Seite 1: die beiden Signalseiten ---------- */
+
+  .blatt { width: 297mm; height: 210mm; display: flex; position: relative;
+           page-break-after: always; overflow: hidden; }
+
+  .haelfte { width: 148.5mm; height: 210mm; padding: 9mm;
+             display: flex; flex-direction: column; }
+
+  .flaeche { flex: 1; border-radius: 5mm; padding: 12mm 10mm;
+             display: flex; flex-direction: column;
+             justify-content: space-between; color: #fff; }
+
+  .gruen .flaeche { background: #1f9d55; }
+  .rot   .flaeche { background: #c4363a; }
+
+  .zeichen { font-size: 78pt; line-height: 1; font-weight: 700; }
+  .signal  { font-size: 44pt; line-height: 1.05; font-weight: 700;
+             letter-spacing: -0.02em; margin-top: 4mm; }
+  .erklaerung { font-size: 15pt; line-height: 1.35; margin-top: 5mm;
+                opacity: .95; }
+
+  .stationen { margin-top: 8mm; }
+  .stationen .titel { font-size: 10pt; text-transform: uppercase;
+                      letter-spacing: .16em; opacity: .8; margin-bottom: 3mm; }
+  .kreise { display: flex; flex-wrap: wrap; gap: 3mm; }
+  .kreis { width: 13mm; height: 13mm; border: 2px solid rgba(255,255,255,.75);
+           border-radius: 50%; display: flex; align-items: center;
+           justify-content: center; font-size: 11pt; font-weight: 700; }
+
+  .marke { font-size: 10pt; letter-spacing: .18em; text-transform: uppercase;
+           opacity: .85; }
+
+  /* Faltlinie in der Mitte */
+  .falz { position: absolute; left: 148.5mm; top: 0; height: 210mm;
+          border-left: 1px dashed #9aa6b1; }
+  .falz span { position: absolute; top: 50%; left: 1.5mm;
+               transform: translateY(-50%) rotate(90deg);
+               transform-origin: left center;
+               font-size: 7.5pt; color: #9aa6b1; letter-spacing: .2em;
+               white-space: nowrap; }
+
+  /* ---------- Seite 2: Fehlerhilfe ---------- */
+
+  .rueck { width: 297mm; height: 210mm; padding: 14mm 16mm; }
+  .rueck h1 { font-size: 19pt; color: #12263f; }
+  .rueck h1 span { color: #1ec8e6; }
+  .rueck .unter { font-size: 11pt; color: #1ec8e6; font-weight: 600;
+                  margin-top: 1.5mm; }
+  .rueck .linie { height: 3px; background: #1ec8e6; margin: 3mm 0 6mm 0; }
+
+  .spalten { display: flex; gap: 10mm; }
+  .spalte { flex: 1; }
+
+  .fall { margin-bottom: 4.5mm; }
+  .fall .frage { font-weight: 700; color: #12263f; font-size: 11pt; }
+  .fall .antwort { font-size: 10pt; color: #3d4a56; margin-top: 0.8mm; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
+         background: #eef3f7; padding: 0.3mm 1.2mm; border-radius: 2px; }
+
+  .regel { border-left: 3px solid #1ec8e6; background: #f5fcfe;
+           padding: 3mm 0 3mm 4mm; margin: 5mm 0 0 0; font-size: 10pt; }
+
+  .anleitung { margin-top: 6mm; border-top: 1px solid #dfe5eb;
+               padding-top: 4mm; font-size: 9.5pt; color: #63707d; }
+</style>
+</head>
+<body>
+
+<!-- ============================================ Seite 1: Signalseiten -->
+<div class="blatt">
+
+  <div class="haelfte gruen">
+    <div class="flaeche">
+      <div>
+        <div class="marke">Face it!</div>
+        <div class="zeichen">&check;</div>
+        <div class="signal">Läuft!</div>
+        <div class="erklaerung">Station geschafft.<br>
+        Wir machen weiter.</div>
+      </div>
+      <div class="stationen">
+        <div class="titel">Fertig mit Station</div>
+        <div class="kreise">
+          <div class="kreis">0</div>
+          <div class="kreis">1</div>
+          <div class="kreis">2</div>
+          <div class="kreis">3</div>
+          <div class="kreis">4a</div>
+          <div class="kreis">4b</div>
+          <div class="kreis">4c</div>
+          <div class="kreis">5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="haelfte rot">
+    <div class="flaeche">
+      <div>
+        <div class="marke">Face it!</div>
+        <div class="zeichen">!</div>
+        <div class="signal">Hilfe!</div>
+        <div class="erklaerung">Wir kommen nicht weiter<br>
+        und haben die Rückseite<br>
+        schon gelesen.</div>
+      </div>
+      <div class="stationen">
+        <div class="titel">Wir hängen bei Station</div>
+        <div class="kreise">
+          <div class="kreis">0</div>
+          <div class="kreis">1</div>
+          <div class="kreis">2</div>
+          <div class="kreis">3</div>
+          <div class="kreis">4a</div>
+          <div class="kreis">4b</div>
+          <div class="kreis">4c</div>
+          <div class="kreis">5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="falz"><span>hier falten</span></div>
+</div>
+
+<!-- ============================================ Seite 2: Fehlerhilfe -->
+<div class="rueck">
+  <h1>Erst hier nachsehen <span>&ndash;</span> dann die rote Seite zeigen</h1>
+  <p class="unter">Die häufigsten Stolpersteine und was dagegen hilft</p>
+  <div class="linie"></div>
+
+  <div class="spalten">
+    <div class="spalte">
+
+      <div class="fall">
+        <div class="frage">„Die Kamera lässt sich nicht öffnen"</div>
+        <div class="antwort">Ein anderes Programm benutzt sie noch. Schließt
+        Teams, Zoom, die Kamera-App <em>und jedes zweite Face-it-Fenster</em>.
+        Dann neu starten.</div>
+      </div>
+
+      <div class="fall">
+        <div class="frage">Das Bildfenster reagiert nicht auf Tasten</div>
+        <div class="antwort">Klickt mit der Maus <strong>in das Bildfenster</strong>
+        und drückt die Taste erst dann. Das Terminal hört nicht zu.</div>
+      </div>
+
+      <div class="fall">
+        <div class="frage">Gar nichts passiert mehr</div>
+        <div class="antwort">Im Terminal <code>Strg + C</code> drücken. Das
+        beendet das Programm sauber. Danach neu starten.</div>
+      </div>
+
+      <div class="fall">
+        <div class="frage">„Die Modelldatei fehlt"</div>
+        <div class="antwort">Ihr seid im falschen Ordner. Der Befehl muss dort
+        laufen, wo <code>pyproject.toml</code> liegt.</div>
+      </div>
+
+      <div class="fall">
+        <div class="frage">Rote Textwand nach dem Ausführen</div>
+        <div class="antwort">Lest die <strong>letzte</strong> Zeile – dort steht
+        der eigentliche Fehler. Meist fehlt ein <code>)</code> oder ein
+        <code>,</code> in der Zeile, die ihr gerade geändert habt.</div>
+      </div>
+
+    </div>
+    <div class="spalte">
+
+      <div class="fall">
+        <div class="frage">Kein Gesicht wird erkannt</div>
+        <div class="antwort">Zu dunkel oder zu weit weg. Licht von vorn, nicht
+        gegen das Fenster sitzen, Gesicht groß ins Bild.</div>
+      </div>
+
+      <div class="fall">
+        <div class="frage">Das Pixelbild sieht aus wie Matsch</div>
+        <div class="antwort">Euer Gesicht füllt den hellen Zielrahmen nicht aus.
+        Näher heran – nur was im Rahmen liegt, wird zu Zahlen.</div>
+      </div>
+
+      <div class="fall">
+        <div class="frage">Die Ähnlichkeit ist immer über 95 %</div>
+        <div class="antwort">Beide Aufnahmen sind praktisch dasselbe Bild.
+        Verändert zwischen den Fotos etwas: Brille, Frisur, Licht, Kopfdrehung.</div>
+      </div>
+
+      <div class="fall">
+        <div class="frage">„Es sind zu wenige Gesichter gespeichert"</div>
+        <div class="antwort">Station 4a braucht mindestens zwei Aufnahmen pro
+        Person:<br><code>uv run code/04a_embedding.py Vorname</code></div>
+      </div>
+
+      <div class="fall">
+        <div class="frage">Das Fenster ist größer als der Bildschirm</div>
+        <div class="antwort">Am Fensterrand ziehen – die Fenster lassen sich
+        frei verkleinern.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="regel">
+    <strong>Die Zwei-Minuten-Regel:</strong> Erst selbst lesen, was auf dem
+    Bildschirm steht. Dann diese Seite. Dann die Nachbargruppe fragen. Und wenn
+    es nach zwei Minuten immer noch klemmt, die <strong>rote Seite</strong>
+    hochhalten – dafür ist sie da.
+  </div>
+
+  <div class="anleitung">
+    <strong>So wird die Karte gebaut:</strong> A4 quer, beidseitig drucken
+    („lange Seite spiegeln"), dann einmal längs in der Mitte falten – Farbe nach
+    außen. Ergebnis: eine A5-Karte, grün auf der einen, rot auf der anderen
+    Seite, diese Hilfe innen.<br>
+    <strong>Kein Farbdrucker?</strong> Dann nur diese Seite (Seite 2) drucken
+    und auf ein A4-Blatt kleben, das auf einer Hälfte grün und auf der anderen
+    rot ist – etwa zwei Bögen Buntpapier oder mit dem Marker angemalt.
+  </div>
+</div>
+
+</body>
+</html>

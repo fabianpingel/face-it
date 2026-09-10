@@ -19,7 +19,7 @@ Sicherheit ist keine Eigenschaft. Sicherheit ist eine Zahl,
 die irgendein Mensch eingestellt hat.
 
 Starten:
-    uv run code/06_faceid.py
+    uv run code/04c_faceid.py
 """
 
 import cv2
@@ -96,6 +96,7 @@ while True:
 
     faceit.hinweisleiste(bild, ["[e] neu einrichten   [q] beenden"])
     faceit.zeigen(FENSTER, bild)
+    faceit.fenster_anpassen(FENSTER, bild)
 
     gedrueckt = faceit.taste()
 
@@ -120,5 +121,5 @@ print("  Zum Nachdenken:")
 print("  Bei welcher Schwelle wuerdest du dein Handy entsperren lassen?")
 print("  Und bei welcher eine Banktuer? Und eine Polizeifahndung?")
 print()
-print("  Weiter mit Station 5: uv run code/08_bias.py")
+print("  Weiter mit Station 5: uv run code/05_bias.py")
 print()

@@ -17,8 +17,9 @@
   h2 { font-size: 12pt; color: #12263f; margin: 6mm 0 1mm 0;
        border-bottom: 1px solid #dfe5eb; padding-bottom: 1mm; }
   h2 .nr { display: inline-block; background: #12263f; color: #fff;
-           width: 7mm; height: 7mm; line-height: 7mm; text-align: center;
-           border-radius: 50%; font-size: 9.5pt; margin-right: 2.5mm; }
+           min-width: 7.5mm; height: 7.5mm; line-height: 7.5mm;
+           padding: 0 1.2mm; text-align: center; border-radius: 3.75mm;
+           font-size: 9.5pt; margin-right: 2.5mm; }
   h2 .befehl { float: right; font-family: Consolas, "Courier New", monospace;
                font-size: 9pt; color: #63707d; font-weight: normal; }
   p { margin: 1.5mm 0; }
@@ -64,10 +65,11 @@ morgens macht, wenn es euch anschaut.</p>
 
 <h2><span class="nr">1</span> Ein Bild ist eine Tabelle
     <span class="befehl">uv run code/01_pixel.py</span></h2>
-<p>Leertaste drücken, Zahlengitter im Terminal anschauen, Arbeitsblatt ausmalen.</p>
+<p>Gesicht in den hellen Zielrahmen, mit <code>z</code> die Zahlen einblenden, Leertaste erzeugt das Arbeitsblatt zum Ausmalen.</p>
 <ul>
-  <li>Ändert oben im Code <code>GROESSE</code> auf 8, 32 und 64.</li>
-  <li>Aktiviert eines der Experimente, indem ihr das <code>#</code> entfernt.</li>
+  <li>Zieht den <strong>Schieberegler</strong> oben im Fenster durch alle Stufen: 4, 6, 8, 10, 12, 16, 20, 24, 32, 48, 64.</li>
+  <li>Mit <code>z</code> blendet ihr die Zahlen ein, mit der <strong>Leertaste</strong> friert das Bild ein.</li>
+  <li>Advanced: im Abschnitt <code>ADVANCED</code> im Code ein <code>#</code> entfernen.</li>
 </ul>
 <table>
   <tr><th style="width:60%">Frage</th><th>Unsere Antwort</th></tr>
@@ -75,7 +77,7 @@ morgens macht, wenn es euch anschaut.</p>
       <td class="eingabe"></td></tr>
   <tr><td>Ab wie vielen Pixeln erkennt man, <strong>wer</strong> es ist?</td>
       <td class="eingabe"></td></tr>
-  <tr><td>Was macht die Zeile <code>gitter = 255 - gitter</code>?</td>
+  <tr><td>Was macht die Zeile <code>gitter = 255 - gitter</code> im Advanced-Block?</td>
       <td class="eingabe"></td></tr>
 </table>
 
@@ -109,8 +111,8 @@ Ziel ist, die Erkennung hereinzulegen.</p>
 <p class="unter">Seite 2: Wer ist das?</p>
 <div class="linie"></div>
 
-<h2><span class="nr">4</span> Dein Gesicht als 128 Zahlen
-    <span class="befehl">uv run code/04_embedding.py</span></h2>
+<h2><span class="nr">4a</span> Dein Gesicht als 128 Zahlen
+    <span class="befehl">uv run code/04a_embedding.py</span></h2>
 <p>Macht <strong>mindestens zwei</strong> Aufnahmen von jeder Person – eine
 normale und eine schwierige (Brille ab, Haare anders, schlechtes Licht).
 Ihr braucht sie in den nächsten beiden Stationen.</p>
@@ -118,8 +120,8 @@ Ihr braucht sie in den nächsten beiden Stationen.</p>
 <strong>128</strong> Zahlen. Das ist alles, was das Modell über euer Gesicht
 behält.</p>
 
-<h2><span class="nr">5</span> Wie ähnlich sind zwei Gesichter?
-    <span class="befehl">uv run code/05_vergleich.py</span></h2>
+<h2><span class="nr">4b</span> Wie ähnlich sind zwei Gesichter?
+    <span class="befehl">uv run code/04b_vergleich.py</span></h2>
 <p>Taste <code>1</code> nimmt das linke Gesicht auf, Taste <code>2</code> das
 rechte. Die Schwelle des Modells liegt bei <strong>0,363</strong> – also 36 %.</p>
 <table>
@@ -135,8 +137,8 @@ rechte. Die Schwelle des Modells liegt bei <strong>0,363</strong> – also 36 %.
 <p class="frage">Welches Paar aus verschiedenen Personen hatte bei euch die
 höchste Ähnlichkeit? <span class="linie_zum_schreiben" style="min-width:45mm"></span></p>
 
-<h2><span class="nr">6</span> Deine eigene Handy-Entsperrung
-    <span class="befehl">uv run code/06_faceid.py</span></h2>
+<h2><span class="nr">4c</span> Deine eigene Handy-Entsperrung
+    <span class="befehl">uv run code/04c_faceid.py</span></h2>
 <p>Mit <code>e</code> einrichten, dann den Schieberegler oben im Fenster benutzen.</p>
 <table>
   <tr><th style="width:34%">Schwelle</th><th style="width:33%">Ich selbst</th>

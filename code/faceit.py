@@ -9,6 +9,7 @@ und Fehlermeldungen auf Deutsch und verstaendlich sind.
 import sys
 import os
 from pathlib import Path
+from typing import NoReturn
 
 import cv2
 import numpy as np
@@ -18,6 +19,80 @@ try:
     sys.stdout.reconfigure(encoding="utf-8")
 except Exception:
     pass
+
+
+# ---------------------------------------------------------------- Terminal-Farben
+
+def _windows_terminal_vorbereiten() -> bool:
+    """
+    Bringt die Windows-Konsole dazu, Farbcodes und UTF-8 zu verstehen.
+    Gibt True zurueck, wenn beides geklappt hat.
+    """
+    if os.name != "nt":
+        return True
+    try:
+        import ctypes
+        kernel32 = ctypes.windll.kernel32
+
+        # UTF-8 als Ausgabe-Codepage, sonst werden Umlaute zu Kauderwelsch
+        kernel32.SetConsoleOutputCP(65001)
+
+        # Farbcodes einschalten (ENABLE_VIRTUAL_TERMINAL_PROCESSING)
+        handle = kernel32.GetStdHandle(-11)
+        modus = ctypes.c_uint32()
+        if not kernel32.GetConsoleMode(handle, ctypes.byref(modus)):
+            return False
+        return bool(kernel32.SetConsoleMode(handle, modus.value | 0x0004))
+    except Exception:
+        return False
+
+
+def _farben_erlaubt() -> bool:
+    """
+    Farben nur, wenn die Ausgabe wirklich in einem Terminal landet.
+    Mit FACEIT_FARBEN=1 oder 0 laesst sich das erzwingen.
+    """
+    erzwungen = os.environ.get("FACEIT_FARBEN")
+    if erzwungen is not None:
+        return erzwungen not in ("0", "nein", "no", "false")
+    if os.environ.get("NO_COLOR"):
+        return False
+    if not sys.stdout.isatty():
+        return False
+    return _windows_terminal_vorbereiten()
+
+
+FARBIG = _farben_erlaubt()
+
+# Emojis nur da, wo Farben funktionieren. Dass eine Konsole Farbcodes
+# versteht, ist ein gutes Zeichen dafuer, dass sie auch Symbole zeichnet.
+# Sehr alte Konsolen malen stattdessen leere Kaestchen - dafuer gibt es
+# FACEIT_EMOJI=0 und den Selbsttest:  uv run code/start.py --farbtest
+EMOJI = FARBIG
+if os.environ.get("FACEIT_EMOJI") is not None:
+    EMOJI = os.environ["FACEIT_EMOJI"] not in ("0", "nein", "no", "false")
+
+_CODES = {
+    "cyan": "96", "blau": "94", "gruen": "92", "rot": "91",
+    "gelb": "93", "grau": "90", "fett": "1", "weiss": "97",
+}
+
+
+def bunt(text, *stile) -> str:
+    """
+    Faerbt Text fuer das Terminal, z. B. bunt('Hallo', 'cyan', 'fett').
+    Wenn das Terminal keine Farben kann, kommt der Text unveraendert zurueck.
+    """
+    text = str(text)
+    if not FARBIG or not stile:
+        return text
+    codes = ";".join(_CODES[stil] for stil in stile if stil in _CODES)
+    return f"\033[{codes}m{text}\033[0m" if codes else text
+
+
+def sym(emoji: str, ersatz: str) -> str:
+    """Gibt das Emoji zurueck - oder ein schlichtes Zeichen, wenn es nicht geht."""
+    return emoji if EMOJI else ersatz
 
 # ---------------------------------------------------------------- Pfade
 
@@ -44,6 +119,7 @@ CYAN = (230, 200, 30)
 WEISS = (255, 255, 255)
 GRUEN = (80, 220, 100)
 ROT = (60, 60, 240)
+GELB = (60, 200, 240)
 GRAU = (150, 150, 150)
 
 
@@ -97,6 +173,13 @@ def balken(bild, wert, position, breite=320, hoehe=28, farbe=CYAN):
 
 # ---------------------------------------------------------------- Kamera
 
+# Damit alle Stationen gleich aussehen, arbeiten wir mit einer festen
+# Bildbreite. 4K-Webcams wuerden sonst alles ausbremsen.
+BILDBREITE = 1280
+BILDHOEHE = 720
+
+
+
 class _ErsatzKamera:
     """
     Notfall-Modus ohne Webcam: liefert immer dasselbe Bild aus einer Datei.
@@ -136,8 +219,13 @@ def kamera_oeffnen(index: int = 0):
     for backend in backends:
         kamera = cv2.VideoCapture(index, backend)
         if kamera.isOpened():
-            kamera.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-            kamera.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+            # Wunschauflösung. Nicht jede Kamera macht mit - deshalb lesen
+            # wir hinterher nach, was wir wirklich bekommen haben.
+            kamera.set(cv2.CAP_PROP_FRAME_WIDTH, BILDBREITE)
+            kamera.set(cv2.CAP_PROP_FRAME_HEIGHT, BILDHOEHE)
+            breite = int(kamera.get(cv2.CAP_PROP_FRAME_WIDTH))
+            hoehe = int(kamera.get(cv2.CAP_PROP_FRAME_HEIGHT))
+            print(f"  Kamera liefert {breite} x {hoehe} Pixel.")
             return kamera
         kamera.release()
 
@@ -169,7 +257,25 @@ def fenster(name: str):
     """Legt ein Fenster an (nur noetig, wenn es einen Schieberegler bekommt)."""
     if not TESTMODUS:
         cv2.namedWindow(name, cv2.WINDOW_NORMAL)
-        cv2.resizeWindow(name, 1000, 640)
+
+
+# Fenster, deren Groesse schon angepasst wurde
+_angepasst = set()
+
+
+def fenster_anpassen(name: str, bild, hoechstbreite: int = 1500):
+    """
+    Zieht das Fenster genau auf das Seitenverhaeltnis des Bildes.
+    Ohne das wuerde OpenCV das Bild in ein vorgegebenes Fenster quetschen -
+    und alles waere in der Breite gestaucht.
+    Wirkt nur beim ersten Aufruf, damit die Lehrkraft danach frei ziehen kann.
+    """
+    if TESTMODUS or name in _angepasst:
+        return
+    hoehe, breite = bild.shape[:2]
+    faktor = min(1.0, hoechstbreite / breite)
+    cv2.resizeWindow(name, int(breite * faktor), int(hoehe * faktor))
+    _angepasst.add(name)
 
 
 def zeigen(fenstername: str, bild):
@@ -223,11 +329,18 @@ def regler_wert(fenstername: str, name: str) -> int:
 
 
 def bild_holen(kamera, spiegeln: bool = True):
-    """Holt ein Bild von der Kamera. Spiegelt es, damit es wie ein Spiegel wirkt."""
+    """
+    Holt ein Bild von der Kamera. Spiegelt es, damit es wie ein Spiegel wirkt,
+    und begrenzt die Breite - sonst wird es bei grossen Kameras langsam.
+    """
     ok, bild = kamera.read()
     if not ok:
         abbruch("Die Kamera liefert kein Bild mehr.",
                 "Schliesse das Fenster und starte das Programm neu.")
+    if bild.shape[1] > BILDBREITE:
+        faktor = BILDBREITE / bild.shape[1]
+        bild = cv2.resize(bild, None, fx=faktor, fy=faktor,
+                          interpolation=cv2.INTER_AREA)
     return cv2.flip(bild, 1) if spiegeln else bild
 
 
@@ -311,24 +424,28 @@ def gesichtsrahmen(bild, gesicht, farbe=CYAN, punkte=True, beschriftung=None):
 
 # ---------------------------------------------------------------- Fehler und Start
 
-def abbruch(*zeilen):
+def abbruch(*zeilen) -> NoReturn:
     """Bricht das Programm mit einer verstaendlichen Meldung ab."""
+    strich = bunt("=" * 64, "rot")
     print()
-    print("=" * 64)
-    print("  Da ist etwas schiefgelaufen")
-    print("=" * 64)
+    print(strich)
+    print("  " + sym("🛑", "!!") + "  "
+          + bunt("Da ist etwas schiefgelaufen", "rot", "fett"))
+    print(strich)
     for zeile in zeilen:
         print("  " + str(zeile))
-    print("=" * 64)
+    print(strich)
     print()
     sys.exit(1)
 
 
 def titel(stationsname: str, *zeilen):
     """Gibt eine Kopfzeile im Terminal aus."""
+    strichzeichen = "─" if EMOJI else "-"
     print()
-    print("  Face it!  |  " + stationsname)
-    print("  " + "-" * (len(stationsname) + 12))
+    print("  " + bunt("Face it!", "cyan", "fett")
+          + "  |  " + bunt(stationsname, "weiss", "fett"))
+    print("  " + bunt(strichzeichen * (len(stationsname) + 13), "cyan"))
     for zeile in zeilen:
-        print("  " + str(zeile))
+        print("  " + bunt(str(zeile), "grau"))
     print()

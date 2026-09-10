@@ -34,6 +34,9 @@ zeigt, wo der Workshop an bekannten Stoff anknüpft.
 | 4b · Ähnlichkeit | **Kosinus-Ähnlichkeit** cos θ = (a·b)/(‖a‖·‖b‖) | Skalarprodukt und Norm aus dem Unterricht, hier als Ähnlichkeitsmaß. Warum nicht der euklidische Abstand? Weil der Winkel von der Vektorlänge unabhängig ist. |
 | 5 · Fehlerraten | **Bedingte Häufigkeiten**, Prozentrechnung, konkurrierende Zielgrößen | Falschakzeptanz und Falschabweisung als Funktionen des Schwellenwerts – zwei Kurven, die sich gegenläufig verhalten. Wer will, skizziert sie. |
 | 3b · Netz | **Delaunay-Triangulation** einer Punktmenge | Geometrie zum Anfassen: 68 Punkte, 114 Dreiecke, Kriterium der Umkreise. |
+| Advanced 91 | **Hauptkomponentenanalyse** über die Singulärwertzerlegung | Der 128-dimensionale Raum wird auf eine Ebene projiziert. Die Klasse sieht ihre eigenen Punkte als Gruppen – und daneben steht, wie viel Prozent der Streuung dieser Schatten überhaupt zeigt. |
+| Advanced 92 | Zwei gegenläufige **Fehlerfunktionen** und ihr Schnittpunkt | FAR und FRR als Kurven über dem Schwellenwert, mit der Equal Error Rate als Schnittpunkt. |
+| Advanced 93 | **Konvexkombination** (1−t)·A + t·B | Verbindungsstrecke zwischen zwei Punkten – nur mit 37 632 Koordinaten gleichzeitig. |
 
 Diese Anschlüsse sind **Angebote, kein Pflichtprogramm**. Der Workshop trägt
 auch ohne sie – aber in einem Mathematikkurs wäre es verschenkt, das
@@ -144,12 +147,22 @@ gemacht, sondern zum Lerninhalt:
 
 ## 7. Differenzierung
 
-- **Bonus-Challenges** auf jeder Handout-Karte für schnelle Gruppen (z. B. "Finde einen
-  Kernel, der nur waagerechte Kanten zeigt", "Baue eine Anwesenheitsliste für deine
-  Tischgruppe").
+- **Advanced-Stationen** für schnelle Gruppen: fünf eigenständige Programme
+  (`90` bis `94` im Startmenü), die den Stoff mathematisch weiterdrehen –
+  Hauptkomponentenanalyse, Fehlerkurven, Gesichtsmittelwerte, freies Kernel-Labor,
+  Anwesenheitsliste. Sie sind auch das Take-home-Material.
+- **Advanced-Blöcke im Code**: In `01_pixel.py` steht ein Abschnitt mit
+  auskommentierten Zeilen (Negativ, Posterisierung, Schwellenwert). Wer das
+  `#` entfernt, sieht die Wirkung sofort im laufenden Bild.
 - **Rettungsanker**: Alle Antworten, Kernel-Lösungen und erwarteten Zahlenwerte
   stehen in [docs/03_loesungen.md](03_loesungen.md). Wer feststeckt, bekommt einen
   Hinweis statt zu warten.
-- **Fehlerkarte**: Die drei häufigsten Fehler (Kamera belegt, Fenster reagiert nicht,
-  falscher Ordner) stehen mit Lösung unten auf dem Laufzettel am Platz – das spart der
-  Lehrkraft rund 20 Minuten Supportlaufen.
+- **Fehlerkarte**: Die drei häufigsten Fehler stehen unten auf dem Laufzettel, zehn
+  weitere auf der Innenseite der Ampelkarte – das spart der Lehrkraft rund 20 Minuten
+  Supportlaufen.
+- **Ampelkarte** (`material/handouts/handout_E_ampelkarte.html`): eine gefaltete
+  A5-Karte, grün auf der einen und rot auf der anderen Seite. Jede Gruppe stellt sie
+  auf: grün heißt „Station geschafft", rot heißt „wir kommen nicht weiter". Die
+  Lehrkraft sieht den Stand der ganzen Gruppe mit einem Blick über den Raum, ohne
+  zu fragen – und niemand muss die Hand heben. Auf der Innenseite steht die
+  Fehlerhilfe, verbunden mit der Regel: erst lesen, dann Nachbargruppe, dann rot.

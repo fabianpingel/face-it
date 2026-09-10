@@ -15,7 +15,7 @@ Teil 2 zeigt Zahlen aus veroeffentlichten Studien:
     unterschiedlich viele Fehler. Das ist gemessen, nicht behauptet.
 
 Starten:
-    uv run code/08_bias.py
+    uv run code/05_bias.py
 """
 
 import sys
@@ -88,7 +88,7 @@ def teil1():
         print("  Geht zurueck zu Station 4a und nehmt pro Person")
         print("  mindestens zwei Fotos auf:")
         print()
-        print("      uv run code/04_embedding.py Vorname")
+        print("      uv run code/04a_embedding.py Vorname")
         print()
         return False
 

@@ -15,8 +15,8 @@ Mehr braucht Gesichtserkennung nicht.
 Mach mindestens zwei Fotos von dir - du brauchst sie in Station 4b und 5.
 
 Starten:
-    uv run code/04_embedding.py
-    uv run code/04_embedding.py Mia        (Name direkt mitgeben)
+    uv run code/04a_embedding.py
+    uv run code/04a_embedding.py Mia        (Name direkt mitgeben)
 """
 
 import sys
@@ -110,5 +110,5 @@ print(f"  Gespeicherte Gesichter insgesamt: {len(vorhanden)}")
 if len(vorhanden) < 2:
     print("  Tipp: Mach noch ein zweites Foto - Station 4b braucht zwei.")
 print()
-print("  Weiter mit Station 4b: uv run code/05_vergleich.py")
+print("  Weiter mit Station 4b: uv run code/04b_vergleich.py")
 print()

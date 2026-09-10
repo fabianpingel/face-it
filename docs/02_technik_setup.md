@@ -19,7 +19,19 @@ uv run code/00_check.py
 ```
 
 Wer sich die Befehle nicht merken will: unter Windows `start.bat` doppelklicken.
-Das erledigt `uv sync` und öffnet ein Menü mit allen Stationen.
+Das erledigt `uv sync` und öffnet ein Menü mit allen Stationen. Die Kennung im
+Menü ist dieselbe wie die Stationsnummer: `1`, `2`, `3`, `4a`, `4b`, `4c`, `5`.
+
+Das Menü nutzt Farben und Symbole. Ob deine Konsole das kann, zeigt in zwei
+Sekunden:
+
+```bash
+uv run code/start.py --farbtest
+```
+
+Erscheinen leere Kästchen statt Symbolen, hilft `set FACEIT_EMOJI=0`; erscheinen
+Zeichenfolgen wie `[96m`, dann `set FACEIT_FARBEN=0`. Beides lässt sich auch
+dauerhaft in `start.bat` setzen.
 
 ---
 
@@ -114,6 +126,7 @@ Danach die Handouts ausdrucken – alle liegen als HTML in `material/`:
 | `material/handouts/handout_B_faltung_loesung.html` | einmal für dich |
 | `material/handouts/handout_C_bingo.html` | einmal pro Zweiergruppe |
 | `material/handouts/handout_D_hack.html` | einmal pro Zweiergruppe |
+| `material/handouts/handout_E_ampelkarte.html` | einmal pro Zweiergruppe, **in Farbe und beidseitig** |
 | `material/elternbrief_und_einwilligung.html` | einmal pro Schüler:in, **vorher** |
 
 Zum Drucken die Datei im Browser öffnen und `Strg+P` drücken.
@@ -173,8 +186,9 @@ Internetverbindung während des Workshops, eine GPU.
 
 - [ ] `uv sync` auf jedem Rechner gelaufen
 - [ ] `uv run code/00_check.py` zeigt auf jedem Rechner ein Kamerabild
-- [ ] `uv run code/06_faceid.py` einmal komplett durchgespielt
+- [ ] `uv run code/04c_faceid.py` einmal komplett durchgespielt
 - [ ] Handouts gedruckt, Einwilligungen eingesammelt
+- [ ] Ampelkarten gedruckt, gefaltet und auf die Plätze gelegt
 - [ ] Plakat für die Einstiegsfrage vorbereitet, Post-its besorgt
 - [ ] Beamer-Rechner: `uv run code/tools/landmark_modell_holen.py` für Station 3b
 

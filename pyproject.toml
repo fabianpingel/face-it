@@ -1,0 +1,32 @@
+[project]
+name = "face-it"
+version = "1.0.0"
+description = "Face it! - Workshop zu Computer Vision und Gesichtserkennung fuer die 10. Klasse"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+
+# Genau zwei Pakete. Mehr braucht der Workshop nicht.
+#
+# Warum opencv-contrib-python und nicht opencv-python?
+# Weil contrib alles von opencv-python enthaelt und zusaetzlich cv2.face,
+# das die optionale Station 3b braucht. Beide Pakete gleichzeitig zu
+# installieren ist keine Option: Sie liefern dasselbe Modul cv2, und wer
+# eines davon deinstalliert, reisst dem anderen die Dateien weg - danach
+# ist gar kein cv2 mehr da. Ein Paket fuer alle, damit das nicht passiert.
+#
+# Warum Version 4 und nicht 5? In OpenCV 5 fehlen die Haar-Cascades, die
+# Station 3 fuer den Vergleich 2001 gegen 2023 braucht.
+dependencies = [
+    "opencv-contrib-python>=4.10,<5",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+# Werkzeuge, die nur die Lehrkraft vor dem Workshop braucht:
+#   uv sync --extra werkzeuge
+werkzeuge = [
+    "segno>=1.6",
+]
+
+[tool.uv]
+package = false

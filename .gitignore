@@ -1,0 +1,26 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# ---------------------------------------------------------------------
+# Personenbezogene Daten aus dem Workshop.
+# Diese Dateien duerfen NIE in ein Repository gelangen.
+# ---------------------------------------------------------------------
+data/fotos/
+data/gesichter/
+data/faceid.npy
+data/anwesenheit.npz
+data/_test/
+data/_kamera_attrappe.jpg
+data/_*.png
+data/_*.jpg
+
+# Beispielportraits werden vor dem Workshop geladen:
+#   uv run code/tools/portraits_holen.py
+data/beispiele/
+
+# Landmark-Modell fuer die optionale Station 3b (54 MB).
+# Wird bei Bedarf geladen mit:
+#   uv run code/tools/landmark_modell_holen.py
+models/lbfmodel.yaml

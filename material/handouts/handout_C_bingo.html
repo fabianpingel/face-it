@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Face it! – Experimente-Bingo</title>
+<style>
+  @page { size: A4 portrait; margin: 13mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+         color: #1a2b3c; margin: 0; font-size: 10.5pt; line-height: 1.45; }
+  h1 { font-size: 19pt; margin: 0; color: #12263f; }
+  h1 span { color: #1ec8e6; }
+  .unter { font-size: 11pt; color: #1ec8e6; margin: 1.5mm 0 0 0; font-weight: 600; }
+  .linie { height: 3px; background: #1ec8e6; margin: 3mm 0 5mm 0; }
+  .namen { border: 1px solid #b9c2cc; padding: 2.5mm 3mm; margin-bottom: 4mm;
+           font-size: 10pt; color: #63707d; }
+  .schreiblinie { border-bottom: 1px dotted #98a4b0; display: inline-block;
+                  min-width: 30mm; }
+  p { margin: 2mm 0; }
+  .karte { display: grid; grid-template-columns: repeat(3, 1fr);
+           gap: 3mm; margin: 5mm 0; }
+  .feld { border: 1px solid #cdd5dd; border-radius: 2mm; padding: 3mm;
+          min-height: 30mm; position: relative; }
+  .feld .titel { font-weight: 700; color: #12263f; font-size: 10.5pt;
+                 margin-bottom: 1.5mm; padding-right: 9mm; }
+  .feld .hinweis { color: #63707d; font-size: 9pt; }
+  .haken { position: absolute; top: 2.5mm; right: 2.5mm; width: 6.5mm;
+           height: 6.5mm; border: 1.5px solid #1ec8e6; border-radius: 1mm; }
+  .punkte { position: absolute; bottom: 2.5mm; right: 3mm; font-size: 8.5pt;
+            color: #1ec8e6; font-weight: 700; }
+  .kasten { border-left: 3px solid #1ec8e6; background: #f5fcfe;
+            padding: 2.5mm 0 2.5mm 4mm; margin: 4mm 0; }
+  .frage { color: #12263f; font-weight: 600; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
+         background: #eef3f7; padding: 0.3mm 1.2mm; border-radius: 2px; }
+  .fuss { margin-top: 5mm; font-size: 9pt; color: #8794a1; }
+</style>
+</head>
+<body>
+
+<h1>Face it! <span>–</span> Experimente-Bingo</h1>
+<p class="unter">Station 3: Bringt die Gesichtserkennung dazu, Fehler zu machen</p>
+<div class="linie"></div>
+
+<div class="namen">
+  Namen: <span class="schreiblinie" style="min-width:55mm"></span>
+  &nbsp;&nbsp; Erreichte Felder: <span class="schreiblinie" style="min-width:15mm"></span>
+</div>
+
+<p>Startet <code>uv run code/03_detect.py</code>. Ein grüner Rahmen bedeutet:
+„Hier ist ein Gesicht." Euer Auftrag ist das Gegenteil von sonst – ihr sollt das
+Programm <strong>austricksen</strong>. Hakt jedes Feld ab, das ihr geschafft habt,
+und notiert, was passiert ist.</p>
+
+<div class="karte">
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Kopf zur Seite</div>
+    <div class="hinweis">Dreht den Kopf langsam. Bei wie vielen Grad verliert das
+    Programm euch?</div>
+    <div class="punkte">___ Grad</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Hand vor den Mund</div>
+    <div class="hinweis">Und dann vor die Augen. Was ist wichtiger?</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Sonnenbrille</div>
+    <div class="hinweis">Findet es euch trotzdem?</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Licht aus</div>
+    <div class="hinweis">Oder Fenster im Rücken, Gesicht im Gegenlicht.</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Foto auf dem Handy</div>
+    <div class="hinweis">Haltet ein Portrait auf dem Display vor die Kamera.
+    <strong>Merkt euch das Ergebnis</strong> – es kommt später wieder.</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Gesicht auf Kleidung</div>
+    <div class="hinweis">Aufdruck, Etikett, Comicfigur.</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Gezeichnetes Gesicht</div>
+    <div class="hinweis">Zwei Punkte, ein Strich. Wie wenig genügt?</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Poster oder Bildschirm</div>
+    <div class="hinweis">Ein Gesicht an der Wand oder auf einem anderen Monitor.</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Etwas, das kein Gesicht ist</div>
+    <div class="hinweis">Steckdose, Autofront, Rucksack. Menschen sehen darin auch
+    Gesichter – das heißt Pareidolie.</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Zwei Gesichter dicht nebeneinander</div>
+    <div class="hinweis">Wange an Wange. Zählt es beide?</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Kapuze oder Maske</div>
+    <div class="hinweis">Wie viel Gesicht braucht das Programm?</div></div>
+
+  <div class="feld"><div class="haken"></div>
+    <div class="titel">Überall Gesichter</div>
+    <div class="hinweis">Drückt <code>a</code>, bis das Programm Gesichter an der
+    Wand und im Pullover sieht. Bei welchem Wert kippt es?</div>
+    <div class="punkte">minNeighbors = ___</div></div>
+
+</div>
+
+<div class="kasten">
+  <p style="margin:0" class="frage">Vergleicht die beiden Verfahren</p>
+  <p style="margin:1mm 0 0 0">Mit <code>y</code> schaltet ihr zwischen der
+  Haar-Cascade von 2001 und dem neuronalen Netz YuNet von 2023 um. Bei welchen
+  Feldern oben verhalten sich die beiden unterschiedlich?</p>
+  <p style="margin:2mm 0 0 0"><span class="schreiblinie" style="min-width:150mm"></span></p>
+  <p style="margin:2.5mm 0 0 0"><span class="schreiblinie" style="min-width:150mm"></span></p>
+</div>
+
+<p class="frage">Das Programm hat euer Gesicht gefunden. Weiß es, wer ihr seid?</p>
+<p><span class="schreiblinie" style="min-width:150mm"></span></p>
+
+<p class="fuss">Face it! · Station 3 · Die Empfindlichkeit einer Erkennung ist eine
+Einstellung, kein Naturgesetz.</p>
+
+</body>
+</html>

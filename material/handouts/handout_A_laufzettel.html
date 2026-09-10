@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Face it! – Laufzettel</title>
+<style>
+  @page { size: A4 portrait; margin: 13mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+         color: #1a2b3c; margin: 0; font-size: 10.5pt; line-height: 1.45; }
+  h1 { font-size: 19pt; margin: 0; color: #12263f; }
+  h1 span { color: #1ec8e6; }
+  .unter { font-size: 11pt; color: #1ec8e6; margin: 1.5mm 0 0 0; font-weight: 600; }
+  .linie { height: 3px; background: #1ec8e6; margin: 3mm 0 5mm 0; }
+  .namen { border: 1px solid #b9c2cc; padding: 2.5mm 3mm; margin-bottom: 5mm;
+           font-size: 10pt; color: #63707d; }
+  h2 { font-size: 12pt; color: #12263f; margin: 6mm 0 1mm 0;
+       border-bottom: 1px solid #dfe5eb; padding-bottom: 1mm; }
+  h2 .nr { display: inline-block; background: #12263f; color: #fff;
+           width: 7mm; height: 7mm; line-height: 7mm; text-align: center;
+           border-radius: 50%; font-size: 9.5pt; margin-right: 2.5mm; }
+  h2 .befehl { float: right; font-family: Consolas, "Courier New", monospace;
+               font-size: 9pt; color: #63707d; font-weight: normal; }
+  p { margin: 1.5mm 0; }
+  ul { margin: 1.5mm 0; padding-left: 5mm; }
+  li { margin-bottom: 0.8mm; }
+  .frage { color: #12263f; font-weight: 600; }
+  .linie_zum_schreiben { border-bottom: 1px dotted #98a4b0; display: inline-block;
+                         min-width: 30mm; }
+  table { border-collapse: collapse; width: 100%; margin: 2mm 0 3mm 0;
+          font-size: 10pt; }
+  th { background: #12263f; color: #fff; font-weight: 600; text-align: left;
+       padding: 1.5mm 2.5mm; font-size: 9.5pt; }
+  td { border: 1px solid #cdd5dd; padding: 2.6mm 2.5mm; }
+  td.eingabe { background: #fbfdfe; }
+  .kasten { border-left: 3px solid #1ec8e6; background: #f5fcfe;
+            padding: 2mm 0 2mm 4mm; margin: 3mm 0; }
+  .fehler { margin-top: 6mm; border: 1px solid #f0c4c4; background: #fdf7f7;
+            padding: 3mm 4mm; }
+  .fehler h3 { margin: 0 0 2mm 0; font-size: 11pt; color: #a03c3c; }
+  .fehler dt { font-weight: 600; margin-top: 2mm; }
+  .fehler dd { margin: 0 0 0 4mm; color: #4a5560; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
+         background: #eef3f7; padding: 0.3mm 1.2mm; border-radius: 2px; }
+  .seitenwechsel { page-break-before: always; }
+  .fuss { margin-top: 7mm; font-size: 9pt; color: #8794a1; }
+</style>
+</head>
+<body>
+
+<h1>Face it! <span>–</span> Laufzettel</h1>
+<p class="unter">Computer Vision und Gesichtserkennung</p>
+<div class="linie"></div>
+
+<div class="namen">
+  Namen: <span class="linie_zum_schreiben" style="min-width:60mm"></span>
+  &nbsp;&nbsp; Rechner-Nr.: <span class="linie_zum_schreiben" style="min-width:20mm"></span>
+</div>
+
+<p>Ihr arbeitet zu zweit an einem Rechner. Einer tippt, einer sitzt vor der
+Kamera – und nach jeder Station wird getauscht. Tragt hier ein, was ihr
+herausfindet. Am Ende des Vormittags erklärt euer Laufzettel, was euer Handy
+morgens macht, wenn es euch anschaut.</p>
+
+<h2><span class="nr">1</span> Ein Bild ist eine Tabelle
+    <span class="befehl">uv run code/01_pixel.py</span></h2>
+<p>Leertaste drücken, Zahlengitter im Terminal anschauen, Arbeitsblatt ausmalen.</p>
+<ul>
+  <li>Ändert oben im Code <code>GROESSE</code> auf 8, 32 und 64.</li>
+  <li>Aktiviert eines der Experimente, indem ihr das <code>#</code> entfernt.</li>
+</ul>
+<table>
+  <tr><th style="width:60%">Frage</th><th>Unsere Antwort</th></tr>
+  <tr><td>Ab wie vielen Pixeln erkennt man, <strong>dass</strong> es ein Gesicht ist?</td>
+      <td class="eingabe"></td></tr>
+  <tr><td>Ab wie vielen Pixeln erkennt man, <strong>wer</strong> es ist?</td>
+      <td class="eingabe"></td></tr>
+  <tr><td>Was macht die Zeile <code>gitter = 255 - gitter</code>?</td>
+      <td class="eingabe"></td></tr>
+</table>
+
+<h2><span class="nr">2</span> Filter und Faltung
+    <span class="befehl">uv run code/02_filter.py</span></h2>
+<p>Erst Arbeitsblatt B von Hand rechnen, dann dasselbe live auf der Kamera.
+Tasten 0 bis 6 schalten die Kernel um.</p>
+<table>
+  <tr><th style="width:60%">Aufgabe</th><th>Unsere Antwort</th></tr>
+  <tr><td>Welcher Kernel zeigt nur <strong>senkrechte</strong> Kanten?</td>
+      <td class="eingabe"></td></tr>
+  <tr><td>Was passiert, wenn die Summe der neun Zahlen größer als 1 ist?</td>
+      <td class="eingabe"></td></tr>
+  <tr><td>Unser eigener Kernel (die neun Zahlen) und was er tut:</td>
+      <td class="eingabe"></td></tr>
+</table>
+
+<h2><span class="nr">3</span> Finde das Gesicht
+    <span class="befehl">uv run code/03_detect.py</span></h2>
+<p>Hierfür gibt es ein eigenes Blatt: das <strong>Experimente-Bingo</strong>.
+Ziel ist, die Erkennung hereinzulegen.</p>
+<div class="kasten">
+  <p style="margin:0" class="frage">Die wichtigste Frage der Station:</p>
+  <p style="margin:0">Das Programm hat euer Gesicht gefunden. Weiß es, <em>wer</em>
+  ihr seid? Warum nicht?</p>
+</div>
+
+<div class="seitenwechsel"></div>
+
+<h1>Face it! <span>–</span> Laufzettel</h1>
+<p class="unter">Seite 2: Wer ist das?</p>
+<div class="linie"></div>
+
+<h2><span class="nr">4</span> Dein Gesicht als 128 Zahlen
+    <span class="befehl">uv run code/04_embedding.py</span></h2>
+<p>Macht <strong>mindestens zwei</strong> Aufnahmen von jeder Person – eine
+normale und eine schwierige (Brille ab, Haare anders, schlechtes Licht).
+Ihr braucht sie in den nächsten beiden Stationen.</p>
+<p>Aus <strong>37 632</strong> Zahlen (112 × 112 Pixel × 3 Farben) werden
+<strong>128</strong> Zahlen. Das ist alles, was das Modell über euer Gesicht
+behält.</p>
+
+<h2><span class="nr">5</span> Wie ähnlich sind zwei Gesichter?
+    <span class="befehl">uv run code/05_vergleich.py</span></h2>
+<p>Taste <code>1</code> nimmt das linke Gesicht auf, Taste <code>2</code> das
+rechte. Die Schwelle des Modells liegt bei <strong>0,363</strong> – also 36 %.</p>
+<table>
+  <tr><th style="width:52%">Wir vergleichen</th><th style="width:24%">Ähnlichkeit</th>
+      <th>Urteil des Programms</th></tr>
+  <tr><td>ich – ich (gleiches Licht)</td><td class="eingabe"></td><td class="eingabe"></td></tr>
+  <tr><td>ich – ich (Brille, Grimasse, anderes Licht)</td><td class="eingabe"></td><td class="eingabe"></td></tr>
+  <tr><td>ich – Nachbarin oder Nachbar</td><td class="eingabe"></td><td class="eingabe"></td></tr>
+  <tr><td>zwei andere Personen aus der Gruppe</td><td class="eingabe"></td><td class="eingabe"></td></tr>
+  <tr><td>ich – Portrait aus <code>data/beispiele</code></td><td class="eingabe"></td><td class="eingabe"></td></tr>
+  <tr><td style="color:#63707d">frei: unser eigener Test</td><td class="eingabe"></td><td class="eingabe"></td></tr>
+</table>
+<p class="frage">Welches Paar aus verschiedenen Personen hatte bei euch die
+höchste Ähnlichkeit? <span class="linie_zum_schreiben" style="min-width:45mm"></span></p>
+
+<h2><span class="nr">6</span> Deine eigene Handy-Entsperrung
+    <span class="befehl">uv run code/06_faceid.py</span></h2>
+<p>Mit <code>e</code> einrichten, dann den Schieberegler oben im Fenster benutzen.</p>
+<table>
+  <tr><th style="width:34%">Schwelle</th><th style="width:33%">Ich selbst</th>
+      <th>Nachbarin / Nachbar</th></tr>
+  <tr><td>36 % (Standard)</td><td class="eingabe"></td><td class="eingabe"></td></tr>
+  <tr><td>5 %</td><td class="eingabe"></td><td class="eingabe"></td></tr>
+  <tr><td>90 %</td><td class="eingabe"></td><td class="eingabe"></td></tr>
+</table>
+<div class="kasten">
+  <p style="margin:0" class="frage">Zwei Fehlerarten – schreibt auf, was schlimmer ist:</p>
+  <p style="margin:0"><strong>Falsch akzeptiert:</strong> ein Fremder wird
+  hereingelassen. &nbsp;|&nbsp; <strong>Falsch abgewiesen:</strong> ich komme
+  selbst nicht hinein.</p>
+  <p style="margin:1.5mm 0 0 0">Beim Handy schlimmer ist:
+  <span class="linie_zum_schreiben" style="min-width:35mm"></span><br>
+  Bei einer Polizeifahndung schlimmer ist:
+  <span class="linie_zum_schreiben" style="min-width:35mm"></span></p>
+</div>
+
+<div class="fehler">
+  <h3>Wenn etwas nicht läuft – die drei häufigsten Fehler</h3>
+  <dl>
+    <dt>„Die Kamera lässt sich nicht öffnen"</dt>
+    <dd>Ein anderes Programm benutzt sie noch: Teams, Zoom, Kamera-App oder ein
+        zweites Face-it-Fenster. Alles schließen und neu starten.</dd>
+    <dt>Das Fenster reagiert nicht auf Tastendrücke</dt>
+    <dd>Erst mit der Maus <strong>in das Bildfenster klicken</strong>, dann die
+        Taste drücken. Das Terminal hört nicht zu.</dd>
+    <dt>„Die Modelldatei fehlt"</dt>
+    <dd>Ihr seid im falschen Ordner. Der Befehl muss im Projektordner laufen –
+        dort, wo <code>pyproject.toml</code> liegt.</dd>
+  </dl>
+</div>
+
+<p class="fuss">Face it! · Workshop zu Computer Vision und Gesichtserkennung ·
+Alle Aufnahmen bleiben auf diesem Rechner und werden am Ende gemeinsam gelöscht.</p>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Face it! – Hack-Challenge</title>
+<style>
+  @page { size: A4 portrait; margin: 13mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+         color: #1a2b3c; margin: 0; font-size: 10.5pt; line-height: 1.45; }
+  h1 { font-size: 19pt; margin: 0; color: #12263f; }
+  h1 span { color: #1ec8e6; }
+  .unter { font-size: 11pt; color: #1ec8e6; margin: 1.5mm 0 0 0; font-weight: 600; }
+  .linie { height: 3px; background: #1ec8e6; margin: 3mm 0 5mm 0; }
+  .namen { border: 1px solid #b9c2cc; padding: 2.5mm 3mm; margin-bottom: 4mm;
+           font-size: 10pt; color: #63707d; }
+  .schreiblinie { border-bottom: 1px dotted #98a4b0; display: inline-block;
+                  min-width: 30mm; }
+  h2 { font-size: 12pt; color: #12263f; margin: 6mm 0 1.5mm 0;
+       border-bottom: 1px solid #dfe5eb; padding-bottom: 1mm; }
+  p { margin: 2mm 0; }
+  table { border-collapse: collapse; width: 100%; margin: 2mm 0; font-size: 10pt; }
+  th { background: #12263f; color: #fff; font-weight: 600; text-align: left;
+       padding: 1.8mm 2.5mm; font-size: 9.5pt; }
+  td { border: 1px solid #cdd5dd; padding: 2.8mm 2.5mm; vertical-align: top; }
+  td.punkte { text-align: center; font-weight: 700; color: #1ec8e6;
+              width: 16mm; }
+  td.geschafft { width: 24mm; background: #fbfdfe; text-align: center; }
+  .kasten { border-left: 3px solid #1ec8e6; background: #f5fcfe;
+            padding: 2.5mm 0 2.5mm 4mm; margin: 4mm 0; }
+  .regeln { border: 1px solid #f0c4c4; background: #fdf7f7; padding: 3mm 4mm;
+            margin: 4mm 0; }
+  .regeln h3 { margin: 0 0 1.5mm 0; font-size: 11pt; color: #a03c3c; }
+  .frage { color: #12263f; font-weight: 600; }
+  code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
+         background: #eef3f7; padding: 0.3mm 1.2mm; border-radius: 2px; }
+  .fuss { margin-top: 5mm; font-size: 9pt; color: #8794a1; }
+</style>
+</head>
+<body>
+
+<h1>Face it! <span>–</span> Hack-Challenge</h1>
+<p class="unter">Entsperrt den Rechner der Nachbargruppe</p>
+<div class="linie"></div>
+
+<div class="namen">
+  Unsere Gruppe: <span class="schreiblinie" style="min-width:45mm"></span>
+  &nbsp;&nbsp; Ziel-Gruppe: <span class="schreiblinie" style="min-width:35mm"></span>
+  &nbsp;&nbsp; Punkte: <span class="schreiblinie" style="min-width:15mm"></span>
+</div>
+
+<p>Auf dem Nachbarrechner läuft <code>uv run code/06_faceid.py</code> mit einem
+eingerichteten Gesicht und der Standardschwelle von 36 %. Ihr habt
+<strong>12 Minuten</strong>. Jede Methode, mit der ihr <em>ENTSPERRT</em> auf den
+Bildschirm bekommt, ohne die richtige Person zu sein, gibt Punkte.</p>
+
+<div class="regeln">
+  <h3>Regeln</h3>
+  <p style="margin:0">Erlaubt ist alles am eigenen und am Ziel-Rechner dieses
+  Workshops. Nicht erlaubt: fremde Geräte, fremde Konten, Passwörter oder Accounts
+  von anderen. Wir hacken hier ein Programm, das wir selbst gebaut haben – nichts
+  anderes.</p>
+</div>
+
+<h2>Punkteliste</h2>
+<table>
+  <tr><th style="width:52%">Angriff</th><th class="punkte">Punkte</th>
+      <th class="geschafft">Geschafft?</th><th>Höchste Ähnlichkeit</th></tr>
+
+  <tr><td><strong>Foto auf dem Handy-Display</strong><br>
+      Sucht ein Foto der Zielperson und haltet es vor die Kamera.</td>
+      <td class="punkte">3</td><td class="geschafft"></td><td></td></tr>
+
+  <tr><td><strong>Ausdruck auf Papier</strong><br>
+      Gedruckt, ausgeschnitten, vor das Gesicht gehalten.</td>
+      <td class="punkte">3</td><td class="geschafft"></td><td></td></tr>
+
+  <tr><td><strong>Video statt Foto</strong><br>
+      Ein kurzes Video, in dem die Person blinzelt oder sich bewegt.</td>
+      <td class="punkte">4</td><td class="geschafft"></td><td></td></tr>
+
+  <tr><td><strong>Ähnlicher Mensch</strong><br>
+      Geschwister, Cousin, jemand mit gleicher Frisur und Brille.</td>
+      <td class="punkte">5</td><td class="geschafft"></td><td></td></tr>
+
+  <tr><td><strong>Schwelle verstellen</strong><br>
+      Der Schieberegler oben im Fenster. Wie weit müsst ihr ihn herunterziehen,
+      damit ihr durchkommt?</td>
+      <td class="punkte">2</td><td class="geschafft"></td><td></td></tr>
+
+  <tr><td><strong>Referenzdatei austauschen</strong><br>
+      Das gespeicherte Gesicht liegt in <code>data/faceid.npy</code> – 128 Zahlen
+      in einer Datei. Was passiert, wenn dort euer Gesicht steht?</td>
+      <td class="punkte">5</td><td class="geschafft"></td><td></td></tr>
+
+  <tr><td><strong>Eigene Idee</strong><br>
+      <span class="schreiblinie" style="min-width:80mm"></span></td>
+      <td class="punkte">5</td><td class="geschafft"></td><td></td></tr>
+</table>
+
+<h2>Auswertung</h2>
+<div class="kasten">
+  <p style="margin:0" class="frage">Warum funktioniert das Foto überhaupt?</p>
+  <p style="margin:1mm 0 0 0">Die Webcam liefert ein flaches Bild aus Helligkeitswerten.
+  Sie kann Haut nicht von Papier oder Glas unterscheiden – für sie ist beides
+  dieselbe Tabelle aus Zahlen.</p>
+  <p style="margin:2.5mm 0 0 0" class="frage">Was macht ein echtes Face ID anders?</p>
+  <p style="margin:1mm 0 0 0">Es projiziert tausende Infrarotpunkte auf das Gesicht
+  und misst deren Abstände – es sieht also <strong>Tiefe</strong>. Ein Foto ist
+  flach und fällt durch. Diese Prüfung heißt <strong>Liveness</strong>.
+  Ihr habt gerade bewiesen, warum es sie braucht.</p>
+</div>
+
+<p class="frage">Welcher Angriff war am einfachsten – und was sagt das über
+Gesichtserkennung als Passwort?</p>
+<p><span class="schreiblinie" style="min-width:150mm"></span></p>
+<p><span class="schreiblinie" style="min-width:150mm"></span></p>
+
+<p class="frage">Ein Passwort kann man ändern, wenn es gestohlen wurde.
+Was macht man mit einem Gesicht?</p>
+<p><span class="schreiblinie" style="min-width:150mm"></span></p>
+
+<p class="fuss">Face it! · Abschlussstation · Wer ein System bauen kann, muss auch
+wissen, wie es bricht.</p>
+
+</body>
+</html>

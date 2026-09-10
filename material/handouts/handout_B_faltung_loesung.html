@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Face it! – Arbeitsblatt B: Faltung von Hand</title>
+<style>
+  @page { size: A4 portrait; margin: 14mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+         color: #1a2b3c; margin: 0; font-size: 11.5pt; line-height: 1.5; }
+  h1 { font-size: 20pt; margin: 0; color: #12263f; letter-spacing: -0.01em; }
+  h1 span { color: #1ec8e6; }
+  .unter { font-size: 12pt; color: #1ec8e6; margin: 2mm 0 0 0; font-weight: 600; }
+  .linie { height: 3px; background: #1ec8e6; margin: 3mm 0 6mm 0; }
+  h2 { font-size: 12pt; color: #12263f; margin: 0 0 3mm 0; }
+  ol { margin: 2mm 0 0 0; padding-left: 6mm; }
+  ol li { margin-bottom: 1.2mm; }
+  .reihe { display: flex; gap: 12mm; align-items: flex-start; margin-bottom: 7mm; }
+  table.gitter { border-collapse: collapse; }
+  table.gitter td, table.gitter th { border: 1px solid #b9c2cc; width: 13mm;
+        height: 13mm; text-align: center; vertical-align: middle;
+        font-size: 13pt; font-variant-numeric: tabular-nums; }
+  table.gitter th { border: none; color: #1ec8e6; font-size: 9.5pt;
+        width: 8mm; height: 7mm; font-weight: 700; }
+  table.gitter td.leer { background: #fbfdfe; }
+  table.gruppen { border-collapse: collapse; font-size: 10.5pt; }
+  table.gruppen td { padding: 0.8mm 4mm 0.8mm 0; }
+  table.gruppen td.felder { color: #12263f; font-weight: 700;
+        font-variant-numeric: tabular-nums; }
+  .frage { color: #12263f; font-weight: 700; margin: 5mm 0 2mm 0; font-size: 12pt; }
+  .klein { color: #63707d; font-size: 10pt; }
+  .kasten { border-left: 3px solid #1ec8e6; padding: 2mm 0 2mm 4mm;
+        margin: 4mm 0; background: #f5fcfe; }
+  .loesung { color: #1ec8e6; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<h1>Face it! <span>–</span> Arbeitsblatt B <span class="loesung">&middot; Lösung</span></h1>
+<p class="unter">Faltung von Hand</p>
+<div class="linie"></div>
+
+<p>Unten steht ein winziges Bild: 6 × 6 Helligkeitswerte. Damit man im Kopf
+rechnen kann, gehen die Werte hier nur von 0 (dunkel) bis 9 (hell).
+Am Prinzip ändert das nichts.</p>
+
+<h2>So rechnest du ein Feld des Ergebnisses aus</h2>
+<ol>
+  <li>Lege den Kernel so auf das Bild, dass seine Mitte auf deinem Feld liegt.</li>
+  <li>Multipliziere jede Kernel-Zahl mit der Bildzahl darunter.</li>
+  <li>Addiere alle neun Ergebnisse.</li>
+  <li>Schreibe den Betrag – also ohne Minuszeichen – in dein Feld.</li>
+</ol>
+
+<div class="reihe" style="margin-top:6mm">
+  <div>
+    <h2>Das Bild (6 × 6)</h2>
+    <table class="gitter ">
+<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
+<tr><th>1</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr><th>2</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr><th>3</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr><th>4</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr><th>5</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+<tr><th>6</th>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</table>
+  </div>
+  <div>
+    <h2>Der Kernel (3 × 3)</h2>
+    <table class="gitter ">
+<tr><th></th><th>A</th><th>B</th><th>C</th></tr>
+<tr><th>1</th>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr><th>2</th>
+<td>-2</td>
+<td>0</td>
+<td>2</td>
+</tr>
+<tr><th>3</th>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</table>
+    <h2 style="margin-top:7mm">Wer rechnet welche Felder?</h2>
+    <table class="gruppen"><tr><td>Gruppe 1</td><td class="felder">1B&nbsp;&nbsp;&nbsp;1A</td></tr>
+<tr><td>Gruppe 2</td><td class="felder">1C&nbsp;&nbsp;&nbsp;1D</td></tr>
+<tr><td>Gruppe 3</td><td class="felder">2B&nbsp;&nbsp;&nbsp;2A</td></tr>
+<tr><td>Gruppe 4</td><td class="felder">2C&nbsp;&nbsp;&nbsp;2D</td></tr>
+<tr><td>Gruppe 5</td><td class="felder">3B&nbsp;&nbsp;&nbsp;3A</td></tr>
+<tr><td>Gruppe 6</td><td class="felder">3C&nbsp;&nbsp;&nbsp;3D</td></tr>
+<tr><td>Gruppe 7</td><td class="felder">4B&nbsp;&nbsp;&nbsp;4A</td></tr>
+<tr><td>Gruppe 8</td><td class="felder">4C&nbsp;&nbsp;&nbsp;4D</td></tr></table>
+  </div>
+</div>
+
+<div class="reihe">
+  <div>
+    <h2>Das Ergebnis (4 × 4) – hier eintragen</h2>
+    <table class="gitter ">
+<tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr>
+<tr><th>1</th>
+<td>0</td>
+<td>28</td>
+<td>28</td>
+<td>0</td>
+</tr>
+<tr><th>2</th>
+<td>0</td>
+<td>28</td>
+<td>28</td>
+<td>0</td>
+</tr>
+<tr><th>3</th>
+<td>0</td>
+<td>28</td>
+<td>28</td>
+<td>0</td>
+</tr>
+<tr><th>4</th>
+<td>0</td>
+<td>28</td>
+<td>28</td>
+<td>0</td>
+</tr>
+</table>
+  </div>
+  <div style="padding-top:9mm">
+    <p>Wenn alle Gruppen fertig sind, werden die Zahlen an der Tafel
+    zusammengesetzt.<br>Male jedes Feld an, in dem eine Zahl über 10 steht.</p>
+    <p class="frage">Was ist zu sehen?<br>Und was hat der Kernel gefunden?</p>
+  </div>
+</div>
+
+<div class="kasten">
+  <p style="margin:0">Achte auf die Felder mit einer <strong>0</strong>: Dort war
+  das Bild gleichmäßig hell oder gleichmäßig dunkel. Der Kernel interessiert sich
+  nicht für Helligkeit – sondern nur für <strong>Veränderung</strong>.</p>
+</div>
+
+<p class="klein">Genau diese Rechnung machen die ersten Schichten eines neuronalen
+Netzes – millionenfach pro Bild, mit tausenden Kerneln, die das Netz sich selbst
+ausgedacht hat. Ihr habt einen davon von Hand gerechnet.</p>
+
+</body>
+</html>

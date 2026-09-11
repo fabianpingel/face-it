@@ -98,6 +98,7 @@ uv run --extra tests pytest
 | `tests/test_3_erkennung.py` | Die Fachlogik: Faltung (Fläche 0, Kante ≠ 0, Richtungsabhängigkeit), Gesicht finden, 128 Zahlen, Ähnlichkeit – auf den Beispielportraits |
 | `tests/test_4_stationen.py` | **Jede Station startet** ohne Absturz, `04a` legt Vektoren an, `05_bias` rechnet, `99_cleanup` löscht wirklich |
 | `tests/test_5_kamera.py` | Echte Webcam: liefert ein Bild, Größe, Farbe, nicht schwarz, Windows-Freigabe. Wird ohne Kamera **übersprungen**, nicht als Fehler gemeldet |
+| `tests/test_6_personen.py` | Der Vergleichssatz in `data/personen/`: ein Gesicht je Bild, Relationen statt fester Messwerte, `04b_vergleich.py` im **Dateimodus**, und dass `99_cleanup.py` beide Bildordner verschont. Wird ohne den Ordner **übersprungen** – auf allen Rechnern außer dem Beamer planmäßig |
 
 Die Tests laufen über drei Umgebungsvariablen, die schon in `faceit.py`
 eingebaut sind: `FACEIT_TEST` unterdrückt die Fenster, `FACEIT_KAMERA` ersetzt
@@ -216,11 +217,36 @@ uv run code/tools/portraits_holen.py
 
 # Arbeitsblatt B (Faltung von Hand) samt Lösung erzeugen
 uv run code/tools/handout_faltung.py
+
+# Vergleichsgesichter für die Beamer-Demo in Station 4b
+# – nur auf dem Beamer-Rechner nötig
+uv run code/tools/personen_holen.py
 ```
 
 Das erste Skript lädt acht freie Portraitfotos von Wikimedia Commons nach
 `data/beispiele/` und schreibt Urheber und Lizenz in `data/beispiele/CREDITS.md`.
 Diese Bilder liegen bewusst **nicht** im Repository, sondern werden lokal geholt.
+
+### Die zwei Bildordner nicht verwechseln
+
+| Ordner | Zweck | Lizenzlage |
+|---|---|---|
+| `data/beispiele/` | **Ersatzgesicht** für SuS, die sich nicht fotografieren lassen möchten. Acht verschiedene, demografisch gemischte Personen. So im Elternbrief zugesagt. | Gemischt: teils Public Domain, überwiegend **CC BY / CC BY-SA** → Namensnennungspflicht. Nur lokal am Rechner benutzen. |
+| `data/personen/` | **Vergleichsmaterial** für die Beamer-Demo: mehrere Aufnahmen *derselben* Person aus verschiedenen Lebensaltern. Mathematik und Informatik, ausschließlich verstorbene Personen. | Ausschließlich **Public Domain** → keine Namensnennungspflicht, darf projiziert und ausgedruckt werden. |
+
+Für Folien, Ausdrucke und Doku-Fotos deshalb **immer `data/personen/`** nehmen. Der
+Grund für „nur verstorbene Personen": Ein Gesichtsvektor ist biometrische Verarbeitung
+nach Art. 9 DSGVO, und eine Lizenz deckt nur das Urheberrecht, nicht
+Persönlichkeitsrecht und Datenschutz. Ein Workshop, der Clearview AI für genau diese
+Verarbeitung kritisiert, sollte sie nicht selbst an lebenden Personen vornehmen.
+
+`personen_holen.py` endet mit **Exit-Code 1**, wenn ein Bild fehlt – bei einer festen
+Liste ist jedes fehlende Bild ein fehlendes Vergleichspaar. Der häufigste Grund ist, dass
+Wikimedia zu viele Anfragen in Folge mit `HTTP 429` abweist; dann hilft einfach ein
+zweiter Aufruf. Neu messen, ohne erneut zu laden: `--messen`.
+
+**`einrichten.bat` ruft die Bilddownloads absichtlich nicht auf.** Auf acht Rechnern
+wären das rund 160 Commons-Abrufe. Beides sind Handschritte der Lehrkraft.
 
 Danach die Handouts ausdrucken – alle liegen als HTML in `material/`:
 
@@ -299,6 +325,8 @@ Die große Checkliste gilt nur vor Termin 1; danach genügt die Kurzliste.
 - [ ] `uv run code/00_check.py` auf jedem Rechner: ein Mensch hat ein Kamerabild
       gesehen (das kann kein Test ersetzen)
 - [ ] Beamer-Rechner: `uv run code/tools/landmark_modell_holen.py` für Station 3b
+- [ ] Beamer-Rechner: `uv run code/tools/personen_holen.py` für die Vergleichs-Demo
+      in Block 5 (muss mit **Exit-Code 0** enden, sonst fehlt ein Bildpaar)
 - [ ] Handouts A und B gedruckt, Einwilligungen eingesammelt
 - [ ] Ampelkarten gedruckt, gefaltet und auf die Plätze gelegt
 - [ ] **Packpapier** für das Leitfragen-Plakat besorgt – keine Tafel, es muss

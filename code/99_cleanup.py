@@ -28,8 +28,10 @@ ZU_LOESCHEN = [
     ("anwesenheit.npz", "die Anwesenheitsliste"),
 ]
 
-# Die Beispielportraits bleiben - das sind freie Bilder aus dem Netz
-# und keine Daten von euch.
+# Die Bildordner data/beispiele/ und data/personen/ stehen absichtlich NICHT
+# in dieser Liste: das sind freie Bilder aus dem Netz und keine Daten von euch.
+# Sie muessen das Loeschen ueberleben, sonst fehlen sie beim naechsten Termin.
+# tests/test_6_personen.py haelt das fest.
 
 
 def einsammeln():

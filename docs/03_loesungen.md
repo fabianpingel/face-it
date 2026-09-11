@@ -231,6 +231,87 @@ Diesen Satz kann man an der Tafel stehen lassen – er trägt bis in Block 5.
 Moment gemacht, also praktisch dasselbe Bild. Zwischen den Aufnahmen bewusst etwas
 verändern.
 
+### Beamer-Demo: dieselbe Person, Jahrzehnte auseinander
+
+Die Klasse kann bei „ich – ich" nur Brille, Frisur und Licht verändern. Zwanzig oder
+vierzig Jahre Abstand kann sie nicht herstellen – und genau dort wird es interessant.
+Dafür liegt in `data/personen/` ein Satz Portraits verstorbener Persönlichkeiten aus
+Mathematik und Informatik, alle Public Domain (nachladen mit
+`uv run code/tools/personen_holen.py`, nur auf dem Beamer-Rechner nötig).
+
+**Gemessen** (SFace, Schwelle 0,363, Vorschaubreite 900 px – siehe
+`data/personen/CREDITS.md` für Messdatum und OpenCV-Version):
+
+| Vergleich | Abstand | Wert | Urteil des Programms | Richtig? |
+|---|---|---|---|---|
+| Einstein 1920 – Einstein (Nobelpreis) | wenige Jahre | **0,684** | dieselbe Person | ja |
+| **Turing mit 16 – Turing 1951** | **23 Jahre** | **0,653** | dieselbe Person | ja |
+| Hilbert 1886 – Hilbert später | Jahrzehnte | **0,525** | dieselbe Person | ja |
+| Einstein als Kind – Einstein (Nobelpreis) | Jahrzehnte | **0,469** | dieselbe Person | ja |
+| **Einstein als Kind – Einstein 1920** | Jahrzehnte | **0,365** | dieselbe Person | ja – mit **0,002** Abstand zur Schwelle |
+| **Katherine Johnson 1966 – 2008** | **42 Jahre** | **0,309** | **verschiedene Personen** | **nein – Falschabweisung** |
+| Grace Hopper – Lise Meitner | zwei Personen | **0,356** | verschiedene Personen | ja – mit **0,007** Abstand |
+
+**Was diese Tabelle zeigt**, ist genau die Aussage von Folie 7: Die beiden Bereiche sind
+nicht getrennt, sie **überlappen**. Eine Person und sie selbst liegen bei 0,309. Zwei
+Frauen, die sich nie begegnet sind, liegen bei 0,356. Die Reihenfolge ist falsch – nicht
+wegen eines Bedienfehlers, sondern weil es **keine Schwelle gibt, die beide Fälle richtig
+entscheidet.**
+
+Drei Befehle für den Beamer, in dieser Reihenfolge, Pointe zuletzt:
+
+```bash
+uv run code/04b_vergleich.py data/personen/turing_16.jpg      data/personen/turing_1951.jpg
+uv run code/04b_vergleich.py data/personen/hopper.jpg         data/personen/meitner_1953.jpg
+uv run code/04b_vergleich.py data/personen/johnson_1966.jpg   data/personen/johnson_2008.jpg
+```
+
+Dazu ein Satz: *„Zwei Frauen, die sich nie getroffen haben, liegen bei 0,356. Eine Frau
+und sie selbst, 42 Jahre später, bei 0,309. Die Reihenfolge ist falsch."*
+
+### Wie der Wert 0,309 einzuordnen ist – bitte genau so
+
+Jemand wird fragen, ob der niedrige Wert daran liegt, dass Katherine Johnson eine
+Schwarze Frau ist. **Die Frage ist gut. Die Antwort ist: aus diesem einen Vergleich
+lässt sich das nicht schließen.** Und diese Zurückhaltung ist nicht Zimperlichkeit,
+sondern dieselbe Sorgfalt, die der Workshop von einem Hersteller verlangt.
+
+Warum nicht: Zwischen den Aufnahmen liegen 42 Jahre, es sind zwei völlig verschiedene
+Aufnahmegenerationen (institutionelles Schwarzweißfoto 1966 gegen Digitalfoto 2008),
+andere Beleuchtung, andere Kopfhaltung, andere Scanqualität. **Keine dieser Ursachen
+lässt sich an einem einzigen Bildpaar von den anderen trennen.**
+
+Und die naheliegende Ersatzerklärung „großer Zeitabstand drückt den Wert" trägt auch
+nicht – das sagt dieselbe Tabelle:
+
+- Turing, **23 Jahre** Abstand → 0,653, mühelos erkannt
+- Einstein als Kind gegen 1920, ähnlich großer Abstand → 0,365, haarscharf
+- Johnson, 42 Jahre → 0,309, durchgefallen
+
+Bei drei Paaren mit großem Zeitabstand kommen drei völlig verschiedene Ergebnisse
+heraus. **Ein einzelner Faktor erklärt das nicht.** Genau das ist der Punkt: Wer aus
+einem Bildpaar auf eine Personengruppe schließt, macht denselben Fehler wie ein
+Unternehmen, das ein System an wenigen tausend Gesichtern prüft und dann an Millionen
+ausliefert. Für eine belastbare Aussage über demografische Unterschiede braucht man
+**viele Paare pro Gruppe, bei vergleichbarem Zeitabstand und vergleichbarer
+Bildqualität** – und genau das tut NIST in FRVT Part 3 mit 189 Algorithmen. Deshalb
+steht die belastbare Zahl in Block 6 in der Studie und nicht auf unserem Beamer.
+
+**Der Satz für die Klasse:** „Aus diesem einen Vergleich dürfen wir über Hautfarbe nichts
+schließen. Was wir schließen dürfen: Die Frage ist berechtigt – und weil sie berechtigt
+ist, hat sie jemand ordentlich untersucht. Das sehen wir nachher."
+
+**Nicht sagen:** „Das System erkennt Schwarze Menschen schlechter, seht ihr hier." Der
+Satz ist inhaltlich nicht falsch (siehe NIST), aber an *diesem* Bildpaar ist er nicht
+belegt – und ein Kurs, der gerade gelernt hat, dass eine Schwelle eine Entscheidung ist,
+merkt den Trick.
+
+> **Messwerte veralten.** Die Bilder liegen nicht im Repository; auf Commons kann eine
+> Datei durch einen besseren Scan ersetzt werden. Neu messen mit
+> `uv run code/tools/personen_holen.py --messen`. Das Messdatum steht in
+> `data/personen/CREDITS.md`. Weicht etwas ab, ist diese Tabelle nachzuziehen – der
+> Test `tests/test_6_personen.py` meldet das als übersprungenen Test, nicht als Fehler.
+
 **Station 4c – die Choreografie am Schieberegler**
 
 | Schwelle | Ich selbst | Andere Person |

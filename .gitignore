@@ -26,6 +26,10 @@ face-it-bericht.txt
 #   uv run code/tools/portraits_holen.py
 data/beispiele/
 
+# Vergleichsgesichter (Mathematik und Informatik), ebenfalls vorher geladen:
+#   uv run code/tools/personen_holen.py
+data/personen/
+
 # Landmark-Modell fuer die optionale Station 3b (54 MB).
 # Wird bei Bedarf geladen mit:
 #   uv run code/tools/landmark_modell_holen.py

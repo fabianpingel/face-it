@@ -141,9 +141,23 @@ gemacht, sondern zum Lerninhalt:
   Upload, keine Cloud, kein Netzwerk.
 - Vorab: Einwilligung der Eltern (Vorlage: `material/elternbrief_und_einwilligung.html`).
 - Wer nicht fotografiert werden möchte, arbeitet mit den bereitgestellten
-  Public-Domain-Portraits in `data/beispiele/` – **ohne Nachfrage und ohne Begründung**.
+  **frei lizenzierten** Portraits in `data/beispiele/` – **ohne Nachfrage und ohne
+  Begründung**. (Die Lizenzen sind gemischt: teils Public Domain, überwiegend CC BY
+  bzw. CC BY-SA; Urheber und Lizenz je Bild in `data/beispiele/CREDITS.md`.)
 - **Gemeinsames Löschen als Schlussritual:** Am Ende führen alle gleichzeitig
-  `99_cleanup.py` aus. Datensparsamkeit wird vorgeführt.
+  `99_cleanup.py` aus. Datensparsamkeit wird vorgeführt. Das passiert am Ende **jedes
+  der drei Termine**, nicht nur am Schluss – sonst lägen Gesichtsvektoren wochenlang
+  auf Schulrechnern.
+- **Die eigenen Vergleichsbilder folgen derselben Regel wie die Lerninhalte.** In
+  `data/personen/` liegen Portraits für die Beamer-Demo in Station 4b – ausschließlich
+  **verstorbene** Personen und ausschließlich **Public Domain**. Begründung: Ein
+  Gesichtsvektor ist biometrische Verarbeitung nach Art. 9 DSGVO, und eine Lizenz deckt
+  nur das Urheberrecht, nicht Persönlichkeitsrecht und Datenschutz. Ein Workshop, der
+  Clearview AI für genau diese Verarbeitung kritisiert, kann sie nicht selbst an
+  lebenden Personen vornehmen. Das postmortale Persönlichkeitsrecht besteht fort; die
+  Nutzung bekannter zeitgeschichtlicher Bildnisse im Unterricht ist davon nach
+  hiesiger Einschätzung gedeckt – bei Veröffentlichung über den Kurs hinaus gehört die
+  Frage zur Datenschutzbeauftragten der Schule.
 
 ## 7. Differenzierung
 

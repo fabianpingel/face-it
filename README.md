@@ -79,6 +79,7 @@ Vorbereitung (einmal, mit Internetverbindung):
 
 ```bash
 uv run code/tools/portraits_holen.py    # Ersatzportraits für Opt-out
+uv run code/tools/personen_holen.py     # Vergleichsgesichter, nur für den Beamer
 uv run code/tools/handout_faltung.py    # Arbeitsblatt B samt Lösung
 uv sync --extra werkzeuge               # nur wenn du den QR-Code brauchst
 uv run code/tools/qr_erzeugen.py        # QR-Code für die Abschlussfolie
@@ -147,5 +148,7 @@ Dokumentation und Material: **CC BY-NC 4.0** · Code: **MIT** (siehe `LICENSE`)
 
 Die Modelle stammen aus dem [OpenCV Model Zoo](https://github.com/opencv/opencv_zoo)
 und stehen unter ihren jeweiligen Lizenzen. Die Portraitfotos in `data/beispiele/`
-werden lokal geladen und sind nicht Teil dieses Repositories; ihre Urheber und
-Lizenzen stehen in `data/beispiele/CREDITS.md`.
+und `data/personen/` werden lokal geladen und sind nicht Teil dieses Repositories;
+ihre Urheber und Lizenzen stehen in der jeweiligen `CREDITS.md`. `data/personen/`
+ist bewusst Public-Domain-only, damit die Bilder ohne Namensnennung projiziert
+werden dürfen.

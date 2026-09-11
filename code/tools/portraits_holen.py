@@ -6,8 +6,13 @@ Diese Bilder brauchen wir fuer Schuelerinnen und Schueler, die sich nicht
 fotografieren lassen moechten - sie arbeiten dann mit diesen Gesichtern.
 
 Es werden ausschliesslich Bilder heruntergeladen, die
-  - unter CC0 oder Public Domain stehen (also frei verwendbar),
+  - unter einer freien Lizenz stehen (CC0, Public Domain, CC BY oder CC BY-SA -
+    siehe ERLAUBTE_LIZENZEN weiter unten),
   - genau ein klar erkennbares Gesicht enthalten.
+
+Achtung: CC BY und CC BY-SA verlangen Namensnennung. Diese Bilder bleiben
+deshalb lokal am Rechner. Fuer Folien und Ausdrucke gibt es data/personen/ -
+dort ist alles Public Domain (code/tools/personen_holen.py).
 Zu jedem Bild wird Quelle, Urheber und Lizenz in data/beispiele/CREDITS.md
 protokolliert.
 
@@ -185,8 +190,13 @@ def main():
         "# Bildnachweise",
         "",
         "Die Portraits in diesem Ordner stammen von Wikimedia Commons und stehen",
-        "unter CC0 oder Public Domain. Sie dienen als Ersatzgesichter fuer alle,",
-        "die sich im Workshop nicht selbst fotografieren moechten.",
+        "unter freien Lizenzen - siehe die Spalte Lizenz. Sie dienen als",
+        "Ersatzgesichter fuer alle, die sich im Workshop nicht selbst",
+        "fotografieren moechten.",
+        "",
+        "**CC BY und CC BY-SA verlangen Namensnennung.** Diese Bilder bleiben",
+        "deshalb lokal. Fuer Folien und Ausdrucke data/personen/ benutzen - dort",
+        "ist alles Public Domain.",
         "",
         "| Datei | Titel | Urheber | Lizenz | Quelle |",
         "|---|---|---|---|---|",

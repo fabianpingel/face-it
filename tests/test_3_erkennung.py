@@ -164,8 +164,11 @@ def test_verschiedene_personen_liegen_unter_der_schwelle(
 
     assert hoechster < fc.SCHWELLE, (
         f"{paar[0]} und {paar[1]} erreichen {hoechster:.3f} und liegen damit "
-        f"ueber dem Schwellenwert {fc.SCHWELLE}. Das sind verschiedene "
-        "Personen - die Erkennung arbeitet nicht richtig."
+        f"ueber dem Schwellenwert {fc.SCHWELLE}. Entweder arbeitet die Erkennung "
+        "nicht richtig - oder in data/beispiele/ liegen zwei Aufnahmen DERSELBEN "
+        "Person. Mehrfachaufnahmen gehoeren nach data/personen/ (siehe "
+        "code/tools/personen_holen.py); data/beispiele/ enthaelt acht "
+        "verschiedene Personen."
     )
 
 

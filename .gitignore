@@ -12,9 +12,15 @@ data/gesichter/
 data/faceid.npy
 data/anwesenheit.npz
 data/_test/
+data/_testlauf/
 data/_kamera_attrappe.jpg
 data/_*.png
 data/_*.jpg
+
+# Stempel von einrichten.ps1: haelt fest, wann dieser Rechner zuletzt
+# geprueft wurde. Rechnerbezogen, gehoert niemandem sonst.
+.einrichtung-geprueft.json
+face-it-bericht.txt
 
 # Beispielportraits werden vor dem Workshop geladen:
 #   uv run code/tools/portraits_holen.py

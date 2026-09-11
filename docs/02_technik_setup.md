@@ -8,7 +8,112 @@ Installation läuft der komplette Workshop **offline**.
 
 ---
 
-## Kurzfassung
+## Der einfache Weg: `einrichten.bat`
+
+**Doppelklick, fertig.** Das Skript macht alles, was in den Abschnitten 1 bis 3
+von Hand beschrieben ist, und prüft danach automatisch, ob es geklappt hat:
+
+```text
+einrichten.bat
+```
+
+Es installiert `uv`, holt das Projekt, legt die Python-Umgebung an, prüft die
+Modelle und die Windows-Kamerafreigabe und lässt am Ende die Testsuite laufen.
+Zum Schluss steht ein Ampelbericht da:
+
+| | Bedeutung | Exit-Code |
+|---|---|---|
+| **GRÜN** | Der Rechner ist bereit. | 0 |
+| **GELB** | Der Workshop läuft, aber etwas fehlt (z. B. Teams belegt die Kamera). | 2 |
+| **ROT** | So läuft es nicht. Die fehlenden Punkte stehen einzeln darunter. | 1 |
+
+Zusätzlich schreibt es einen Bericht nach `%USERPROFILE%\face-it-bericht.txt` –
+mit Rechnername und Zeitstempel, damit die IT die Berichte einsammeln und auf
+einen Blick sehen kann, welcher Raum fertig ist.
+
+**Es braucht keine Administratorrechte** (`uv` und Python landen im
+Benutzerprofil) und **es ändert keine Windows-Einstellungen**. Die
+Kamerafreigabe wird nur geprüft und gemeldet – setzen muss sie die IT.
+
+Schalter:
+
+```text
+einrichten.bat /trocken   zeigt nur, was passieren würde - verändert nichts
+einrichten.bat /neu       ignoriert den Stempel und prüft alles neu
+einrichten.bat /still     schweigt bei Erfolg (für den Autostart)
+```
+
+Feinere Einstellungen gehen direkt über das PowerShell-Skript:
+
+```powershell
+.\einrichten.ps1 -Quelle https://github.com/<konto>/face-it -Stand v1.0 -Ziel C:\face-it
+```
+
+> **`-Quelle` muss auf das eigene Repository zeigen.** Der eingebaute
+> Standardwert ist die Adresse von der Abschlussfolie und nicht geprüft. Vor dem
+> ersten Einsatz einmal mit `/trocken` gegentesten.
+
+### Für die Schul-IT: Autostart
+
+Das Skript ist dafür gebaut, im Autostart zu liegen. Verknüpfung mit dem Ziel
+
+```text
+C:\Pfad\zu\face-it\einrichten.bat /still
+```
+
+nach `shell:startup` legen. Beim Login passiert dann:
+
+- Ist alles in Ordnung und die letzte Prüfung jünger als 7 Tage, **beendet sich
+  das Skript in unter einer Zehntelsekunde ohne jede Ausgabe.** Es hält
+  niemanden auf.
+- Sonst richtet es ein bzw. prüft nach und schreibt den Bericht.
+- Steht das Netz morgens noch nicht, läuft es mit Zeitgrenze durch statt zu
+  hängen.
+
+Drei Dinge, die dabei wichtig sind:
+
+1. **Kein automatisches `git pull` am Workshop-Tag.** Das Skript aktualisiert
+   auf den mit `-Stand` angegebenen Stand. Gib dafür einen **Tag** an, keinen
+   Zweig – sonst kann ein neuer Commit am Morgen alle Rechner gleichzeitig
+   lahmlegen.
+2. Die Stempeldatei `.einrichtung-geprueft.json` liegt im Projektordner. Löschen
+   erzwingt eine vollständige Neuprüfung.
+3. `-ExecutionPolicy Bypass` gilt nur für diesen einen Aufruf. Die Richtlinie des
+   Rechners bleibt unverändert.
+
+---
+
+## Die Testsuite
+
+Prüft, ob ein Rechner bereit ist – ohne Bildschirm und ohne Webcam:
+
+```bash
+uv run --extra tests pytest
+```
+
+| Datei | Was geprüft wird |
+|---|---|
+| `tests/test_1_umgebung.py` | Python 3.10–3.12, numpy, OpenCV **4.x**, `cv2.face` (also wirklich die contrib-Variante), Haar-Cascade |
+| `tests/test_2_modelle.py` | `yunet.onnx` und `sface.onnx` sind vollständig **und laden**; `lbfmodel.yaml` optional |
+| `tests/test_3_erkennung.py` | Die Fachlogik: Faltung (Fläche 0, Kante ≠ 0, Richtungsabhängigkeit), Gesicht finden, 128 Zahlen, Ähnlichkeit – auf den Beispielportraits |
+| `tests/test_4_stationen.py` | **Jede Station startet** ohne Absturz, `04a` legt Vektoren an, `05_bias` rechnet, `99_cleanup` löscht wirklich |
+| `tests/test_5_kamera.py` | Echte Webcam: liefert ein Bild, Größe, Farbe, nicht schwarz, Windows-Freigabe. Wird ohne Kamera **übersprungen**, nicht als Fehler gemeldet |
+
+Die Tests laufen über drei Umgebungsvariablen, die schon in `faceit.py`
+eingebaut sind: `FACEIT_TEST` unterdrückt die Fenster, `FACEIT_KAMERA` ersetzt
+die Webcam durch ein Standbild, `FACEIT_TASTEN` speist Tastendrücke ein.
+
+> **Wichtig:** `FACEIT_DATEN` lenkt den `data`-Ordner um, und die Tests nutzen
+> das. Ohne diese Umlenkung würden sie die Aufnahmen einer Klasse löschen –
+> `99_cleanup.py` fragt im Testmodus nicht nach. `tests/test_1_umgebung.py`
+> bricht deshalb ab, wenn die Umlenkung fehlt.
+
+Übersprungene Tests sind hier die eigentliche Information: die Begründung sagt,
+was auf diesem Rechner fehlt.
+
+---
+
+## Von Hand, wenn das Skript nicht in Frage kommt
 
 ```bash
 # einmal pro Rechner, mit Internetverbindung
@@ -183,22 +288,35 @@ Internetverbindung während des Workshops, eine GPU.
 
 ## Checkliste
 
-**Am Vortag**
+Der Workshop läuft über **drei Termine** (siehe [01_agenda.md](01_agenda.md)).
+Die große Checkliste gilt nur vor Termin 1; danach genügt die Kurzliste.
 
-- [ ] `uv sync` auf jedem Rechner gelaufen
-- [ ] `uv run code/00_check.py` zeigt auf jedem Rechner ein Kamerabild
-- [ ] `uv run code/04c_faceid.py` einmal komplett durchgespielt
-- [ ] Handouts gedruckt, Einwilligungen eingesammelt
-- [ ] Ampelkarten gedruckt, gefaltet und auf die Plätze gelegt
-- [ ] Plakat für die Einstiegsfrage vorbereitet, Post-its besorgt
+### Vor Termin 1 – am Vortag
+
+- [ ] `einrichten.bat` auf **jedem** Rechner gelaufen und **grün** (oder gelb mit
+      bekanntem Grund)
+- [ ] Berichte eingesammelt: `%USERPROFILE%\face-it-bericht.txt`
+- [ ] `uv run code/00_check.py` auf jedem Rechner: ein Mensch hat ein Kamerabild
+      gesehen (das kann kein Test ersetzen)
 - [ ] Beamer-Rechner: `uv run code/tools/landmark_modell_holen.py` für Station 3b
+- [ ] Handouts A und B gedruckt, Einwilligungen eingesammelt
+- [ ] Ampelkarten gedruckt, gefaltet und auf die Plätze gelegt
+- [ ] **Packpapier** für das Leitfragen-Plakat besorgt – keine Tafel, es muss
+      drei Wochen überleben
+- [ ] Gruppeneinteilung G1–G8 festgelegt, Sitzplan notiert
 
-**30 Minuten vorher**
+### Vor Termin 2 und 3 – Kurzliste, 10 Minuten
 
+- [ ] `einrichten.bat` (läuft mit gültigem Stempel in unter einer Sekunde durch)
 - [ ] Teams, Zoom und Kamera-App auf allen Rechnern geschlossen
-- [ ] `data/`-Ordner leer (`uv run code/99_cleanup.py --ja`)
-- [ ] Ein zweiter Rechner mit fertig eingerichteter Face ID für die Hack-Challenge
-- [ ] Ein ausgedrucktes Portrait als Reserve für den Foto-Angriff
+- [ ] `data/`-Ordner leer (`uv run code/99_cleanup.py --ja`) – das sollte nach
+      dem letzten Termin schon passiert sein
+- [ ] **Plakat und Flipchartbögen** vom letzten Termin dabei
+- [ ] Laufzettel und Ampelkarten wieder ausgegeben
+- [ ] Hausaufgaben-Blätter der SuS da? Ohne sie startet der Wiedereinstieg nicht
+- [ ] Nur vor Termin 2: Handout C (Bingo) und F (Testmuster) gedruckt
+- [ ] Nur vor Termin 3: Handout D (Hack) gedruckt, ein ausgedrucktes Portrait als
+      Reserve für den Foto-Angriff
 
 ---
 

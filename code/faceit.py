@@ -98,8 +98,13 @@ def sym(emoji: str, ersatz: str) -> str:
 
 PROJEKT = Path(__file__).resolve().parent.parent
 MODELLE = PROJEKT / "models"
-DATEN = PROJEKT / "data"
 MATERIAL = PROJEKT / "material"
+
+# Normalerweise liegen alle Aufnahmen in data/ im Projektordner.
+# FACEIT_DATEN kann das umlenken - die automatischen Tests benutzen das, damit
+# sie niemals die echten Aufnahmen einer Klasse anfassen (99_cleanup.py loescht
+# im Testmodus ohne Rueckfrage).
+DATEN = Path(os.environ.get("FACEIT_DATEN") or PROJEKT / "data")
 
 YUNET = MODELLE / "yunet.onnx"
 SFACE = MODELLE / "sface.onnx"

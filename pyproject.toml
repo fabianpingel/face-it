@@ -28,5 +28,19 @@ werkzeuge = [
     "segno>=1.6",
 ]
 
+# Die automatischen Tests. Sie pruefen, ob ein Rechner bereit ist:
+#   uv run --extra tests pytest
+# Das macht auch einrichten.bat am Ende der Installation.
+tests = [
+    "pytest>=8.0",
+]
+
 [tool.uv]
 package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Kurze Zusammenfassung, uebersprungene Tests mit Begruendung anzeigen.
+# Die Begruendung ist hier die eigentliche Information: sie sagt der Lehrkraft,
+# was auf diesem Rechner fehlt (Webcam, Landmark-Modell).
+addopts = "-q -ra"

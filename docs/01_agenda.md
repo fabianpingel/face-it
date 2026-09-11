@@ -52,7 +52,7 @@ Zahlen ist Bildbearbeitung.
 | 8 min | 💻 `01_pixel.py` | Links das Kamerabild, rechts live dasselbe als Zahlengitter. Alles außerhalb des cyanfarbenen Zielrahmens ist abgedunkelt – nur was im Rahmen liegt, wird umgerechnet. Mit `z` erscheint ein zweites Fenster, in dem **jedes Feld seine eigene Helligkeit als Hintergrund hat und die Zahl darin steht**: Man sieht das Gesicht im Zahlengitter. Erste Reaktion abwarten: "Das soll ich sein?" |
 | 6 min | ✍️ **Malen nach Zahlen** | Leertaste **friert das Bild ein** und erzeugt das Arbeitsblatt als HTML in `data/fotos/` – fest bei 16×16, mit drei aus dem eigenen Bild berechneten Malstufen. **Drucken sofort anstoßen und im Hintergrund laufen lassen** – acht Browser-Druckdialoge hintereinander kosten sonst allein sechs Minuten. Ausgemalt wird zu Hause (HA 1b). Noch einmal Leertaste, und das Livebild läuft weiter. |
 | 6 min | 💻 **Auflösungs-Regler** | Läuft **parallel zum Drucken**. Den Schieberegler durch alle elf Stufen ziehen – 4, 6, 8, 10, 12, 16, 20, 24, 32, 48, 64. Das Pixelbild wächst live mit. Frage auf dem Laufzettel: *Ab wie vielen Pixeln erkennt man, DASS es ein Gesicht ist? Ab wie vielen, WER es ist?* Die Antworten liegen typisch bei rund 8 bis 12 bzw. 30 Pixeln – erstaunlich niedrig. |
-| 6 min | 💻 **Eine Zeile aktivieren** | `# img = 255 - img` einkommentieren → Negativ. Danach `img = img // 64 * 64` → Posterisierung. Erkenntnis: Rechnen mit Zahlen ist Bildbearbeitung. Das ist jeder Instagram- oder Snapchat-Filter. |
+| 6 min | 💻 **Eine Zeile aktivieren** | `# gitter = 255 - gitter` einkommentieren → Negativ. Danach `gitter = gitter // 64 * 64` → Posterisierung. Erkenntnis: Rechnen mit Zahlen ist Bildbearbeitung. Das ist jeder Instagram- oder Snapchat-Filter. |
 | 4 min | 🧑‍🏫 **Fazit Block 1** | **Folie 2**: Pixel, Graustufe 0–255, Auflösung, Farbkanäle R/G/B – daneben das Zahlengitter eines Gesichts. Kernsatz: *Dein Gesicht. Mehr sieht der Computer nicht.* Erst jetzt, und nur vier Minuten. |
 
 **Advanced für Schnelle:** Im Abschnitt `ADVANCED` oben in `01_pixel.py` das `#` vor einer
@@ -240,11 +240,13 @@ diesem Plan. Sie wurden bewusst nicht mit geändert:
 | `README.md` | Z. 10 | „**3,5 Stunden.**" → drei Doppelstunden |
 | `docs/03_loesungen.md` | Z. 213 | „er trägt bis in **Block 5**" → bis in Block 6 (die Nummerierung hat sich verschoben!) |
 | `docs/03_loesungen.md` | Z. 305 | „Am Ende wird das Plakat von **8:05** durchgegangen" → das Plakat aus Termin 1 |
-| `docs/02_technik_setup.md` | Z. 186–201 | Die Checkliste „Am Vortag" / „30 Minuten vorher" gilt so nur für **Termin 1**. Für Termin 2 und 3 reicht eine Kurzliste: Kameras frei, `data/` leer, Plakate und Flipchartbögen dabei, HA-Blätter da. |
+| `material/handouts/handout_A_laufzettel.html` | Z. 80 | Die Frage zitiert `gitter = 255 - gitter`. Das stimmt mit dem Code überein – **nicht** ändern, falls die Bezeichner jemals englisch werden, dann aber zwingend mit. |
 | `material/handouts/handout_A_laufzettel.html` | Z. 62–63, 120 | „Am Ende des **Vormittags** …"; und bei 4a „Ihr braucht sie in den nächsten beiden Stationen" – richtig wäre: am selben Termin, denn vorher wird gelöscht. Sinnvolle Ergänzung: ein Feld „Gruppe Nr." und drei HA-Kästchen. |
 
 **Erledigt:** `material/folien/index.html` ist auf neun Folien erweitert und trägt jetzt
 die Block-Nummerierung; die Dauer-Angabe auf Folie 1 ist korrigiert.
+`docs/02_technik_setup.md` hat eine Checkliste für Termin 1 und eine Kurzliste für
+Termin 2 und 3 – und vorne das neue `einrichten.bat`, das die Einzelschritte ersetzt.
 
 **Nicht betroffen:** alles in `code/`, das Startmenü und die Handouts B bis F – dort
 stehen nur Stationsnummern, und die sind unverändert gültig. `handout_B_faltung.html`

@@ -136,7 +136,7 @@ def kernel_beschreiben(kernel):
 
 def kernel_ins_bild(bild, kernel, name):
     """Schreibt Name, Zahlen und Summe des Kernels ins Bild."""
-    faceit.schrift(bild, name, (16, 34), faceit.CYAN, 0.62, 2)
+    faceit.schrift(bild, name, (16, 34), faceit.AKZENT, 0.62, 2)
     for i, zeile in enumerate(kernel_beschreiben(kernel)):
         farbe = faceit.GELB if zeile.startswith("Summe") else faceit.WEISS
         faceit.schrift(bild, zeile, (16, 70 + i * 30), farbe, 0.58, 1)
@@ -188,7 +188,7 @@ while True:
     if gedrueckt in VORLAGEN:
         aktuell = gedrueckt
         print(f"  [{aktuell}]  " + faceit.bunt(VORLAGEN[aktuell][0],
-                                               "cyan", "fett"))
+                                               "blau", "fett"))
         for zeile in kernel_beschreiben(VORLAGEN[aktuell][1]):
             print("       " + zeile)
         print()

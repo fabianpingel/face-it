@@ -111,7 +111,7 @@ def zahlenbild(gitter, seitenlaenge=620):
     if zellen > 20:
         tafel = np.full((260, 620, 3), 25, np.uint8)
         faceit.schrift(tafel, "Zu viele Zahlen zum Lesen.", (24, 90),
-                       faceit.CYAN, 0.85, 2)
+                       faceit.AKZENT, 0.85, 2)
         faceit.schrift(tafel, f"{zellen} x {zellen} = {zellen * zellen} Felder.",
                        (24, 135), faceit.WEISS, 0.7, 2)
         faceit.schrift(tafel, "Stell den Schieberegler auf 20 oder weniger.",
@@ -143,7 +143,7 @@ def zahlenbild(gitter, seitenlaenge=620):
 def gitter_ausgeben(gitter):
     """Schreibt das Zahlengitter ins Terminal."""
     print()
-    print("  " + faceit.bunt("Dein Gesicht als Zahlen:", "cyan", "fett"))
+    print("  " + faceit.bunt("Dein Gesicht als Zahlen:", "blau", "fett"))
     print()
     for zeile in gitter:
         print("   " + " ".join(f"{int(wert):3d}" for wert in zeile))
@@ -175,28 +175,30 @@ def blatt_erzeugen(gitter, pfad):
 <head>
 <meta charset="utf-8">
 <title>Face it! &ndash; Malen nach Zahlen</title>
+<link rel="stylesheet" href="{(faceit.MATERIAL / 'brand' / 'tokens.css').as_uri()}">
 <style>
+  h1, h2, h3 {{ font-family: var(--font-display); }}
   @page {{ size: A4 portrait; margin: 14mm; }}
   * {{ box-sizing: border-box; }}
-  body {{ font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-         color: #1a2b3c; margin: 0; font-size: 11pt; line-height: 1.45; }}
-  h1 {{ font-size: 20pt; margin: 0; color: #12263f; }}
-  h1 span {{ color: #1ec8e6; }}
-  .unter {{ font-size: 12pt; color: #1ec8e6; margin: 2mm 0 0 0;
+  body {{ font-family: var(--font-sans);
+         color: #1a2340; margin: 0; font-size: 11pt; line-height: 1.45; }}
+  h1 {{ font-size: 20pt; margin: 0; color: #182145; }}
+  h1 span {{ color: #2b5fe8; }}
+  .unter {{ font-size: 12pt; color: #2b5fe8; margin: 2mm 0 0 0;
             font-weight: 600; }}
-  .linie {{ height: 3px; background: #1ec8e6; margin: 3mm 0 6mm 0; }}
+  .linie {{ height: 3px; background: #2b5fe8; margin: 3mm 0 6mm 0; }}
   .anleitung {{ display: flex; gap: 6mm; margin-bottom: 6mm; }}
-  .stufe {{ flex: 1; border: 1px solid #cdd5dd; padding: 2.5mm 3mm; }}
-  .stufe .probe {{ height: 9mm; margin-bottom: 2mm; border: 1px solid #b9c2cc; }}
+  .stufe {{ flex: 1; border: 1px solid #dbe2f0; padding: 2.5mm 3mm; }}
+  .stufe .probe {{ height: 9mm; margin-bottom: 2mm; border: 1px solid #b7c2dc; }}
   .stufe b {{ display: block; font-size: 10.5pt; }}
-  .stufe span {{ color: #63707d; font-size: 9.5pt; }}
+  .stufe span {{ color: #56658a; font-size: 9.5pt; }}
   table {{ border-collapse: collapse; margin: 0 auto; }}
-  td {{ border: 1px solid #b9c2cc; width: 10.5mm; height: 10.5mm;
+  td {{ border: 1px solid #b7c2dc; width: 10.5mm; height: 10.5mm;
         text-align: center; vertical-align: middle; font-size: 10pt;
         color: #8a949e; font-variant-numeric: tabular-nums; }}
-  .frage {{ margin-top: 7mm; color: #12263f; font-weight: 600;
+  .frage {{ margin-top: 7mm; color: #182145; font-weight: 600;
             font-size: 12pt; text-align: center; }}
-  .fuss {{ margin-top: 6mm; font-size: 9pt; color: #8794a1;
+  .fuss {{ margin-top: 6mm; font-size: 9pt; color: #56658a;
            text-align: center; }}
 </style>
 </head>
@@ -275,13 +277,13 @@ while True:
     x, y, kante = zielrahmen(bild)
     links = (bild * 0.35).astype("uint8")
     links[y:y + kante, x:x + kante] = bild[y:y + kante, x:x + kante]
-    cv2.rectangle(links, (x, y), (x + kante, y + kante), faceit.CYAN, 2)
+    cv2.rectangle(links, (x, y), (x + kante, y + kante), faceit.AKZENT, 2)
 
     # Auf feste Hoehe bringen, das Seitenverhaeltnis bleibt erhalten.
     faktor = PANEL_HOEHE / links.shape[0]
     links = cv2.resize(links, (int(links.shape[1] * faktor), PANEL_HOEHE))
     faceit.schrift(links, "Gesicht in den hellen Bereich", (14, 32),
-                   faceit.CYAN, 0.6, 2)
+                   faceit.AKZENT, 0.6, 2)
     if eingefroren:
         faceit.schrift(links, "EINGEFROREN", (14, PANEL_HOEHE - 20),
                        faceit.GELB, 0.8, 2)
@@ -297,10 +299,10 @@ while True:
     # ---------------------------------------------------------- Leiste unten
     breite = oben.shape[1]
     leiste = np.full((LEISTE_HOEHE, breite, 3), 26, np.uint8)
-    cv2.line(leiste, (0, 0), (breite, 0), faceit.CYAN, 2)
+    cv2.line(leiste, (0, 0), (breite, 0), faceit.AKZENT, 2)
 
     faceit.schrift(leiste, f"{groesse} x {groesse} = {groesse * groesse} Zahlen",
-                   (18, 44), faceit.CYAN, 0.95, 2)
+                   (18, 44), faceit.AKZENT, 0.95, 2)
     faceit.schrift(leiste, f"Stufe {stufe + 1} von {len(STUFEN)}",
                    (18, 76), faceit.GRAU, 0.55, 1)
 
@@ -311,8 +313,14 @@ while True:
         "[z]  Zahlen " + ("ausblenden" if zahlen_an else "einblenden")
         + "        [q]  beenden",
     ]
+    # Die Hinweise beginnen rechts neben der laengsten Zahlenzeile (64 x 64),
+    # sonst ueberlappen sich die beiden Texte bei grossen Stufen.
+    groesste = STUFEN[-1]
+    spalte = 18 + 40 + cv2.getTextSize(
+        f"{groesste} x {groesste} = {groesste * groesste} Zahlen",
+        cv2.FONT_HERSHEY_SIMPLEX, 0.95, 2)[0][0]
     for i, zeile in enumerate(hinweise):
-        faceit.schrift(leiste, zeile, (int(breite * 0.32), 34 + i * 30),
+        faceit.schrift(leiste, zeile, (spalte, 34 + i * 30),
                        faceit.WEISS, 0.55, 1)
 
     ansicht = np.vstack([oben, leiste])
@@ -353,7 +361,7 @@ while True:
             cv2.imwrite(str(fotos / f"station1_{zaehler:02d}.png"), ansicht)
 
             print("  " + faceit.bunt("Arbeitsblatt zum Ausdrucken:",
-                                      "cyan", "fett"))
+                                      "blau", "fett"))
             print(f"    {blatt}")
             print("    Im Browser oeffnen und Strg+P druecken.")
             print()

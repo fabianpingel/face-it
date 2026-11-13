@@ -3,25 +3,27 @@
 <head>
 <meta charset="utf-8">
 <title>Face it! – Testmuster für Kantenfilter</title>
+<link rel="stylesheet" href="../brand/tokens.css">
 <style>
+  h1, h2, h3 { font-family: var(--font-display); }
   @page { size: A4 portrait; margin: 12mm; }
   * { box-sizing: border-box; margin: 0; padding: 0;
       -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-         color: #1a2b3c; font-size: 10.5pt; line-height: 1.45; }
+  body { font-family: var(--font-sans);
+         color: #1a2340; font-size: 10.5pt; line-height: 1.45; }
 
-  h1 { font-size: 19pt; color: #12263f; }
-  h1 span { color: #1ec8e6; }
-  .unter { font-size: 11pt; color: #1ec8e6; font-weight: 600; margin-top: 1.5mm; }
-  .linie { height: 3px; background: #1ec8e6; margin: 3mm 0 4mm 0; }
+  h1 { font-size: 19pt; color: #182145; }
+  h1 span { color: #2b5fe8; }
+  .unter { font-size: 11pt; color: #2b5fe8; font-weight: 600; margin-top: 1.5mm; }
+  .linie { height: 3px; background: #2b5fe8; margin: 3mm 0 4mm 0; }
   p { margin: 2mm 0; }
 
   .muster { display: grid; grid-template-columns: 1fr 1fr;
             gap: 5mm 8mm; margin: 5mm 0 4mm 0; }
   .feld { text-align: center; }
   .kachel { width: 100%; aspect-ratio: 1; background: #fff;
-            border: 1px solid #b9c2cc; position: relative; overflow: hidden; }
+            border: 1px solid #b7c2dc; position: relative; overflow: hidden; }
   .kachel .schwarz { position: absolute; inset: 0; background: #000; }
 
   /* senkrechte Kante: linke Haelfte schwarz */
@@ -33,27 +35,27 @@
   /* Kante von links oben nach rechts unten:  \  */
   .diag_ab .schwarz { clip-path: polygon(0 0, 100% 0, 100% 100%); }
 
-  .name { font-weight: 700; color: #12263f; margin-top: 2mm; font-size: 11pt; }
-  .name .zeichen { color: #1ec8e6; font-family: Consolas, monospace;
+  .name { font-weight: 700; color: #182145; margin-top: 2mm; font-size: 11pt; }
+  .name .zeichen { color: #2b5fe8; font-family: Consolas, monospace;
                    font-size: 13pt; }
 
   table { border-collapse: collapse; width: 100%; margin: 3mm 0;
           font-size: 10pt; }
-  th { background: #12263f; color: #fff; text-align: left; font-weight: 600;
+  th { background: #182145; color: #fff; text-align: left; font-weight: 600;
        padding: 1.6mm 2.5mm; font-size: 9.5pt; }
   th.mitte, td.mitte { text-align: center; }
-  td { border: 1px solid #cdd5dd; padding: 2.6mm 2.5mm; }
-  td.eingabe { background: #fbfdfe; }
+  td { border: 1px solid #dbe2f0; padding: 2.6mm 2.5mm; }
+  td.eingabe { background: #f4f7fc; }
 
-  .kasten { border-left: 3px solid #1ec8e6; background: #f5fcfe;
+  .kasten { border-left: 3px solid #2b5fe8; background: #f4f7fc;
             padding: 2.5mm 0 2.5mm 4mm; margin: 3mm 0; }
-  .frage { color: #12263f; font-weight: 700; }
+  .frage { color: #182145; font-weight: 700; }
   code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
-         background: #eef3f7; padding: 0.3mm 1.2mm; border-radius: 2px; }
+         background: #ebf0fa; padding: 0.3mm 1.2mm; border-radius: 2px; }
   .gitter3 { border-collapse: collapse; margin: 2mm 0; }
-  .gitter3 td { border: 1px solid #98a4b0; width: 13mm; height: 13mm;
+  .gitter3 td { border: 1px solid #a3afcc; width: 13mm; height: 13mm;
                 background: #fff; }
-  .fuss { margin-top: 4mm; font-size: 9pt; color: #8794a1; }
+  .fuss { margin-top: 4mm; font-size: 9pt; color: #56658a; }
 </style>
 </head>
 <body>
@@ -143,10 +145,10 @@ wenn dort nichts als Schwarz bleibt. Schreibt in die Tabelle jeweils
 </table>
 <p>Summe aller neun Zahlen: <strong>_______</strong> &nbsp;&nbsp;
 Was sagt diese Summe über den Kernel?
-<span style="border-bottom:1px dotted #98a4b0; display:inline-block;
+<span style="border-bottom:1px dotted #a3afcc; display:inline-block;
 min-width:60mm"></span></p>
 
-<p class="fuss">Face it! · Station 2 · Ein Kantenfilter reagiert nicht auf
+<p class="fuss">Face it! · PINGEL AI Solutions · Station 2 · Ein Kantenfilter reagiert nicht auf
 Helligkeit, sondern auf Veränderung – und zwar nur in einer Richtung.</p>
 
 </body>

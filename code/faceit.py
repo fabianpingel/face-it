@@ -73,14 +73,14 @@ if os.environ.get("FACEIT_EMOJI") is not None:
     EMOJI = os.environ["FACEIT_EMOJI"] not in ("0", "nein", "no", "false")
 
 _CODES = {
-    "cyan": "96", "blau": "94", "gruen": "92", "rot": "91",
+    "blau": "94", "gruen": "92", "rot": "91",
     "gelb": "93", "grau": "90", "fett": "1", "weiss": "97",
 }
 
 
 def bunt(text, *stile) -> str:
     """
-    Faerbt Text fuer das Terminal, z. B. bunt('Hallo', 'cyan', 'fett').
+    Faerbt Text fuer das Terminal, z. B. bunt('Hallo', 'blau', 'fett').
     Wenn das Terminal keine Farben kann, kommt der Text unveraendert zurueck.
     """
     text = str(text)
@@ -117,10 +117,10 @@ def daten_ordner(unterordner: str = "") -> Path:
     return ziel
 
 
-# ---------------------------------------------------------------- Farben (BGR, aus dem Workshop-Logo)
+# ---------------------------------------------------------------- Farben (BGR, aus dem Workshop-Logo und dem PINGEL-Markenkit)
 
-NAVY = (63, 38, 18)
-CYAN = (230, 200, 30)
+NAVY = (69, 33, 24)          # #182145, Marken-Navy
+AKZENT = (255, 176, 143)     # #8fb0ff, Blau hell aus dem Marken-Kit
 WEISS = (255, 255, 255)
 GRUEN = (80, 220, 100)
 ROT = (60, 60, 240)
@@ -162,7 +162,7 @@ def hinweisleiste(bild, zeilen):
     cv2.rectangle(overlay, (0, leiste - 14), (breite, hoehe), NAVY, -1)
     cv2.addWeighted(overlay, 0.75, bild, 0.25, 0, bild)
     for i, zeile in enumerate(zeilen):
-        schrift(bild, zeile, (14, leiste + 12 + 26 * i), CYAN, 0.55, 1)
+        schrift(bild, zeile, (14, leiste + 12 + 26 * i), AKZENT, 0.55, 1)
     return bild
 
 
@@ -178,13 +178,13 @@ def hinweisleiste_unten(bild, zeilen, hoehe=None):
     if hoehe is None:
         hoehe = 22 + 30 * len(zeilen)
     leiste = np.full((hoehe, breite, 3), 26, np.uint8)
-    cv2.line(leiste, (0, 0), (breite, 0), CYAN, 2)
+    cv2.line(leiste, (0, 0), (breite, 0), AKZENT, 2)
     for i, zeile in enumerate(zeilen):
-        schrift(leiste, zeile, (16, 32 + i * 30), CYAN, 0.55, 1)
+        schrift(leiste, zeile, (16, 32 + i * 30), AKZENT, 0.55, 1)
     return np.vstack([bild, leiste])
 
 
-def balken(bild, wert, position, breite=320, hoehe=28, farbe=CYAN):
+def balken(bild, wert, position, breite=320, hoehe=28, farbe=AKZENT):
     """Zeichnet einen Fortschrittsbalken fuer einen Wert zwischen 0 und 1."""
     x, y = position
     wert = max(0.0, min(1.0, float(wert)))
@@ -469,7 +469,7 @@ def aehnlichkeit(a, b) -> float:
 SCHWELLE = 0.363
 
 
-def gesichtsrahmen(bild, gesicht, farbe=CYAN, punkte=True, beschriftung=None):
+def gesichtsrahmen(bild, gesicht, farbe=AKZENT, punkte=True, beschriftung=None):
     """Zeichnet Rahmen und die fuenf Punkte um ein gefundenes Gesicht."""
     x, y, b, h = [int(v) for v in gesicht[:4]]
     cv2.rectangle(bild, (x, y), (x + b, y + h), farbe, 2)
@@ -503,9 +503,9 @@ def titel(stationsname: str, *zeilen):
     """Gibt eine Kopfzeile im Terminal aus."""
     strichzeichen = "─" if EMOJI else "-"
     print()
-    print("  " + bunt("Face it!", "cyan", "fett")
+    print("  " + bunt("Face it!", "blau", "fett")
           + "  |  " + bunt(stationsname, "weiss", "fett"))
-    print("  " + bunt(strichzeichen * (len(stationsname) + 13), "cyan"))
+    print("  " + bunt(strichzeichen * (len(stationsname) + 13), "blau"))
     for zeile in zeilen:
         print("  " + bunt(str(zeile), "grau"))
     print()

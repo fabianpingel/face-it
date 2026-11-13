@@ -1,13 +1,24 @@
 <p align="center">
-  <img src="images/logo.png" alt="Face it! – Computer Vision & Gesichtserkennung Workshop" width="420">
+  <img src="images/logo.svg" alt="Face it! – Computer Vision & Gesichtserkennung Workshop" width="360">
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Status-Beta-2b5fe8" alt="Status: Beta">
+  <img src="https://img.shields.io/badge/Material-CC_BY--NC_4.0-182145" alt="Material: CC BY-NC 4.0">
+  <img src="https://img.shields.io/badge/Code-MIT-182145" alt="Code: MIT">
 </p>
 
 # Face it!
 
+> **Beta – noch in Arbeit.** Der Workshop ist vollständig ausgearbeitet, aber noch
+> nicht im Unterricht erprobt. Programme, Material und Ablaufplan können sich bis zum
+> ersten Durchlauf noch ändern. Rückmeldungen von Lehrkräften sind ausdrücklich
+> erwünscht, siehe [Rückmeldung](#rückmeldung).
+
 **Ein Workshop zu Computer Vision am Beispiel der Gesichtserkennung.**
 Für die Differenzierungskurse Mathematik der Klasse 10 am
 [Städtischen Albert-Schweitzer-Gymnasium Plettenberg](https://www.asg-plettenberg.de/).
-Ohne Programmiervorkenntnisse. 3,5 Stunden. Zwei Python-Pakete, keine Cloud,
+Ohne Programmiervorkenntnisse. Drei Doppelstunden à 90 Minuten. Zwei Python-Pakete, keine Cloud,
 kein Konto – während des Workshops ist keine Internetverbindung nötig.
 
 > Du entsperrst dein Handy jeden Tag mit dem Gesicht.
@@ -96,7 +107,7 @@ Material zum Ausdrucken (HTML, im Browser öffnen und `Strg+P`):
 - `material/handouts/handout_E_ampelkarte.html` – Ampelkarte grün/rot zum Hochhalten, Fehlerhilfe innen
 - `material/handouts/handout_F_testmuster.html` – Testmuster mit vier Kantenrichtungen für die Kernel-Challenge
 - `material/elternbrief_und_einwilligung.html` – Elternbrief und Einwilligung
-- `material/folien/index.html` – die sechs Folien (Pfeiltasten, `F` für Vollbild)
+- `material/folien/index.html` – die neun Folien (Pfeiltasten, `F` für Vollbild)
 
 ## Aufbau des Repositories
 
@@ -105,9 +116,10 @@ code/         Die Stationen 00 bis 99, faceit.py als gemeinsames Hilfsmodul
 code/tools/   Werkzeuge für die Vorbereitung (nicht für den Workshop)
 docs/         Konzept, Ablaufplan, Technik-Setup, Glossar
 material/     Handouts, Folien, Elternbrief und Einwilligung
+material/brand/  Schriften, Farben und Logo von PINGEL AI Solutions
 models/       YuNet und SFace als ONNX-Dateien, offline nutzbar
 data/         Aufnahmen des Workshops (wird am Ende geleert)
-images/       Logo
+images/       Workshop-Logo (SVG)
 ```
 
 ## Technik
@@ -142,9 +154,23 @@ das zum Lerninhalt:
 - Am Ende löschen alle gemeinsam ihre Daten mit `code/99_cleanup.py`.
   Datensparsamkeit wird vorgeführt, nicht behauptet.
 
+## Teil einer Workshop-Reihe
+
+Face it! gehört zu einer kleinen Reihe ehrenamtlicher Schul-Workshops von Fabian Pingel,
+[PINGEL AI Solutions](https://www.fabian-pingel.de). Eine Übersicht über alle Workshops
+steht auf [github.com/fabianpingel](https://github.com/fabianpingel).
+
+## Rückmeldung
+
+Fehler gefunden, eine Station hat nicht geklappt oder eine Idee für den Unterricht?
+Am liebsten als [Issue in diesem Repository](https://github.com/fabianpingel/face-it/issues),
+sonst per E-Mail an [kontakt@fabian-pingel.de](mailto:kontakt@fabian-pingel.de).
+Was sich geändert hat, steht im [CHANGELOG](CHANGELOG.md).
+
 ## Lizenz
 
-Dokumentation und Material: **CC BY-NC 4.0** · Code: **MIT** (siehe `LICENSE`)
+Dokumentation und Material: **CC BY-NC 4.0** · Code: **MIT** · Einzelheiten und
+Ausnahmen (Logo von PINGEL AI Solutions, Schriften, Modelle) in [LICENSE.md](LICENSE.md)
 
 Die Modelle stammen aus dem [OpenCV Model Zoo](https://github.com/opencv/opencv_zoo)
 und stehen unter ihren jeweiligen Lizenzen. Die Portraitfotos in `data/beispiele/`

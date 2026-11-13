@@ -125,7 +125,7 @@ for i, name in enumerate(namen):
                    faceit.WEISS, 0.45, 1)
 
 faceit.schrift(tafel, "Der Gesichtsraum von oben", (RAND, 40),
-               faceit.CYAN, 0.9, 2)
+               faceit.AKZENT, 0.9, 2)
 faceit.schrift(tafel, f"1. Hauptrichtung  ->", (BREITE - 300, HOEHE - 26),
                faceit.GRAU, 0.5, 1)
 faceit.schrift(tafel, f"{len(dateien)} Aufnahmen  |  "

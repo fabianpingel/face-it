@@ -96,7 +96,7 @@ while True:
     beschriftung = [name_a, f"{(1 - t) * 100:.0f}% + {t * 100:.0f}%",
                     name_b, f"Mittel aus {len(bilder)}"]
     for kachel, text in zip(kacheln, beschriftung):
-        faceit.schrift(kachel, text, (12, 30), faceit.CYAN, 0.6, 2)
+        faceit.schrift(kachel, text, (12, 30), faceit.AKZENT, 0.6, 2)
 
     zusammen = np.hstack(kacheln)
     zusammen = faceit.hinweisleiste_unten(zusammen, [

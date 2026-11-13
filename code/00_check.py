@@ -26,7 +26,7 @@ while True:
     bild = faceit.bild_holen(kamera)
 
     hoehe, breite = bild.shape[:2]
-    faceit.schrift(bild, "Es funktioniert!", (24, 60), faceit.CYAN, 1.4, 3)
+    faceit.schrift(bild, "Es funktioniert!", (24, 60), faceit.AKZENT, 1.4, 3)
     faceit.schrift(bild, f"Dein Bild ist {breite} x {hoehe} Pixel gross.",
                    (24, 105), faceit.WEISS, 0.75, 2)
     faceit.schrift(bild, f"Das sind {breite * hoehe:,} Zahlenwerte pro Farbe."

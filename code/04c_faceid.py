@@ -62,7 +62,7 @@ while True:
 
     if gespeicherter_vektor is None:
         faceit.schrift(bild, "Noch nicht eingerichtet - druecke [e]",
-                       (20, 50), faceit.CYAN, 0.9, 2)
+                       (20, 50), faceit.AKZENT, 0.9, 2)
         for gesicht in gesichter:
             faceit.gesichtsrahmen(bild, gesicht, faceit.GRAU)
     else:
@@ -88,7 +88,7 @@ while True:
         text = "kein Gesicht" if bester_wert is None else f"{bester_wert * 100:.0f} %"
         faceit.schrift(bild, f"Aehnlichkeit: {text}", (24, 140), faceit.WEISS, 0.8, 2)
         faceit.schrift(bild, f"Schwelle: {schwelle * 100:.0f} %",
-                       (24, 176), faceit.CYAN, 0.8, 2)
+                       (24, 176), faceit.AKZENT, 0.8, 2)
         faceit.balken(bild, 0 if bester_wert is None else max(0.0, bester_wert),
                       (24, 196), 360, 24, farbe)
         x_schwelle = 24 + int(360 * schwelle)

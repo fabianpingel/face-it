@@ -88,7 +88,7 @@ def pruefen(lauf, skript):
 
 
 @pytest.fixture(scope="module")
-def klassendaten(fc, tmp_path_factory):
+def klassendaten(fc, portraits, tmp_path_factory):
     """
     Simuliert, was eine Klasse in Station 4a aufnimmt: zwei Personen mit je
     zwei Aufnahmen. Das ergibt vier Vektoren mit zwei Paaren - das Minimum,
@@ -166,7 +166,7 @@ def test_advanced_startet(klassendaten, skript, tasten, eingabe):
     pruefen(starten(skript, klassendaten, tasten, eingabe), skript)
 
 
-def test_99_cleanup_loescht_wirklich(tmp_path):
+def test_99_cleanup_loescht_wirklich(portraits, tmp_path):
     """
     Das Schlussritual. Laeuft in einem eigenen Ordner, damit dieser Test
     nichts anfassen kann, was ein anderer Test noch braucht.
@@ -188,7 +188,7 @@ def test_99_cleanup_loescht_wirklich(tmp_path):
     )
 
 
-def test_99_cleanup_schont_die_beispielportraits():
+def test_99_cleanup_schont_die_beispielportraits(portraits):
     """
     Die freien Portraits in data/beispiele/ sind keine Daten von SuS und
     muessen das Loeschen ueberleben - sonst fehlen sie beim naechsten Termin.

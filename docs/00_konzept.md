@@ -6,9 +6,9 @@
 |---|---|
 | **Schule** | Städtisches Albert-Schweitzer-Gymnasium Plettenberg |
 | **Zielgruppe** | Differenzierungskurse Mathematik, Klasse 10 |
-| **Dauer** | 3,5 Stunden (Projektvormittag) |
+| **Dauer** | 3 × 90 Minuten an drei Terminen, gegliedert in sechs Blöcke |
 | **Programmiervorkenntnisse** | keine vorausgesetzt |
-| **Gruppengröße** | 12–15 Schüler:innen, Partnerarbeit an 6–8 Rechnern |
+| **Gruppengröße** | bis 20 Schüler:innen in 8 festen Gruppen, 2–3 pro Rechner |
 
 ---
 
@@ -67,13 +67,14 @@ Jede Station hat genau **einen** Aha-Momente.
 | 3 | Detektion ≠ Erkennung | "Erkennung ist Statistik, nicht Wahrheit." | Die Detektion findet Gesichter auf Postern, Zeichnungen und Fotos – und übersieht das echte |
 | 4 | Gesicht = Punkt im Raum | "Ich bin für den Computer eine Liste aus 128 Zahlen – und Sicherheit ist ein Schwellenwert, den irgendwer gewählt hat." | Eigene Face-ID mit Schieberegler: bei 0,1 entsperrt jeder, bei 0,9 niemand |
 
-Der Abschlussblock (**Angriff & Ethik**) ist kein fünfter Inhalt, sondern die
+Block 6 (**Angriff & Ethik**) ist kein fünfter Inhalt, sondern die
 *Konsequenz* aus Station 3 und 4: Wenn Erkennung nur ein Zahlenvergleich mit
 Schwellenwert ist, dann ist sie angreifbar und fehlerbehaftet. Und manche Fehler sind gefährlicher als andere.
 
 ## 3. Methodische Grundsätze
 
-1. **Sechs Folien im ganzen Workshop.** Jeder Input dauert < 5 Minuten und steht
+1. **Neun Folien im ganzen Workshop**, eine Fazit-Folie pro Block plus Titel, Ausblick
+   und Take-home. Jeder Input dauert < 5 Minuten und steht
    *nach* dem Experiment, nicht davor. Erst staunen, dann erklären.
 2. **Fachbegriffe kommen zuletzt.** Die SuS erleben erst das Phänomen, dann bekommt es
    einen Namen ("das, was du gerade gebaut hast, heißt Faltung / Embedding /
@@ -86,13 +87,21 @@ Schwellenwert ist, dann ist sie angreifbar und fehlerbehaftet. Und manche Fehler
    * genau eine Zeile selbst schreiben (die Vergleichszeile in Station 4).
 4. **Jedes Skript läuft in < 3 Sekunden und zeigt sofort ein Bild.** Kein Warten, kein
    Training, keine GPU, kein Internet.
-5. **Zwei SuS pro Rechner.** Einer tippt, einer sitzt vor der Kamera – Rollentausch pro
-   Station. Gesichtserkennung braucht zwingend ein zweites Gesicht.
+5. **Zwei bis drei SuS pro Rechner, in festen Gruppen.** Eine Person tippt, eine sitzt
+   vor der Kamera – Rollentausch pro Station. Gesichtserkennung braucht zwingend ein
+   zweites Gesicht, ein drittes schadet nicht. Gruppe und Rechner bleiben über alle drei
+   Termine gleich.
 6. **Unplugged-Anteil.** Station 2 beginnt auf Papier. Wer Faltung einmal mit dem
    Bleistift gerechnet hat, vergisst sie nicht.
 7. **Wettbewerb statt Arbeitsblatt.** "Experimente-Bingo" (Station 3) und
-   "Hack-Challenge" (Abschluss) erzeugen Ehrgeiz und produzieren dabei genau die
+   "Hack-Challenge" (Block 6) erzeugen Ehrgeiz und produzieren dabei genau die
    Fehlerfälle, über die wir reden wollen.
+8. **Hausaufgaben, die tragen.** Zwischen den Terminen liegen jeweils eine Woche oder
+   mehr. Jede Hausaufgabe funktioniert ohne Rechner und wird im nächsten Termin wirklich
+   gebraucht: die ausgemalten Blätter eröffnen Termin 2, das Angriffsmaterial macht die
+   Hack-Challenge erst möglich, der vorbereitete Satz trägt die Diskussion in Block 6.
+   Wer sie weglässt, merkt es selbst. Die Liste steht in
+   [01_agenda.md](01_agenda.md#hausaufgaben).
 
 ## 4. Lernziele
 

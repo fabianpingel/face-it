@@ -1,0 +1,204 @@
+/* =============================================================
+   PINGEL AI Solutions – Marken-Tokens (Single Source of Truth)
+   Farben, Schrift und Design-Tokens fuer ALLE Projekte.
+   Website und kuenftige Apps binden diese Datei ein, damit das
+   Erscheinungsbild konsistent bleibt.
+
+   Kanonische Referenz: Skill /pingel-branding
+   ============================================================= */
+
+/* ---- Schriftart: Montserrat (selbst gehostet, kein CDN) ----
+   WOFF2 statt TTF: gleiche Schrift, rund ein Drittel der Groesse.
+   Die .ttf-Dateien bleiben im Ordner, weil andere PINGEL-Projekte
+   sie ziehen koennen (Folien, Druck) – die Website nutzt sie nicht.
+
+   ACHTUNG, die Reihenfolge der beiden ersten Bloecke ist bedeutsam:
+   Der volle Zeichensatz steht zuerst und faengt alles ab. Das Subset
+   steht danach und gewinnt fuer westeuropaeische Zeichen, weil bei
+   gleicher Familie die spaeter deklarierte Regel Vorrang hat. Auf
+   deutschen Seiten laedt der Browser damit nur die 58-KB-Datei; taucht
+   ein kyrillisches oder polnisches Zeichen auf, holt er zusaetzlich
+   die volle Datei nach. Die Darstellung ist also nie unvollstaendig.
+   Werden die Bloecke vertauscht, laedt immer die volle Datei. */
+
+/* Voller Zeichensatz – Auffangnetz fuer alles ausserhalb des Subsets */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat.woff2') format('woff2');
+  font-weight: 100 900;   /* Variable Font – deckt alle Gewichte ab */
+  font-style: normal;
+  font-display: swap;     /* Text sofort sichtbar, Schrift wird nachgeladen */
+}
+
+/* West-Subset – der Regelfall, deckt Deutsch und Westeuropa ab */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-subset.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+                 U+FEFF, U+FFFD;
+}
+
+/* Kursiv – auf dieser Website nirgends verwendet, wird daher nie
+   geladen. Bleibt fuer andere PINGEL-Projekte deklariert. */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-Italic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---- Schriftart: Red Hat Display + Red Hat Text (seit 10/2026) ----
+   Website-Schrift seit dem Redesign. Display für Überschriften, Text für
+   Fließtext. Variable Fonts, SIL Open Font License (OFL-RedHat.txt).
+   Montserrat bleibt die Schrift des Logos (--font-logo).
+   Je Schrift zwei Dateien: latin (Regelfall) und latin-ext (Auffangnetz
+   für Sonderzeichen), getrennt per unicode-range. */
+@font-face {
+  font-family: 'Red Hat Display';
+  src: url('fonts/RedHatDisplay-latin-ext.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Red Hat Display';
+  src: url('fonts/RedHatDisplay-latin.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('fonts/RedHatText-latin-ext.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB,
+                 U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('fonts/RedHatText-latin.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('fonts/RedHatText-Italic-latin.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: italic;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+                 U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F,
+                 U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ---- Design-Tokens ----------------------------------------- */
+:root {
+  /* Farben – Navy aus dem Logo plus Signalblau (seit 10/2026, vorher Gold) */
+  --color-brand:         #182145;   /* Primäre Markenfarbe (Logo) */
+  --color-primary:       #182145;   /* Dunkel-Navy = Markenfarbe */
+  --color-primary-light: #243668;   /* Navy hell: Links/Hover auf Hell */
+  --color-primary-dark:  #11193a;   /* Navy dunkel: Schatten, gedrückte Zustände */
+  --color-accent:        #2b5fe8;   /* Akzent: Signalblau, Buttons und Flächen (5,4:1 mit Weiß) */
+  --color-accent-dark:   #1f4bc2;   /* Akzent hover/active */
+  --color-accent-light:  #8fb0ff;   /* Akzent hell, auf Navy-Flächen */
+  --color-accent-text:   #2b5fe8;   /* Akzent als Schrift: Links, Hervorhebungen */
+  --color-accent-soft:   #e6edff;   /* Akzent-Tönung: Symbol-Kacheln, Labels */
+  --color-on-accent:     #ffffff;   /* Schrift auf Akzentflächen */
+  --color-cta:           #182145;   /* Haupt-Buttons (Kontakt, Gespräch vereinbaren): Logo-Navy */
+  --color-cta-hover:     #243668;
+  --color-on-cta:        #ffffff;
+  --color-bg:            #f4f7fc;   /* Hintergrund: dezent eisblau getönt */
+  --color-bg-alt:        #ebf0fa;   /* Hintergrund für abgesetzte Abschnitte */
+  --color-surface:       #ffffff;
+  --color-card-bg:       #ffffff;
+  --color-heading:       #182145;   /* Überschriften */
+  --color-text:          #1a2340;   /* Fließtext: leicht marine-getönt */
+  --color-muted:         #56658a;   /* Gedämpft: bläuliches Grau */
+  --color-border:        #dbe2f0;   /* Rahmen: bläuliches Hellgrau */
+  --color-band:          #182145;   /* Navy-Bänder (Werte, Kontakt, Footer) */
+  --color-band-text:     #c3cde6;   /* Text auf Navy-Bändern */
+  --color-header-bg:     rgba(244, 247, 252, 0.88);
+
+  /* Netz-Animation im Hero (RGB-Tripel für Canvas) */
+  --net-line:  24, 33, 69;
+  --net-hot:   43, 95, 232;
+  --net-fill:  #ffffff;
+  --net-alpha: 0.2;
+
+  /* Typografie */
+  --font-sans:    'Red Hat Text', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Red Hat Display', 'Red Hat Text', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-logo:    'Montserrat', system-ui, -apple-system, sans-serif;
+
+  /* Abstände */
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  7rem;
+
+  /* Layout */
+  --max-width: 1120px;
+  --radius:    0.75rem;
+
+  /* Schatten */
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.06);
+  --shadow-md:   0 4px 16px rgba(0,0,0,.10);
+  --shadow-lift: 0 18px 40px -18px rgba(24,33,69,.35);   /* angehobene Kachel */
+  --color-ring:  rgba(43,95,232,.55);                     /* Rand der angehobenen Kachel */
+
+  color-scheme: light;
+}
+
+/* ---- Dunkle Darstellung ------------------------------------
+   Nur auf ausdrücklichen Wunsch (Schalter auf der Website), nie
+   automatisch: Ein dunkler Navy-Hero mit leuchtendem Netz läge zu nah
+   an einem Wettbewerber. Netz bewusst ohne Cyan. */
+:root[data-theme="dark"] {
+  --color-accent:        #3563e9;   /* Buttons: 5,1:1 mit Weiß */
+  --color-accent-dark:   #2a52c9;
+  --color-accent-text:   #7a9dff;   /* Schrift-Akzent: 6,9:1 auf --color-bg */
+  --color-accent-soft:   rgba(91,134,255,.14);
+  --color-cta:           #3563e9;   /* Navy ginge auf dunklem Grund unter, darum Blau */
+  --color-cta-hover:     #2a52c9;
+  --color-bg:            #0f1630;
+  --color-bg-alt:        #131c3f;
+  --color-surface:       #121a3a;
+  --color-card-bg:       #121a3a;
+  --color-heading:       #ffffff;
+  --color-text:          #dfe5f5;
+  --color-muted:         #9eabca;
+  --color-border:        rgba(143,176,255,.16);
+  --color-band:          #0b1126;
+  --color-band-text:     #9eabca;
+  --color-header-bg:     rgba(15, 22, 48, 0.88);
+
+  --net-line:  143, 176, 255;
+  --net-hot:   170, 195, 255;
+  --net-fill:  #0f1630;
+  --net-alpha: 0.38;
+
+  --shadow-lift: 0 0 0 1px rgba(91,134,255,.55), 0 20px 48px -16px rgba(91,134,255,.45);
+  --color-ring:  rgba(122,157,255,.6);
+
+  color-scheme: dark;
+}

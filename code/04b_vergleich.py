@@ -91,14 +91,14 @@ while True:
     bild = faceit.bild_holen(kamera)
     gesichter = faceit.gesichter_finden(detektor, bild)
     for gesicht in gesichter:
-        faceit.gesichtsrahmen(bild, gesicht, faceit.CYAN)
+        faceit.gesichtsrahmen(bild, gesicht, faceit.AKZENT)
 
     links = gespeichert.get("1", (None, leer))[1]
     rechts = gespeichert.get("2", (None, leer))[1]
     kachel_a = cv2.resize(links, (300, 300))
     kachel_b = cv2.resize(rechts, (300, 300))
-    faceit.schrift(kachel_a, "1", (12, 40), faceit.CYAN, 1.0, 2)
-    faceit.schrift(kachel_b, "2", (12, 40), faceit.CYAN, 1.0, 2)
+    faceit.schrift(kachel_a, "1", (12, 40), faceit.AKZENT, 1.0, 2)
+    faceit.schrift(kachel_b, "2", (12, 40), faceit.AKZENT, 1.0, 2)
 
     tafel = np.full((300, 420, 3), 25, np.uint8)
     if "1" in gespeichert and "2" in gespeichert:
@@ -117,7 +117,7 @@ while True:
         faceit.schrift(tafel, "Nimm zwei Gesichter auf:", (20, 120),
                        faceit.WEISS, 0.65, 1)
         faceit.schrift(tafel, "[1] links      [2] rechts", (20, 158),
-                       faceit.CYAN, 0.65, 1)
+                       faceit.AKZENT, 0.65, 1)
 
     kamerabild = cv2.resize(bild, (420, 300))
     zusammen = np.hstack([kachel_a, kachel_b, tafel, kamerabild])

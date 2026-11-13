@@ -69,10 +69,10 @@ def menue():
     strich = "─" if faceit.EMOJI else "-"
 
     print()
-    print("  " + faceit.bunt(strich * breite, "cyan"))
-    print("  " + faceit.bunt("Face it!", "cyan", "fett")
+    print("  " + faceit.bunt(strich * breite, "blau"))
+    print("  " + faceit.bunt("Face it!", "blau", "fett")
           + faceit.bunt("   Computer Vision und Gesichtserkennung", "weiss"))
-    print("  " + faceit.bunt(strich * breite, "cyan"))
+    print("  " + faceit.bunt(strich * breite, "blau"))
     print()
 
     for kennung, _, emoji, ersatz, name, beschreibung in STATIONEN:
@@ -93,7 +93,7 @@ def menue():
 
 
 def starten(datei):
-    print("   " + faceit.bunt(f"{faceit.sym('▶', '>')}  {datei} startet ...", "cyan"))
+    print("   " + faceit.bunt(f"{faceit.sym('▶', '>')}  {datei} startet ...", "blau"))
     print()
     subprocess.run([sys.executable, str(HIER / datei)])
 
@@ -105,7 +105,7 @@ def farbtest():
     """
     faceit.titel("Farb- und Emoji-Test",
                  f"Farben: {faceit.FARBIG}    Emojis: {faceit.EMOJI}")
-    for stil in ("cyan", "gruen", "rot", "gelb", "grau", "weiss"):
+    for stil in ("blau", "gruen", "rot", "gelb", "grau", "weiss"):
         print("   " + faceit.bunt(f"{stil:<8} so sieht das aus", stil))
     print()
     print("   Emojis: " + "  ".join(
@@ -127,12 +127,12 @@ kennungen = {kennung: datei for kennung, datei, *_ in STATIONEN}
 
 while True:
     menue()
-    eingabe = input("   " + faceit.bunt("Welche Station? ", "cyan", "fett"))
+    eingabe = input("   " + faceit.bunt("Welche Station? ", "blau", "fett"))
     eingabe = eingabe.strip().lower().replace(" ", "")
 
     if eingabe in ("q", "quit", "exit", "ende", ""):
         print()
-        print("   " + faceit.bunt("Bis dann.", "cyan"))
+        print("   " + faceit.bunt("Bis dann.", "blau"))
         print()
         break
 

@@ -52,11 +52,11 @@ while True:
     gesichter = faceit.gesichter_finden(detektor, bild)
 
     for gesicht in gesichter:
-        faceit.gesichtsrahmen(anzeige, gesicht, faceit.CYAN)
+        faceit.gesichtsrahmen(anzeige, gesicht, faceit.AKZENT)
 
     if gesichter:
         faceit.schrift(anzeige, "Gesicht erkannt - Leertaste druecken",
-                       (20, 46), faceit.CYAN, 0.8, 2)
+                       (20, 46), faceit.AKZENT, 0.8, 2)
     else:
         faceit.schrift(anzeige, "Kein Gesicht im Bild", (20, 46),
                        faceit.ROT, 0.8, 2)
@@ -98,7 +98,7 @@ while True:
         print()
 
         gross = cv2.resize(ausgerichtet, (448, 448), interpolation=cv2.INTER_NEAREST)
-        faceit.schrift(gross, f"{name}_{zaehler:02d}", (16, 34), faceit.CYAN, 0.8, 2)
+        faceit.schrift(gross, f"{name}_{zaehler:02d}", (16, 34), faceit.AKZENT, 0.8, 2)
         faceit.zeigen("Face it - so sieht das Modell dein Gesicht", gross)
 
     elif gedrueckt == "q":

@@ -65,7 +65,7 @@ while True:
         verfahren = "YuNet (neuronales Netz, 2023)"
         gesichter = faceit.gesichter_finden(detektor, bild)
         for gesicht in gesichter:
-            faceit.gesichtsrahmen(bild, gesicht, faceit.CYAN)
+            faceit.gesichtsrahmen(bild, gesicht, faceit.AKZENT)
         anzahl = len(gesichter)
     else:
         verfahren = f"Haar-Cascade (2001), minNeighbors = {nachbarn}"
@@ -78,7 +78,7 @@ while True:
             cv2.rectangle(bild, (x, y), (x + breite, y + hoehe), faceit.GRUEN, 2)
         anzahl = len(treffer)
 
-    faceit.schrift(bild, verfahren, (20, 44), faceit.CYAN, 0.75, 2)
+    faceit.schrift(bild, verfahren, (20, 44), faceit.AKZENT, 0.75, 2)
     text = "kein Gesicht gefunden" if anzahl == 0 else (
         "1 Gesicht gefunden" if anzahl == 1 else f"{anzahl} Gesichter gefunden")
     faceit.schrift(bild, text, (20, 82),

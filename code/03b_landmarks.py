@@ -72,7 +72,7 @@ def punkte_finden(marker, bild, gesichter):
     return [np.array(m[0], dtype=np.float32) / faktor for m in marken]
 
 
-def netz_zeichnen(bild, punkte, farbe=faceit.CYAN):
+def netz_zeichnen(bild, punkte, farbe=faceit.AKZENT):
     """
     Verbindet die Punkte zu Dreiecken (Delaunay-Triangulation) und malt sie.
     Das ist derselbe Trick, mit dem Filter-Apps ein Gesicht verformen:
@@ -117,9 +117,9 @@ while True:
     if marker is None:
         # Einfache Fassung: die fuenf Punkte, die YuNet mitliefert
         for gesicht in gesichter:
-            faceit.gesichtsrahmen(bild, gesicht, faceit.CYAN)
+            faceit.gesichtsrahmen(bild, gesicht, faceit.AKZENT)
         faceit.schrift(bild, "5 Punkte: Augen, Nase, Mundwinkel", (20, 46),
-                       faceit.CYAN, 0.8, 2)
+                       faceit.AKZENT, 0.8, 2)
         faceit.schrift(bild, "Fuer 68 Punkte und das Netz:", (20, 84),
                        faceit.WEISS, 0.6, 1)
         faceit.schrift(bild, "uv run code/tools/landmark_modell_holen.py",
@@ -132,7 +132,7 @@ while True:
             punkte_zeichnen(bild, punkte)
 
         faceit.schrift(bild, f"68 Punkte pro Gesicht  |  Gesichter: "
-                             f"{len(alle_punkte)}", (20, 46), faceit.CYAN, 0.8, 2)
+                             f"{len(alle_punkte)}", (20, 46), faceit.AKZENT, 0.8, 2)
         faceit.schrift(bild, "Diese Punkte sagen, WIE dein Gesicht geformt ist -",
                        (20, 84), faceit.WEISS, 0.6, 1)
         faceit.schrift(bild, "nicht WER du bist.", (20, 112), faceit.WEISS, 0.6, 1)
@@ -152,7 +152,7 @@ while True:
 kamera.release()
 faceit.fenster_schliessen()
 print()
-print("  " + faceit.bunt("Aufgabe zum Nachdenken:", "cyan", "fett"))
+print("  " + faceit.bunt("Aufgabe zum Nachdenken:", "blau", "fett"))
 print("  Diese Punkte sagen, WIE ein Gesicht geformt ist - nicht, WER es ist.")
 print("  Was koennte man damit bauen? Sammelt Ideen und sortiert sie in")
 print("  zwei Spalten: nuetzlich und unheimlich.")

@@ -19,7 +19,7 @@ Der Regler hat elf feste Stufen: 4, 6, 8, 10, 12, 16, 20, 24, 32, 48, 64. Feste
 Werte deshalb, weil die Klasse hinterher über dieselben Zahlen reden soll.
 | Was macht `gitter = 255 - gitter`? | Ein Negativ. Aus hell wird dunkel. Der Aha: Bildbearbeitung ist Rechnen mit Zahlen, nichts weiter. |
 
-**Wenn nichts erkennbar ist:** Das Gesicht füllt den cyanfarbenen Zielrahmen nicht
+**Wenn nichts erkennbar ist:** Das Gesicht füllt den blauen Zielrahmen nicht
 aus. Näher an die Kamera, Licht von vorn, nicht im Gegenlicht sitzen.
 
 **Bonus-Aufgaben**
@@ -210,7 +210,7 @@ also genau die Spalte „unheimlich" gesehen und einen Teil davon untersagt.
 merkt man den Unterschied zwischen dem Müdigkeitswarner im Auto und der
 Aufmerksamkeitsmessung im Klassenzimmer? Beide messen dasselbe. Der Unterschied
 liegt nicht in der Technik, sondern darin, *wer* die Daten bekommt und *wozu*.
-Diesen Satz kann man an der Tafel stehen lassen – er trägt bis in Block 5.
+Diesen Satz kann man an der Tafel stehen lassen – er trägt bis in Block 6.
 
 ---
 
@@ -383,7 +383,7 @@ bewiesen, warum es sie braucht.
 
 ## Antworten auf die Einstiegsfrage
 
-Am Ende wird das Plakat von 8:05 durchgegangen. Diese Punkte sollten am Schluss
+Am Ende wird das Plakat aus Termin 1 durchgegangen. Diese Punkte sollten am Schluss
 dort stehen:
 
 1. Die Kamera hat **Helligkeitswerte** aufgenommen – eine Tabelle aus Zahlen.
@@ -430,7 +430,7 @@ werden die Gruppen lockerer – und das Bild ehrlicher.
 
 `uv run code/92_fehlerkurve.py`
 
-Zeichnet FRR (rot, steigend) und FAR (cyan, fallend) über dem Schwellenwert, dazu
+Zeichnet FRR (rot, steigend) und FAR (blau, fallend) über dem Schwellenwert, dazu
 die Schwelle des Modells als grüne Linie und den Schnittpunkt als weißen Kreis.
 Der Schnittpunkt heißt **Equal Error Rate**. Bei Klassendaten liegt er meist
 zwischen **0,2 und 0,45**.

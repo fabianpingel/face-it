@@ -125,7 +125,7 @@ for anteil in np.arange(0, 1.01, 0.25):
 
 # Die beiden Kurven
 for werte, farbe, name in ((frr, faceit.ROT, "Falschabweisung FRR"),
-                           (far, faceit.CYAN, "Falschakzeptanz FAR")):
+                           (far, faceit.AKZENT, "Falschakzeptanz FAR")):
     punkte = np.array([auf_bild(s, w) for s, w in zip(schwellen, werte)])
     cv2.polylines(tafel, [punkte], False, farbe, 2, cv2.LINE_AA)
 
@@ -144,13 +144,13 @@ faceit.schrift(tafel, f"Modell: {faceit.SCHWELLE:.3f}",
 
 # Beschriftung
 faceit.schrift(tafel, "Zwei Fehler, eine Schwelle", (LINKS, 40),
-               faceit.CYAN, 0.9, 2)
+               faceit.AKZENT, 0.9, 2)
 faceit.schrift(tafel, "Schwellenwert", (BREITE // 2 - 60, HOEHE - 26),
                faceit.GRAU, 0.55, 1)
 # Legende in die Mitte: dort ist bei beiden Kurven meist Platz
 legende_x = LINKS + int(plot_breite * 0.34)
 for i, (farbe, name) in enumerate(((faceit.ROT, "FRR - ich komme nicht hinein"),
-                                   (faceit.CYAN, "FAR - ein Fremder kommt hinein"))):
+                                   (faceit.AKZENT, "FAR - ein Fremder kommt hinein"))):
     y = OBEN + 40 + i * 28
     cv2.line(tafel, (legende_x, y - 5), (legende_x + 30, y - 5), farbe, 3)
     faceit.schrift(tafel, name, (legende_x + 40, y), faceit.WEISS, 0.5, 1)

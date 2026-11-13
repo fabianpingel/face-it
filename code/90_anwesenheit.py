@@ -77,7 +77,7 @@ while True:
                                   beschriftung="unbekannt")
 
     faceit.schrift(bild, f"angemeldet: {len(bekannte)}   erkannt: "
-                         f"{len(anwesend)}", (20, 46), faceit.CYAN, 0.8, 2)
+                         f"{len(anwesend)}", (20, 46), faceit.AKZENT, 0.8, 2)
     for i, name in enumerate(sorted(bekannte)):
         farbe = faceit.GRUEN if name in anwesend else faceit.GRAU
         zeichen = "anwesend" if name in anwesend else "fehlt"

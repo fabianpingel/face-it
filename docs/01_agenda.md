@@ -49,7 +49,7 @@ Zahlen ist Bildbearbeitung.
 | 5 min | 💬 **Die Leitfrage** | *Was genau hat dein Handy gerade gemessen?* Alle Vermutungen unkommentiert aufs **Plakat** – auf Packpapier, **nicht an die Tafel**: es muss drei Wochen überleben. Nichts richtigstellen. Das Plakat wird eingerollt, mitgenommen und an jedem Termin neu aufgehängt. |
 | 2 min | 🧑‍🏫 **Ansage mit Fahrplan** | **Folie 1** (Logo): "Wir bauen das in drei Doppelstunden nach. Am dritten Termin entsperrt sich dein Rechner mit deinem Gesicht. Und danach hackst du das System deines Nachbarn." Die Folie zeigt den Drei-Termin-Fahrplan – die SuS sollen wissen, wo sie stehen. |
 | 18 min | 💻 **Gemeinsame Einrichtung** | Jetzt ausführlich, nicht als 5-Minuten-Startcheck.<br>**6 min** am Beamer vorgemacht: `start.bat` bzw. `uv run code/start.py`, was ein Skript ist, wo die Bilder landen (`data/`), warum nichts ins Netz geht.<br>**7 min** alle machen mit: `uv run code/00_check.py` → Webcam-Fenster mit Live-Bild, Bildgröße und Anzahl der Zahlenwerte. Wer sein Bild sieht, stellt die **Ampelkarte auf grün**.<br>**5 min** Organisation für alle drei Termine: **feste Gruppennummern G1–G8 und fester Rechner** (wer den Rechner wechselt, verliert seine Daten), Ampelkarte, Laufzettel, Zwei-Minuten-Regel (erst lesen, dann Nachbargruppe, dann rot). |
-| 8 min | 💻 `01_pixel.py` | Links das Kamerabild, rechts live dasselbe als Zahlengitter. Alles außerhalb des cyanfarbenen Zielrahmens ist abgedunkelt – nur was im Rahmen liegt, wird umgerechnet. Mit `z` erscheint ein zweites Fenster, in dem **jedes Feld seine eigene Helligkeit als Hintergrund hat und die Zahl darin steht**: Man sieht das Gesicht im Zahlengitter. Erste Reaktion abwarten: "Das soll ich sein?" |
+| 8 min | 💻 `01_pixel.py` | Links das Kamerabild, rechts live dasselbe als Zahlengitter. Alles außerhalb des blauen Zielrahmens ist abgedunkelt – nur was im Rahmen liegt, wird umgerechnet. Mit `z` erscheint ein zweites Fenster, in dem **jedes Feld seine eigene Helligkeit als Hintergrund hat und die Zahl darin steht**: Man sieht das Gesicht im Zahlengitter. Erste Reaktion abwarten: "Das soll ich sein?" |
 | 6 min | ✍️ **Malen nach Zahlen** | Leertaste **friert das Bild ein** und erzeugt das Arbeitsblatt als HTML in `data/fotos/` – fest bei 16×16, mit drei aus dem eigenen Bild berechneten Malstufen. **Drucken sofort anstoßen und im Hintergrund laufen lassen** – acht Browser-Druckdialoge hintereinander kosten sonst allein sechs Minuten. Ausgemalt wird zu Hause (HA 1b). Noch einmal Leertaste, und das Livebild läuft weiter. |
 | 6 min | 💻 **Auflösungs-Regler** | Läuft **parallel zum Drucken**. Den Schieberegler durch alle elf Stufen ziehen – 4, 6, 8, 10, 12, 16, 20, 24, 32, 48, 64. Das Pixelbild wächst live mit. Frage auf dem Laufzettel: *Ab wie vielen Pixeln erkennt man, DASS es ein Gesicht ist? Ab wie vielen, WER es ist?* Die Antworten liegen typisch bei rund 8 bis 12 bzw. 30 Pixeln – erstaunlich niedrig. |
 | 6 min | 💻 **Eine Zeile aktivieren** | `# gitter = 255 - gitter` einkommentieren → Negativ. Danach `gitter = gitter // 64 * 64` → Posterisierung. Erkenntnis: Rechnen mit Zahlen ist Bildbearbeitung. Das ist jeder Instagram- oder Snapchat-Filter. |
@@ -222,32 +222,3 @@ Ecken sind die einzige Stelle, an der sie das Gelernte selbst einordnen müssen.
 **Nicht kürzen, weil technisch zwingend:** die `04a`-Wiederaufnahme zu Beginn von
 Block 5. Ohne sie ist `data/gesichter/` leer, und `04b`, `04c` und `05_bias.py` laufen
 nicht (`05_bias.py` bricht unter vier Aufnahmen ab).
-
----
-
-## Noch anzupassen
-
-Diese Stellen stammen noch aus der Projektvormittag-Fassung und widersprechen jetzt
-diesem Plan. Sie wurden bewusst nicht mit geändert:
-
-| Datei | Stelle | Was dort steht und was daraus werden muss |
-|---|---|---|
-| `docs/00_konzept.md` | Z. 9 | „Dauer: **3,5 Stunden** (Projektvormittag)" → 3 × 90 min in drei Terminen, sechs Blöcke |
-| `docs/00_konzept.md` | Z. 11 | „**12–15** Schüler:innen, Partnerarbeit an 6–8 Rechnern" → bis 20 SuS in **8 Gruppen** (2–3 pro Rechner). Die Rechnerzahl passt schon. |
-| `docs/00_konzept.md` | Z. 76 | Grundsatz 1: „**Sechs Folien** im ganzen Workshop" → **neun** Folien, eine Fazit-Folie pro Block. Der Grundsatz selbst gilt weiter: jeder Input unter 5 Minuten und immer *nach* dem Experiment. |
-| `docs/00_konzept.md` | Z. 70 | „Der **Abschlussblock** (Angriff & Ethik)" → **Block 6** |
-| `docs/00_konzept.md` | — | Dem Konzept fehlt ein Grundsatz zu den **Hausaufgaben**. Die sind jetzt tragend, nicht optional. |
-| `README.md` | Z. 10 | „**3,5 Stunden.**" → drei Doppelstunden |
-| `docs/03_loesungen.md` | Z. 213 | „er trägt bis in **Block 5**" → bis in Block 6 (die Nummerierung hat sich verschoben!) |
-| `docs/03_loesungen.md` | Z. 305 | „Am Ende wird das Plakat von **8:05** durchgegangen" → das Plakat aus Termin 1 |
-| `material/handouts/handout_A_laufzettel.html` | Z. 80 | Die Frage zitiert `gitter = 255 - gitter`. Das stimmt mit dem Code überein – **nicht** ändern, falls die Bezeichner jemals englisch werden, dann aber zwingend mit. |
-| `material/handouts/handout_A_laufzettel.html` | Z. 62–63, 120 | „Am Ende des **Vormittags** …"; und bei 4a „Ihr braucht sie in den nächsten beiden Stationen" – richtig wäre: am selben Termin, denn vorher wird gelöscht. Sinnvolle Ergänzung: ein Feld „Gruppe Nr." und drei HA-Kästchen. |
-
-**Erledigt:** `material/folien/index.html` ist auf neun Folien erweitert und trägt jetzt
-die Block-Nummerierung; die Dauer-Angabe auf Folie 1 ist korrigiert.
-`docs/02_technik_setup.md` hat eine Checkliste für Termin 1 und eine Kurzliste für
-Termin 2 und 3 – und vorne das neue `einrichten.bat`, das die Einzelschritte ersetzt.
-
-**Nicht betroffen:** alles in `code/`, das Startmenü und die Handouts B bis F – dort
-stehen nur Stationsnummern, und die sind unverändert gültig. `handout_B_faltung.html`
-passt mit acht Gruppen genau, es bleibt kein Feld übrig.

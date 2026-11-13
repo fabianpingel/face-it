@@ -65,7 +65,7 @@ def tafel_zeichnen(kernel):
     tafel = np.full((465, 260, 3), 22, np.uint8)
     summe = float(kernel.sum())
 
-    faceit.schrift(tafel, "Dein Kernel", (18, 38), faceit.CYAN, 0.75, 2)
+    faceit.schrift(tafel, "Dein Kernel", (18, 38), faceit.AKZENT, 0.75, 2)
 
     zelle = 68
     for z in range(3):
@@ -75,7 +75,7 @@ def tafel_zeichnen(kernel):
                           (70, 70, 70), 1)
             wert = int(kernel[z, s])
             farbe = (faceit.WEISS if wert == 0
-                     else faceit.CYAN if wert > 0 else faceit.ROT)
+                     else faceit.AKZENT if wert > 0 else faceit.ROT)
             text = f"{wert:+d}" if wert else "0"
             breite = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX,
                                      0.7, 2)[0][0]
@@ -89,7 +89,7 @@ def tafel_zeichnen(kernel):
     if abs(summe - 1) < 0.01:
         deutung, farbe = "Helligkeit bleibt", faceit.GRUEN
     elif abs(summe) < 0.01:
-        deutung, farbe = "Kantenfilter", faceit.CYAN
+        deutung, farbe = "Kantenfilter", faceit.AKZENT
     elif summe > 1:
         deutung, farbe = "Bild wird heller", faceit.GELB
     else:
@@ -127,7 +127,7 @@ while True:
     faceit.schrift(links, "vorher", (16, 34), faceit.GRAU, 0.7, 2)
     rechts = cv2.cvtColor(cv2.resize(anwenden(grau, kernel), (620, 465)),
                           cv2.COLOR_GRAY2BGR)
-    faceit.schrift(rechts, "nachher", (16, 34), faceit.CYAN, 0.7, 2)
+    faceit.schrift(rechts, "nachher", (16, 34), faceit.AKZENT, 0.7, 2)
 
     ansicht = np.hstack([links, rechts, tafel_zeichnen(kernel)])
     faceit.zeigen(FENSTER, ansicht)
@@ -145,7 +145,7 @@ while True:
         print("  Zurueckgesetzt.")
     if gedrueckt == "s":
         print()
-        print("  " + faceit.bunt("Dein Kernel:", "cyan", "fett"))
+        print("  " + faceit.bunt("Dein Kernel:", "blau", "fett"))
         for zeile in kernel.astype(int):
             print("     [" + ", ".join(f"{w:3d}" for w in zeile) + "],")
         print(f"     Summe: {kernel.sum():+.0f}")

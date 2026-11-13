@@ -76,52 +76,54 @@ BEISPIEL_FLAECHE = np.array([[4, 4, 4],
 STIL = """
   @page { size: A4 portrait; margin: 14mm; }
   * { box-sizing: border-box; }
-  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-         color: #1a2b3c; margin: 0; font-size: 11.5pt; line-height: 1.5; }
-  h1 { font-size: 20pt; margin: 0; color: #12263f; letter-spacing: -0.01em; }
-  h1 span { color: #1ec8e6; }
-  .unter { font-size: 12pt; color: #1ec8e6; margin: 2mm 0 0 0; font-weight: 600; }
-  .linie { height: 3px; background: #1ec8e6; margin: 3mm 0 6mm 0; }
-  h2 { font-size: 12pt; color: #12263f; margin: 0 0 3mm 0; }
+  body { font-family: var(--font-sans);
+         color: #1a2340; margin: 0; font-size: 10.5pt; line-height: 1.4; }
+  h1 { font-size: 20pt; margin: 0; color: #182145; letter-spacing: -0.01em; }
+  h1 span { color: #2b5fe8; }
+  .unter { font-size: 12pt; color: #2b5fe8; margin: 2mm 0 0 0; font-weight: 600; }
+  .linie { height: 3px; background: #2b5fe8; margin: 3mm 0 4mm 0; }
+  h2 { font-size: 12pt; color: #182145; margin: 0 0 3mm 0; }
   ol { margin: 2mm 0 0 0; padding-left: 6mm; }
   ol li { margin-bottom: 1.2mm; }
-  .reihe { display: flex; gap: 12mm; align-items: flex-start; margin-bottom: 7mm; }
+  .reihe { display: flex; gap: 12mm; align-items: flex-start; margin-bottom: 5mm; }
   table.gitter { border-collapse: collapse; }
-  table.gitter td, table.gitter th { border: 1px solid #b9c2cc; width: 13mm;
-        height: 13mm; text-align: center; vertical-align: middle;
+  table.gitter td, table.gitter th { border: 1px solid #b7c2dc; width: 11.5mm;
+        height: 11.5mm; text-align: center; vertical-align: middle;
         font-size: 13pt; font-variant-numeric: tabular-nums; }
-  table.gitter th { border: none; color: #1ec8e6; font-size: 9.5pt;
+  table.gitter th { border: none; color: #2b5fe8; font-size: 9.5pt;
         width: 8mm; height: 7mm; font-weight: 700; }
-  table.gitter td.leer { background: #fbfdfe; }
+  table.gitter td.leer { background: #f4f7fc; }
+  /* Seite 1: kleinere Gitter, damit beide Beispiele auf eine Seite passen */
+  table.gitter.klein td { width: 8mm; height: 8mm; font-size: 10.5pt; }
   table.gruppen { border-collapse: collapse; font-size: 10.5pt; }
   table.gruppen td { padding: 0.8mm 4mm 0.8mm 0; }
-  table.gruppen td.felder { color: #12263f; font-weight: 700;
+  table.gruppen td.felder { color: #182145; font-weight: 700;
         font-variant-numeric: tabular-nums; }
-  .frage { color: #12263f; font-weight: 700; margin: 5mm 0 2mm 0; font-size: 12pt; }
-  .klein { color: #63707d; font-size: 10pt; }
-  .kasten { border-left: 3px solid #1ec8e6; padding: 2mm 0 2mm 4mm;
-        margin: 4mm 0; background: #f5fcfe; }
-  .loesung { color: #1ec8e6; font-weight: 700; }
+  .frage { color: #182145; font-weight: 700; margin: 5mm 0 2mm 0; font-size: 12pt; }
+  .klein { color: #56658a; font-size: 10pt; }
+  .kasten { border-left: 3px solid #2b5fe8; padding: 2mm 0 2mm 4mm;
+        margin: 3mm 0; background: #f4f7fc; }
+  .loesung { color: #2b5fe8; font-weight: 700; }
 
-  /* Farben fuer das Rechenbeispiel: Kernelzahlen cyan, Bildzahlen dunkel */
-  .kz { color: #0f8fa8; font-weight: 700; }
-  .bz { color: #12263f; font-weight: 700; }
-  table.gitter td.kern { color: #0f8fa8; font-weight: 700; }
-  table.gitter td.bild { color: #12263f; font-weight: 700; }
-  table.gitter td.treffer { background: #d4f1fa; font-weight: 700; }
+  /* Farben fuer das Rechenbeispiel: Kernelzahlen blau, Bildzahlen dunkel */
+  .kz { color: #1f4bc2; font-weight: 700; }
+  .bz { color: #182145; font-weight: 700; }
+  table.gitter td.kern { color: #1f4bc2; font-weight: 700; }
+  table.gitter td.bild { color: #182145; font-weight: 700; }
+  table.gitter td.treffer { background: #cfdcff; font-weight: 700; }
   .rechnung { font-family: Consolas, "Courier New", monospace;
-              font-size: 10pt; line-height: 1.9; margin: 2mm 0 0 0; }
-  .rechnung .ergebnis { color: #0f8fa8; font-weight: 700; }
-  .beispiel { border: 1px solid #cdd5dd; padding: 3mm 4mm; margin-bottom: 4mm; }
-  .beispiel h3 { font-size: 11pt; color: #12263f; margin: 0 0 2mm 0; }
+              font-size: 9.5pt; line-height: 1.45; margin: 1.5mm 0 0 0; }
+  .rechnung .ergebnis { color: #1f4bc2; font-weight: 700; }
+  .beispiel { border: 1px solid #dbe2f0; padding: 2.5mm 4mm; margin-bottom: 3mm; }
+  .beispiel h3 { font-size: 11pt; color: #182145; margin: 0 0 2mm 0; }
   .beispiel .zusammen { display: flex; gap: 5mm; align-items: center;
                         flex-wrap: wrap; }
-  .mal { font-size: 16pt; color: #63707d; }
-  .antwort { border-left: 3px solid #1ec8e6; background: #eefaff;
+  .mal { font-size: 16pt; color: #56658a; }
+  .antwort { border-left: 3px solid #2b5fe8; background: #e6edff;
              padding: 3mm 0 3mm 4mm; margin: 4mm 0; }
-  .antwort h3 { font-size: 11.5pt; color: #12263f; margin: 0 0 1.5mm 0; }
+  .antwort h3 { font-size: 11.5pt; color: #182145; margin: 0 0 1.5mm 0; }
   .seitenwechsel { page-break-before: always; }
-  .legende { font-size: 9.5pt; color: #63707d; margin-top: 1.5mm; }
+  .legende { font-size: 9.5pt; color: #56658a; margin-top: 1.5mm; }
 """
 
 
@@ -189,7 +191,7 @@ def rechnung_html(bild, kernel):
                       + " &nbsp;=&nbsp; " + " + ".join(produkte)
                       + " &nbsp;=&nbsp; "
                       + f'<span class="ergebnis">{summe}</span>')
-    zeilen.append('<span style="color:#63707d">Alle drei Zeilen addiert:</span>'
+    zeilen.append('<span style="color:#56658a">Alle drei Zeilen addiert:</span>'
                   f' &nbsp;<span class="ergebnis">{gesamt}</span>'
                   f" &nbsp;&rarr;&nbsp; Betrag "
                   f'<span class="ergebnis">{abs(gesamt)}</span>')
@@ -201,7 +203,7 @@ def gitter_html(werte, zeigen=True, betrag=False, klasse="",
     """
     Baut ein Zahlengitter als HTML-Tabelle.
 
-    zellklasse   faerbt alle Zahlen ("kern" cyan, "bild" dunkelblau)
+    zellklasse   faerbt alle Zahlen ("kern" blau, "bild" navy)
     treffer      hebt Felder ungleich Null farbig hervor (fuer die Loesung)
     kopf         Spaltenbuchstaben und Zeilennummern anzeigen
     """
@@ -267,7 +269,7 @@ def blatt(loesung=False):
   <strong>senkrechten Streifen</strong> – an genau der Stelle, an der im Bild
   die Kante liegt. Der Filter hat also nicht die Helligkeit gemessen, sondern
   die <strong>Veränderung</strong> der Helligkeit.</p>
-  <p style="margin:2mm 0 0 0; color:#63707d">Und deshalb ist die Summe der neun
+  <p style="margin:2mm 0 0 0; color:#56658a">Und deshalb ist die Summe der neun
   Kernelzahlen null: Ein Kantenfilter darf auf eine gleichmäßige Fläche nicht
   reagieren, egal wie hell sie ist.</p>
 </div>
@@ -294,8 +296,8 @@ das geht.</p>
 <div class="reihe" style="margin:4mm 0">
   <div>
     <h2>Der Kernel (3 × 3)</h2>
-    {gitter_html(KERNEL, zellklasse="kern", kopf=False)}
-    <p class="legende">Kernelzahlen sind <span class="kz">cyan</span>,
+    {gitter_html(KERNEL, zellklasse="kern", kopf=False, klasse="klein")}
+    <p class="legende">Kernelzahlen sind <span class="kz">blau</span>,
     Bildzahlen <span class="bz">dunkelblau</span>.</p>
   </div>
   <div>
@@ -316,12 +318,12 @@ das geht.</p>
   <h3>Beispiel 1 &nbsp;·&nbsp; der Kernel liegt auf einer Kante</h3>
   <div class="zusammen">
     <div>
-      {gitter_html(BEISPIEL_KANTE, zellklasse="bild", kopf=False)}
+      {gitter_html(BEISPIEL_KANTE, zellklasse="bild", kopf=False, klasse="klein")}
       <p class="legende">links dunkel (3), rechts hell (5)</p>
     </div>
     <div class="mal">&times;</div>
     <div>
-      {gitter_html(KERNEL, zellklasse="kern", kopf=False)}
+      {gitter_html(KERNEL, zellklasse="kern", kopf=False, klasse="klein")}
       <p class="legende">der Kernel</p>
     </div>
   </div>
@@ -335,12 +337,12 @@ das geht.</p>
   Fläche</h3>
   <div class="zusammen">
     <div>
-      {gitter_html(BEISPIEL_FLAECHE, zellklasse="bild", kopf=False)}
+      {gitter_html(BEISPIEL_FLAECHE, zellklasse="bild", kopf=False, klasse="klein")}
       <p class="legende">überall dieselbe Helligkeit (4)</p>
     </div>
     <div class="mal">&times;</div>
     <div>
-      {gitter_html(KERNEL, zellklasse="kern", kopf=False)}
+      {gitter_html(KERNEL, zellklasse="kern", kopf=False, klasse="klein")}
       <p class="legende">derselbe Kernel</p>
     </div>
   </div>
@@ -364,7 +366,9 @@ das geht.</p>
 <head>
 <meta charset="utf-8">
 <title>Face it! – Arbeitsblatt B: Faltung von Hand</title>
-<style>{STIL}</style>
+<link rel="stylesheet" href="../brand/tokens.css">
+<style>
+  h1, h2, h3 {{ font-family: var(--font-display); }}{STIL}</style>
 </head>
 <body>
 {seite1}

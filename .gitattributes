@@ -1,12 +1,18 @@
 # Zeilenenden einheitlich halten, egal auf welchem Rechner geklont wird
 * text=auto eol=lf
 
-# Windows-Startskript braucht CRLF
+# Windows-Skripte brauchen CRLF
 *.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.psm1 text eol=crlf
 
 # Binaerdateien nicht anfassen
 *.png binary
 *.jpg binary
 *.jpeg binary
 *.onnx binary
+*.woff2 binary
+*.ttf binary
+*.npy binary
 *.yaml -text

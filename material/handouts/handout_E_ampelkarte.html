@@ -3,14 +3,16 @@
 <head>
 <meta charset="utf-8">
 <title>Face it! – Ampelkarte</title>
+<link rel="stylesheet" href="../brand/tokens.css">
 <style>
+  h1, h2, h3 { font-family: var(--font-display); }
   @page { size: A4 landscape; margin: 0; }
 
   * { box-sizing: border-box; margin: 0; padding: 0;
       -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-  body { font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-         color: #1a2b3c; }
+  body { font-family: var(--font-sans);
+         color: #1a2340; }
 
   /* ---------- Seite 1: die beiden Signalseiten ---------- */
 
@@ -46,36 +48,36 @@
 
   /* Faltlinie in der Mitte */
   .falz { position: absolute; left: 148.5mm; top: 0; height: 210mm;
-          border-left: 1px dashed #9aa6b1; }
+          border-left: 1px dashed #a3afcc; }
   .falz span { position: absolute; top: 50%; left: 1.5mm;
                transform: translateY(-50%) rotate(90deg);
                transform-origin: left center;
-               font-size: 7.5pt; color: #9aa6b1; letter-spacing: .2em;
+               font-size: 7.5pt; color: #a3afcc; letter-spacing: .2em;
                white-space: nowrap; }
 
   /* ---------- Seite 2: Fehlerhilfe ---------- */
 
   .rueck { width: 297mm; height: 210mm; padding: 14mm 16mm; }
-  .rueck h1 { font-size: 19pt; color: #12263f; }
-  .rueck h1 span { color: #1ec8e6; }
-  .rueck .unter { font-size: 11pt; color: #1ec8e6; font-weight: 600;
+  .rueck h1 { font-size: 19pt; color: #182145; }
+  .rueck h1 span { color: #2b5fe8; }
+  .rueck .unter { font-size: 11pt; color: #2b5fe8; font-weight: 600;
                   margin-top: 1.5mm; }
-  .rueck .linie { height: 3px; background: #1ec8e6; margin: 3mm 0 6mm 0; }
+  .rueck .linie { height: 3px; background: #2b5fe8; margin: 3mm 0 6mm 0; }
 
   .spalten { display: flex; gap: 10mm; }
   .spalte { flex: 1; }
 
   .fall { margin-bottom: 4.5mm; }
-  .fall .frage { font-weight: 700; color: #12263f; font-size: 11pt; }
-  .fall .antwort { font-size: 10pt; color: #3d4a56; margin-top: 0.8mm; }
+  .fall .frage { font-weight: 700; color: #182145; font-size: 11pt; }
+  .fall .antwort { font-size: 10pt; color: #56658a; margin-top: 0.8mm; }
   code { font-family: Consolas, "Courier New", monospace; font-size: 9.5pt;
-         background: #eef3f7; padding: 0.3mm 1.2mm; border-radius: 2px; }
+         background: #ebf0fa; padding: 0.3mm 1.2mm; border-radius: 2px; }
 
-  .regel { border-left: 3px solid #1ec8e6; background: #f5fcfe;
+  .regel { border-left: 3px solid #2b5fe8; background: #f4f7fc;
            padding: 3mm 0 3mm 4mm; margin: 5mm 0 0 0; font-size: 10pt; }
 
-  .anleitung { margin-top: 6mm; border-top: 1px solid #dfe5eb;
-               padding-top: 4mm; font-size: 9.5pt; color: #63707d; }
+  .anleitung { margin-top: 6mm; border-top: 1px solid #dbe2f0;
+               padding-top: 4mm; font-size: 9.5pt; color: #56658a; }
 </style>
 </head>
 <body>

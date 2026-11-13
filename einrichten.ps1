@@ -298,7 +298,8 @@ function Test-Projekt {
     }
 
     # Weg 2: ZIP. Braucht kein git und keine Adminrechte.
-    $zipUrl = "$Quelle/archive/refs/heads/$Stand.zip"
+    # /archive/<Stand>.zip funktioniert fuer Zweige und Tags gleichermassen.
+    $zipUrl = "$Quelle/archive/$Stand.zip"
     $zipDatei = Join-Path $env:TEMP "face-it-$Stand.zip"
     $entpackt = Join-Path $env:TEMP "face-it-entpackt"
     try {

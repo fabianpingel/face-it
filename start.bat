@@ -6,7 +6,8 @@ where uv >nul 2>nul
 if errorlevel 1 (
   echo.
   echo   uv ist auf diesem Rechner nicht installiert.
-  echo   Anleitung: docs_technik_setup.md
+  echo   Einmal einrichten: einrichten.bat doppelklicken.
+  echo   Anleitung: docs\02_technik_setup.md
   echo.
   pause
   exit /b 1

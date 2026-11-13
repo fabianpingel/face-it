@@ -40,16 +40,29 @@ Zum Abschluss greifen die Gruppen ihre eigenen Systeme an (Foto vor die Kamera,
 Schwellenwert verstellen, Referenzdatei austauschen), messen die Fehlerarten an
 den Daten der Klasse und diskutieren, wem das eigene Gesicht eigentlich gehört.
 
-## Schnellstart
+## Ausprobieren in zehn Minuten (Windows)
+
+1. Oben auf dieser Seite **Code → Download ZIP**, dann die ZIP-Datei entpacken.
+2. Im entpackten Ordner **`einrichten.bat`** doppelklicken. Das Skript installiert
+   alles Nötige ohne Administratorrechte, prüft Kamera und Modelle und zeigt am Ende
+   einen Ampelbericht. Beim ersten Mal dauert das wenige Minuten und braucht Internet.
+3. **`start.bat`** doppelklicken. Es öffnet sich ein Menü mit allen Stationen.
+   Gute erste Wahl: `0` (läuft die Kamera?), `1` (das eigene Gesicht als Zahlen) und
+   `4a` und danach `4c` (die eigene Handy-Entsperrung mit Schieberegler).
+
+Zum Beenden einer Station in das Bildfenster klicken und `q` drücken. Am Ende räumt
+`99` alle Aufnahmen wieder weg.
+
+Ohne Windows oder lieber im Terminal:
 
 ```bash
 uv sync                       # einmal, mit Internetverbindung
 uv run code/00_check.py       # sieht man sich selbst? Dann kann es losgehen.
+uv run code/start.py          # Menü mit allen Stationen
 ```
 
-Unter Windows genügt ein Doppelklick auf **`start.bat`** – das erledigt `uv sync`
-und öffnet ein Menü mit allen Stationen. Wer `uv` noch nicht hat:
-[docs/02_technik_setup.md](docs/02_technik_setup.md).
+Wer `uv` noch nicht hat, Hinweise für die Schul-IT und den Ablauf für einen ganzen
+Raum: [docs/02_technik_setup.md](docs/02_technik_setup.md).
 
 ## Die Programme
 

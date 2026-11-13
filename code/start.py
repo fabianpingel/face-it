@@ -95,7 +95,11 @@ def menue():
 def starten(datei):
     print("   " + faceit.bunt(f"{faceit.sym('▶', '>')}  {datei} startet ...", "blau"))
     print()
-    subprocess.run([sys.executable, str(HIER / datei)])
+    try:
+        subprocess.run([sys.executable, str(HIER / datei)])
+    except KeyboardInterrupt:
+        # Strg+C beendet nur die Station, das Menue bleibt offen.
+        pass
 
 
 def farbtest():

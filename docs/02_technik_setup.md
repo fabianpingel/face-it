@@ -46,12 +46,13 @@ einrichten.bat /still     schweigt bei Erfolg (für den Autostart)
 Feinere Einstellungen gehen direkt über das PowerShell-Skript:
 
 ```powershell
-.\einrichten.ps1 -Quelle https://github.com/<konto>/face-it -Stand v1.0 -Ziel C:\face-it
+.\einrichten.ps1 -Stand v0.9.0b1 -Ziel C:\face-it
 ```
 
-> **`-Quelle` muss auf das eigene Repository zeigen.** Der eingebaute
-> Standardwert ist die Adresse von der Abschlussfolie und nicht geprüft. Vor dem
-> ersten Einsatz einmal mit `/trocken` gegentesten.
+> **`-Quelle`** ist standardmäßig dieses Repository
+> (`https://github.com/fabianpingel/face-it`). Wer eine eigene, angepasste Kopie
+> (Fork) benutzt, gibt deren Adresse an. Vor dem ersten Einsatz in einem Raum
+> einmal mit `/trocken` gegentesten.
 
 ### Für die Schul-IT: Autostart
 

@@ -28,8 +28,8 @@ kommt **nach** dem Experiment, nie davor.
 > Blöcke und Termine sind die Zeitebene darüber – eine Station darf über zwei Blöcke
 > laufen.
 
-**Was gegenüber dem alten Projektvormittag anders ist:** Die Diskussions- und
-Einordnungsphasen wachsen von rund 33 auf rund 71 Minuten – das ist der Teil, in dem
+**Warum drei Termine statt eines Projektvormittags:** Die Diskussions- und
+Einordnungsphasen bekommen rund 71 statt 33 Minuten – das ist der Teil, in dem
 die SuS abstrahieren und einordnen. Die angeleiteten Doing-Phasen sind dafür um etwa
 20 Minuten gestrafft. Neu hinzu: eine ausführliche gemeinsame Einrichtung, ein echter
 Wiedereinstieg pro Termin, 27 Minuten Zeitpuffer und **Hausaufgaben, die tragen**.
@@ -171,8 +171,8 @@ gebraucht – sie sind kein Beschäftigungsmaterial, sondern Voraussetzung.
 
 ## Was über drei Wochen trägt – und was nicht
 
-Im Projektvormittag blieb alles einfach hängen. Über drei Termine bricht das, und zwar
-an sieben Stellen:
+An einem einzigen Vormittag bliebe alles einfach hängen. Über drei Termine bricht
+das, und zwar an sieben Stellen:
 
 | Was bricht | Maßnahme |
 |---|---|

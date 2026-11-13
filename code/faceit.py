@@ -484,6 +484,19 @@ def gesichtsrahmen(bild, gesicht, farbe=AKZENT, punkte=True, beschriftung=None):
 
 # ---------------------------------------------------------------- Fehler und Start
 
+def _strg_c_abfangen(art, wert, verlauf) -> None:
+    """Beendet nach Strg+C ruhig, statt eine rote Textwand zu zeigen."""
+    if issubclass(art, KeyboardInterrupt):
+        print()
+        print("  " + bunt("Beendet mit Strg+C.", "grau"))
+        return
+    sys.__excepthook__(art, wert, verlauf)
+
+
+# Strg+C ist im Workshop kein Fehler, sondern der Notausgang (siehe Ampelkarte).
+sys.excepthook = _strg_c_abfangen
+
+
 def abbruch(*zeilen) -> NoReturn:
     """Bricht das Programm mit einer verstaendlichen Meldung ab."""
     strich = bunt("=" * 64, "rot")

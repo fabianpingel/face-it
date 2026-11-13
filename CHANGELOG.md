@@ -15,6 +15,8 @@ Alle nennenswerten Änderungen an diesem Workshop. Format nach
   Gesicht mit Netz und den fünf Gesichtspunkten von YuNet.
 - Laufzettel: Feld für die Gruppennummer und Kästchen für die fünf Hausaufgaben.
 - Grundsatz 8 im Konzept: Hausaufgaben, die tragen.
+- README: „Ausprobieren in zehn Minuten“ für Lehrkräfte (ZIP, `einrichten.bat`,
+  `start.bat`).
 - `LICENSE.md` mit beiden Lizenzen (CC BY-NC 4.0 für Material, MIT für Code) und den
   Ausnahmen; `CHANGELOG.md`; Beta-Hinweis und Abschnitte „Teil einer Workshop-Reihe“
   und „Rückmeldung“ in der README.
@@ -36,6 +38,12 @@ Alle nennenswerten Änderungen an diesem Workshop. Format nach
 - Testsuite auf einem frisch geklonten Rechner: Fehlen die Ersatzportraits, werden die
   Stationstests übersprungen statt mit Fehlern abzubrechen.
 - Station 1: In der unteren Leiste überlappten die Zahlenzeile und die Tastenhinweise.
+- Strg+C beendet eine Station jetzt ruhig, statt eine rote Fehlermeldung zu zeigen,
+  und führt im Startmenü zurück ins Menü (wie es die Ampelkarte verspricht).
+- `start.bat`: Der Verweis auf die Anleitung enthielt ein Steuerzeichen statt
+  `docs\02_technik_setup.md`; jetzt mit Hinweis auf `einrichten.bat`.
+- `einrichten.ps1`: Der ZIP-Weg funktioniert jetzt auch mit einem Tag als `-Stand`,
+  nicht nur mit einem Zweig.
 - `.ps1`-Dateien werden mit CRLF ausgecheckt.
 
 ## Erste Fassung – 2026-09-11

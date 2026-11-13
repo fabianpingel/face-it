@@ -6,6 +6,8 @@ Alle nennenswerten Änderungen an diesem Workshop. Format nach
 
 ## [Unreleased]
 
+## [0.9.0b1] – 2026-11-13 (Beta)
+
 ### Hinzugefügt
 
 - Erscheinungsbild von PINGEL AI Solutions: Schriften Red Hat Display und Red Hat Text
@@ -51,3 +53,6 @@ Alle nennenswerten Änderungen an diesem Workshop. Format nach
 Damals als 1.0.0 nummeriert, inzwischen als Beta eingestuft. Erste vollständige Fassung: sechs Blöcke an drei Terminen, Stationen 0 bis 5, fünf
 Advanced-Programme, Handouts A bis F, Folien, Elternbrief, Einrichtungsskript mit
 Ampelbericht und automatische Testsuite.
+
+[Unreleased]: https://github.com/fabianpingel/face-it/compare/v0.9.0b1...HEAD
+[0.9.0b1]: https://github.com/fabianpingel/face-it/releases/tag/v0.9.0b1
